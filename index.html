@@ -41,8 +41,7 @@ input,select,textarea{width:100%;padding:12px;border:1px solid #ddd;border-radiu
 </style>
 </head>
 <body>
-<div style="background-image: url('https://i.postimg.cc/L8Nqc06c/IMG-20261024-WA0119.jpg'); background-size: cover; background-position: center; padding: 60px 20px; border-radius: 12px; color: white;">
-  <h1 style="font-size: 32px; font-weight: bold;">NAULANGUE-SHOP</h1>
+<header style="background-image: url('https://i.postimg.cc/L8Nqc06c/IMG-20261024-WA0119.jpg'); background-size: cover; background-position: center; position: relative;"><div style="position:absolute; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.6);"></div><h1 style="position:relative; z-index:2;">NAULANGUE-<br>SHOP</h1><div style="display:flex; gap:6px; position:relative; z-index:2;"><button class="cart-btn" onclick="showView('loja')">Loja</button><button class="cart-btn" onclick="showView('carrinho')">🛒 <span id="cartCount">0</span></button><button class="cart-btn" style="background:#e63946;color:#fff" onclick="showView('admin')">Admin</button></div></header>
   <p>Roupas que chega até cê- Rápido e seguro</p>
 </div>
 <div id="view-loja" class="view active"><div style="display:flex;gap:8px;margin-bottom:10px"><select id="filtroCat" onchange="renderLoja()"><option value="todos">Todas categorias</option><option>Camisas</option><option>Vestidos</option><option>Capulanas</option><option>Conjuntos</option></select><select id="filtroTamanho" onchange="renderLoja()"><option value="todos">Todos tamanhos</option><option>P</option><option>M</option><option>G</option><option>GG</option></select></div><div id="gridLoja" class="grid"></div></div>
