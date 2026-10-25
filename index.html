@@ -3,559 +3,119 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>MAFIOSO-STORE Montepuez</title>
+<title>NAULANGUE-SHOP</title>
 <style>
-* { margin:0; padding:0; box-sizing:border-box }
-body { background:#000; color:#fff; font-family:Arial }
-.top {
-  position:sticky; top:0; z-index:20;
-  background:#111; padding:10px 12px;
-  display:flex; align-items:center; gap:8px;
-  border-bottom:1px solid #222
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#000;color:#fff;font-family:Arial}
+.banner-foto{
+  position:relative;
+  width:100%;
+  height:180px;
+  overflow:hidden;
+  background:#000;
+  background-image:url('foto.jpg');
+  background-size:cover;
+  background-position:center 15%
 }
-.url {
-  flex:1; background:#232323; border-radius:20px;
-  padding:8px 14px; font-size:11px
+.banner-foto::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to right, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.65) 38%, rgba(0,0,0,0.15) 75%)
 }
-.banner {
-  background:#ff0040; padding:14px 12px
+.banner-foto .conteudo{
+  position:absolute;
+  left:16px;
+  top:50%;
+  transform:translateY(-50%);
+  z-index:2
 }
-.banner h1 {
-  background:#111; color:#ff0040;
-  padding:6px 14px; font-size:14px;
-  font-weight:900; border-radius:6px;
-  display:inline-block
-}
-.banner p {
-  color:#ffeb00; font-size:12px;
-  margin-top:6px; font-weight:bold
-}
-.sec {
-  padding:14px 0 14px 12px;
-  border-bottom:1px solid #1a1a1a
-}
-.sec h2 {
-  font-size:15px; margin-bottom:10px;
-  padding-left:8px; border-left:4px solid #ff0040;
+.banner-foto h1{
+  color:#fff;
+  font-size:21px;
+  font-weight:900;
+  line-height:21px;
   text-transform:uppercase
 }
-.grid {
-  display:flex; gap:12px;
-  overflow-x:auto; padding-right:12px;
-  padding-bottom:8px
+.banner-foto p{
+  color:#ffeb00;
+  font-size:11px;
+  margin-top:5px;
+  font-weight:700
 }
-.grid::-webkit-scrollbar { display:none }
-.card {
-  min-width:170px; max-width:170px;
-  background:#1a1a1a; border-radius:16px;
-  overflow:hidden; border:1px solid #2a2a2a;
-  flex-shrink:0; position:relative
-}
-.badge {
-  position:absolute; top:8px; left:8px;
-  background:#ff0040; color:#fff;
-  font-size:7px; font-weight:900;
-  padding:4px 7px; border-radius:10px; z-index:2
-}
-.img {
-  height:175px; background:#fff;
-  display:flex; align-items:center;
-  justify-content:center; cursor:zoom-in;
-  overflow:hidden
-}
-.img img {
-  width:100%; height:100%; object-fit:cover
-}
-.card h3 {
-  font-size:12px; padding:8px 8px 3px;
-  height:34px; overflow:hidden; line-height:13px
-}
-.preco {
-  color:#ff0040; font-weight:900;
-  padding:0 8px; font-size:15px
-}
-.old {
-  color:#888; font-size:10px;
-  text-decoration:line-through;
-  padding:0 8px 4px
-}
-.btnAdd {
-  width:92%; margin:5px 4% 10px;
-  background:#ff0040; color:#fff;
-  border:none; border-radius:20px;
-  padding:10px; font-weight:bold; font-size:12px
-}
-.app {
-  max-width:430px; margin:0 auto;
-  padding-bottom:70px; background:#000
-}
-.nav {
-  position:fixed; bottom:0; left:0; right:0;
-  background:#111; display:flex;
-  justify-content:space-around; padding:8px 0;
-  border-top:1px solid #222;
-  max-width:430px; margin:0 auto
-}
-#productModal {
-  position:fixed; inset:0;
-  background:rgba(0,0,0,.93);
-  z-index:200; display:none
-}
-.modalContent {
-  max-width:430px; margin:0 auto;
-  background:#111; min-height:100vh
-}
-.modalImgWrap {
-  height:70vh; background:#000;
-  display:flex; align-items:center;
-  justify-content:center; position:relative
-}
-.modalImgWrap img {
-  max-width:100%; max-height:100%; object-fit:contain
-}
-.modalImgWrap img.zoomed {
-  transform:scale(2.2); transition:.2s
-}
-.closeModal {
-  position:absolute; top:10px; right:10px;
-  background:#fff; color:#111; border:none;
-  width:36px; height:36px; border-radius:50%;
-  font-weight:bold
-}
-.modalInfo { padding:14px }
-.modalBtns {
-  display:flex; gap:8px; margin-top:12px
-}
-.btnWhats {
-  flex:1; background:#25D366; color:#fff;
-  border:none; border-radius:10px;
-  padding:12px; font-weight:bold
-}
-.btnCart {
-  flex:1; background:#ff0040; color:#fff;
-  border:none; border-radius:10px;
-  padding:12px; font-weight:bold
-}
-#adminPanel {
-  position:fixed; inset:0;
-  background:#0a0a0a; z-index:300;
-  display:none; overflow:auto
-}
-.adminHead {
-  background:#111; padding:14px;
-  display:flex; justify-content:space-between;
-  position:sticky; top:0
-}
-.adminCard {
-  background:#1e1e1e; margin:10px;
-  border-radius:14px; padding:14px;
-  border:1px solid #333
-}
-.inp, .sel {
-  width:100%; padding:12px;
-  border:1px solid #333; border-radius:10px;
-  margin-bottom:8px; background:#2a2a2a; color:#fff
-}
-.btnAdmin {
-  width:100%; background:#00c853; color:#fff;
-  border:none; border-radius:10px;
-  padding:12px; font-weight:bold; margin-top:6px
-}
-.loginBox {
-  max-width:320px; margin:80px auto;
-  background:#1e1e1e; padding:24px;
-  border-radius:16px; text-align:center
-}
-.previewWrap {
-  display:flex; gap:8px; flex-wrap:wrap
-}
-.previewBox {
-  width:60px; height:60px; border-radius:8px;
-  overflow:hidden; border:2px solid #00c853
-}
-.previewBox img {
-  width:100%; height:100%; object-fit:cover
-}
+.sec{padding:11px 0 11px 12px;border-bottom:1px solid #1a1a1a}
+.sec h2{font-size:12px;margin-bottom:8px;padding-left:8px;border-left:3px solid #ff0040;text-transform:uppercase}
+.grid{display:flex;gap:10px;overflow-x:auto;padding-right:12px;padding-bottom:6px}
+.grid::-webkit-scrollbar{display:none}
+.card{min-width:150px;max-width:150px;background:#1a1a1a;border-radius:14px;overflow:hidden;border:1px solid #2a2a2a;flex-shrink:0;position:relative}
+.badge{position:absolute;top:6px;left:6px;background:#ff0040;color:#fff;font-size:6px;font-weight:900;padding:3px 6px;border-radius:8px}
+.img{height:150px;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.img img{width:100%;height:100%;object-fit:cover}
+.card h3{font-size:11px;padding:6px 7px 2px;height:30px;overflow:hidden}
+.preco{color:#ff0040;font-weight:900;padding:0 7px;font-size:12px}
+.old{color:#888;font-size:9px;text-decoration:line-through;padding:0 7px 3px}
+.btnAdd{width:92%;margin:4px 4% 8px;background:#ff0040;color:#fff;border:none;border-radius:16px;padding:7px;font-weight:bold;font-size:10px}
+.app{max-width:430px;margin:0 auto;padding-bottom:70px;background:#000}
+.nav{position:fixed;bottom:0;left:0;right:0;background:#111;display:flex;justify-content:space-around;padding:7px 0;border-top:1px solid #222;max-width:430px;margin:0 auto}
+.nav div{font-size:9px;text-align:center}
+#adminPanel{position:fixed;inset:0;background:#0a0a0a;z-index:300;display:none;overflow:auto}
+.adminHead{background:#111;padding:14px;display:flex;justify-content:space-between;position:sticky;top:0}
+.adminCard{background:#1e1e1e;margin:10px;border-radius:14px;padding:14px;border:1px solid #333}
+.inp,.sel{width:100%;padding:11px;border:1px solid #333;border-radius:10px;margin-bottom:8px;background:#2a2a2a;color:#fff;font-size:13px}
+.btnAdmin{width:100%;background:#00c853;color:#fff;border:none;border-radius:10px;padding:12px;font-weight:bold;margin-top:6px}
+.loginBox{max-width:320px;margin:80px auto;background:#1e1e1e;padding:24px;border-radius:16px;text-align:center}
+.previewWrap{display:flex;gap:8px;flex-wrap:wrap}
+.previewBox{width:58px;height:58px;border-radius:8px;overflow:hidden;border:2px solid #00c853}
+.previewBox img{width:100%;height:100%;object-fit:cover}
 </style>
 </head>
 <body>
-
 <div class="app">
-  <div class="top">
-    <span>🏠</span>
-    <div class="url">🔒 mafioso-store.mz • Montepuez • 871585269</div>
-  </div>
-
-  <div class="banner">
-    <h1>MAFIOSO-STORE MONTEPUEZ</h1>
-    <p>👉 Desliza pro lado pra ver os produtos 👈</p>
-  </div>
-
-  <div id="allSections"></div>
-
-  <div style="text-align:center;padding:18px;color:#555;font-size:10px">
-    Admin: <u onclick="abrirAdmin()" style="color:#ff0040">clique aqui</u> • Montepuez
-  </div>
+<div class="banner-foto">
+<div class="conteudo">
+<h1>NAULANGUE-SHOP</h1>
+<p>Faça sua escolha, encomenda já</p>
 </div>
-
-<div class="nav">
-  <div style="color:#ff0040">🏠<br>Accueil</div>
-  <div style="color:#888">🔍<br>Catégorie</div>
-  <div style="color:#888">🛒<br>Panier <span id="cartCount" style="background:#ff0040;color:#fff;border-radius:50%;padding:2px 5px;font-size:8px;display:none">0</span></div>
-  <div style="color:#888" onclick="abrirAdmin()">👤<br>Compte</div>
 </div>
-
-<div id="productModal" onclick="if(event.target===this)fecharModal()">
-  <div class="modalContent">
-    <div class="modalImgWrap">
-      <button class="closeModal" onclick="fecharModal()">✕</button>
-      <img id="modalImg" src="" onclick="this.classList.toggle('zoomed')">
-    </div>
-    <div class="modalInfo">
-      <h2 id="modalNome"></h2>
-      <div class="preco" id="modalPreco"></div>
-      <div class="old" id="modalOld"></div>
-      <p style="font-size:11px;color:#aaa;margin-top:8px">📍 Montepuez - Toque para ampliar</p>
-      <div class="modalBtns">
-        <button class="btnCart" onclick="adicionarDoModal()">Adicionar</button>
-        <button class="btnWhats" onclick="comprarWhatsModal()">WhatsApp</button>
-      </div>
-    </div>
-  </div>
+<div id="allSections"></div>
+<div style="text-align:center;padding:14px;color:#555;font-size:9px">Admin: <u onclick="abrirAdmin()" style="color:#ff0040">clique aqui</u></div>
 </div>
-
-<div id="adminPanel">
-  <div class="adminHead">
-    <h2>ADMIN - TODOS ESTILOS</h2>
-    <button onclick="fecharAdmin()" style="background:#fff;color:#111;border:none;border-radius:8px;padding:8px 14px;font-weight:bold">X</button>
-  </div>
-
-  <div id="loginDiv" class="loginBox">
-    <h3>🔒 Acesso</h3>
-    <input id="passInput" type="password" class="inp" placeholder="Senha">
-    <button class="btnAdmin" onclick="fazerLogin()">ENTRAR</button>
-  </div>
-
-  <div id="adminContent" style="display:none">
-    <div class="adminCard" style="border-color:#00c853">
-      <h3>➕ Publicar por Estilo</h3>
-      <label style="font-size:11px;color:#aaa">Escolha o estilo:</label>
-      <select id="pGrupo" class="sel">
-        <option value="Camisa m-comprida">👕 Camisa m-comprida</option>
-        <option value="Camisa m-curta">👕 Camisa m-curta</option>
-        <option value="Calças">👖 Calças</option>
-        <option value="Calcinhas">👙 Calcinhas</option>
-        <option value="Bermudas">🩳 Bermudas</option>
-        <option value="Vestidos">👗 Vestidos</option>
-        <option value="Saias">👗 Saias</option>
-        <option value="Blusas">👚 Blusas</option>
-        <option value="Jaquetas">🧥 Jaquetas</option>
-        <option value="Sutiãs">👙 Sutiãs</option>
-        <option value="Conjuntos">👗 Conjuntos</option>
-        <option value="Delgados">Delgados</option>
-      </select>
-      <input type="file" id="fileInput" accept="image/*" multiple class="inp">
-      <div id="previewWrap" class="previewWrap"></div>
-      <div id="statusMsg" style="padding:8px;border-radius:8px;margin:6px 0;text-align:center;font-size:12px;display:none"></div>
-      <input id="pNome" class="inp" placeholder="Nome: ex Camisa m-comprida 1">
-      <input id="pPreco" class="inp" type="number" placeholder="Preço: ex 750">
-      <input id="pOld" class="inp" type="number" placeholder="Preço antigo: ex 1000">
-      <button id="btnPublicar" class="btnAdmin" onclick="publicarAuto()">📤 PUBLICAR NO ESTILO CERTO</button>
-      <button class="btnAdmin" style="background:#ff6a00;margin-top:8px" onclick="corrigirGrupos()">🔧 CORRIGIR GRUPOS ERRADOS</button>
-    </div>
-
-    <div class="adminCard">
-      <h3>📦 Produtos por Estilo (<span id="countProd">0</span>)</h3>
-      <div id="adminList"></div>
-    </div>
-  </div>
-</div>
-
+<div class="nav"><div style="color:#ff0040">🏠<br>Accueil</div><div style="color:#888">🔍<br>Catégorie</div><div style="color:#888">🛒<br>Panier</div><div style="color:#888" onclick="abrirAdmin()">👤<br>Compte</div></div>
+<div id="adminPanel"><div class="adminHead"><h2>ADMIN</h2><button onclick="fecharAdmin()" style="background:#fff;color:#111;border:none;border-radius:8px;padding:8px 14px;font-weight:bold">X</button></div>
+<div id="loginDiv" class="loginBox"><h3>🔒 Acesso</h3><input id="passInput" type="password" class="inp" placeholder="Senha"><button class="btnAdmin" onclick="fazerLogin()">ENTRAR</button></div>
+<div id="adminContent" style="display:none">
+<div class="adminCard" style="border-color:#00c853"><h3>➕ Publicar</h3>
+<select id="pGrupo" class="sel">
+<option value="Camisa m-comprida">👕 Camisa m-comprida</option>
+<option value="Camisas">👕 Camisas</option>
+<option value="Calções">🩳 Calções</option>
+<option value="Calças">👖 Calças</option>
+<option value="Calcinhas">👙 Calcinhas</option>
+<option value="Colar">📿 Colar</option>
+<option value="Sapatos">👟 Sapatos</option>
+<option value="Saltos">👠 Saltos</option>
+<option value="Vestidos">👗 Vestidos</option>
+<option value="Óculos">🕶️ Óculos</option>
+<option value="Outras roupas">👚 Outras roupas</option>
+<option value="Delgados">Delgados</option>
+</select>
+<input type="file" id="fileInput" accept="image/*" multiple class="inp"><div id="previewWrap" class="previewWrap"></div><input id="pNome" class="inp" placeholder="Nome"><input id="pPreco" class="inp" type="number" placeholder="Preço"><button id="btnPublicar" class="btnAdmin" onclick="publicarAuto()">📤 PUBLICAR</button></div>
+<div class="adminCard"><h3>📦 Produtos (<span id="countProd">0</span>)</h3><div id="adminList"></div></div>
+</div></div>
 <script>
-let db;
-let products = [];
-let cart = JSON.parse(localStorage.getItem('cart_final') || '[]');
-let curImgs = [];
-let modalIndex = 0;
-
-function initDB() {
-  let req = indexedDB.open('MafiosoStore', 3);
-  req.onupgradeneeded = e => {
-    if (!e.target.result.objectStoreNames.contains('produtos')) {
-      e.target.result.createObjectStore('produtos', {keyPath:'id', autoIncrement:true});
-    }
-  };
-  req.onsuccess = e => {
-    db = e.target.result;
-    carregarProdutos();
-  };
-}
-
-function carregarProdutos() {
-  let tx = db.transaction('produtos', 'readonly');
-  let req = tx.objectStore('produtos').getAll();
-  req.onsuccess = () => {
-    products = req.result.reverse();
-    render();
-  };
-}
-
-function salvarNoDB(prod) {
-  let tx = db.transaction('produtos', 'readwrite');
-  tx.objectStore('produtos').add(prod);
-  tx.oncomplete = () => { carregarProdutos(); };
-}
-
+let db,products=[],curImgs=[];
+function initDB(){let req=indexedDB.open('MafiosoStore',6);req.onupgradeneeded=e=>{if(!e.target.result.objectStoreNames.contains('produtos'))e.target.result.createObjectStore('produtos',{keyPath:'id',autoIncrement:true})};req.onsuccess=e=>{db=e.target.result;carregarProdutos()};}
+function carregarProdutos(){let tx=db.transaction('produtos','readonly');let req=tx.objectStore('produtos').getAll();req.onsuccess=()=>{products=req.result.reverse();render()};}
+function salvarNoDB(prod){let tx=db.transaction('produtos','readwrite');tx.objectStore('produtos').add(prod);tx.oncomplete=()=>{carregarProdutos()};}
 initDB();
-
-function detectarGrupoCorreto(nome) {
-  let n = nome.toLowerCase();
-  if (n.includes('m-comprida') || n.includes('m comprida') || n.includes('comprida')) return 'Camisa m-comprida';
-  if (n.includes('m-curta') || n.includes('m curta') || n.includes('curta') && n.includes('camisa')) return 'Camisa m-curta';
-  if (n.includes('calça') || n.includes('calca') || n.includes('jeans')) return 'Calças';
-  if (n.includes('calcinha')) return 'Calcinhas';
-  if (n.includes('bermuda') || n.includes('short')) return 'Bermudas';
-  if (n.includes('vestido')) return 'Vestidos';
-  return null;
-}
-
-function render() {
-  let container = document.getElementById('allSections');
-  if (products.length === 0) {
-    container.innerHTML = '<div style="padding:40px 20px;text-align:center;color:#666">Nenhum produto ainda.<br>Admin e publique!<br><br>Ex: Camisa m-comprida, Calças, Calcinhas - cada estilo separado</div>';
-    document.getElementById('countProd').innerText = '0';
-    return;
-  }
-
-  container.innerHTML = '';
-  let grupos = {};
-
-  products.forEach((pr, idx) => {
-    let grupoReal = pr.grupo;
-    if (!grupos[grupoReal]) grupos[grupoReal] = [];
-    grupos[grupoReal].push({pr, idx, grupoReal});
-  });
-
-  let ordem = ['Camisa m-comprida','Camisa m-curta','Calças','Calcinhas','Bermudas','Vestidos','Saias','Blusas','Jaquetas','Sutiãs','Conjuntos','Delgados'];
-  let gruposOrdenados = Object.keys(grupos).sort((a,b) => {
-    let ia = ordem.indexOf(a);
-    let ib = ordem.indexOf(b);
-    if (ia === -1) ia = 99;
-    if (ib === -1) ib = 99;
-    return ia - ib;
-  });
-
-  gruposOrdenados.forEach(cat => {
-    let html = '<div class="sec"><h2>' + cat + '</h2><div class="grid">';
-    grupos[cat].forEach(item => {
-      let pr = item.pr;
-      let img = pr.img ? '<img src="'+pr.img+'" loading="lazy">' : '<span style="color:#999">Foto</span>';
-      html += '<div class="card"><span class="badge">MONTEPUEZ</span><div class="img" onclick="abrirModal('+item.idx+')">'+img+'</div><h3>'+pr.n+'</h3><div class="preco">'+pr.p+' MT</div><div class="old">'+(pr.o?pr.o+' MT':'')+'</div><button class="btnAdd" onclick="adicionar('+item.idx+')">Adicionar</button></div>';
-    });
-    html += '</div></div>';
-    container.innerHTML += html;
-  });
-
-  document.getElementById('countProd').innerText = products.length;
-
-  let list = document.getElementById('adminList');
-  list.innerHTML = '';
-  products.forEach((pr, i) => {
-    let thumb = pr.img ? '<img src="'+pr.img+'" style="width:50px;height:50px;object-fit:cover;border-radius:6px">' : '<div style="width:50px;text-align:center">👕</div>';
-    list.innerHTML += '<div style="display:flex;gap:8px;background:#2a2a2a;border-radius:10px;padding:8px;align-items:center;margin-bottom:6px">'+thumb+'<div style="flex:1"><b style="font-size:11px">'+pr.n+'</b> <span style="background:#6ab6ff;color:#fff;padding:2px 6px;border-radius:8px;font-size:8px">'+pr.grupo+'</span><br><span style="color:#ff2d55;font-size:11px">'+pr.p+' MT</span><br><select id="editGrupo_'+pr.id+'" style="background:#333;color:#fff;border:1px solid #555;border-radius:6px;padding:4px;font-size:10px;margin-top:4px"><option value="Camisa m-comprida">Camisa m-comprida</option><option value="Camisa m-curta">Camisa m-curta</option><option value="Calças" '+(pr.grupo==='Calças'?'selected':'')+'>Calças</option><option value="Calcinhas" '+(pr.grupo==='Calcinhas'?'selected':'')+'>Calcinhas</option><option value="Bermudas">Bermudas</option><option value="Vestidos">Vestidos</option></select> <button onclick="moverGrupo('+pr.id+')" style="background:#00c853;color:#fff;border:none;border-radius:6px;padding:4px 8px;font-size:10px">Mover</button></div><button onclick="apagar('+pr.id+')" style="background:#ff0040;color:#fff;border:none;border-radius:6px;padding:6px 10px">X</button></div>';
-  });
-
-  atualizarCart();
-}
-
-function abrirModal(i) {
-  modalIndex = i;
-  let pr = products[i];
-  document.getElementById('modalImg').src = pr.img || '';
-  document.getElementById('modalImg').classList.remove('zoomed');
-  document.getElementById('modalNome').innerText = pr.n;
-  document.getElementById('modalPreco').innerText = pr.p + ' MT';
-  document.getElementById('modalOld').innerText = pr.o ? pr.o + ' MT' : '';
-  document.getElementById('productModal').style.display = 'block';
-  document.body.style.overflow = 'hidden';
-}
-
-function fecharModal() {
-  document.getElementById('productModal').style.display = 'none';
-  document.body.style.overflow = '';
-}
-
-function adicionar(i) {
-  cart.push(products[i]);
-  localStorage.setItem('cart_final', JSON.stringify(cart));
-  atualizarCart();
-  alert('✅ Adicionado!');
-}
-
-function adicionarDoModal() {
-  adicionar(modalIndex);
-  fecharModal();
-}
-
-function comprarWhatsModal() {
-  let pr = products[modalIndex];
-  window.open('https://wa.me/258871585269?text=' + encodeURIComponent('Olá MAFIOSO-STORE! Quero: ' + pr.n + ' - ' + pr.p + ' MT'), '_blank');
-}
-
-function atualizarCart() {
-  let el = document.getElementById('cartCount');
-  if (cart.length > 0) {
-    el.style.display = 'inline';
-    el.innerText = cart.length;
-  } else {
-    el.style.display = 'none';
-  }
-}
-
-function abrirAdmin() {
-  document.getElementById('adminPanel').style.display = 'block';
-}
-
-function fecharAdmin() {
-  document.getElementById('adminPanel').style.display = 'none';
-}
-
-function fazerLogin() {
-  let s = document.getElementById('passInput').value;
-  let k = 'bWFmaW9zbzIwMjU=';
-  if (btoa(s) === k) {
-    document.getElementById('loginDiv').style.display = 'none';
-    document.getElementById('adminContent').style.display = 'block';
-  } else {
-    alert('Senha errada!');
-  }
-}
-
-function comprimir(file, max, qual, cb) {
-  let r = new FileReader();
-  r.onload = e => {
-    let img = new Image();
-    img.onload = () => {
-      let c = document.createElement('canvas');
-      let w = img.width, h = img.height;
-      if (w > h) {
-        if (w > max) { h = h * max / w; w = max; }
-      } else {
-        if (h > max) { w = w * max / h; h = max; }
-      }
-      c.width = w;
-      c.height = h;
-      c.getContext('2d').drawImage(img, 0, 0, w, h);
-      cb(c.toDataURL('image/jpeg', qual));
-    };
-    img.src = e.target.result;
-  };
-  r.readAsDataURL(file);
-}
-
-document.getElementById('fileInput').addEventListener('change', e => {
-  let files = Array.from(e.target.files);
-  curImgs = [];
-  let wrap = document.getElementById('previewWrap');
-  wrap.innerHTML = '';
-  let status = document.getElementById('statusMsg');
-  status.style.display = 'block';
-  status.style.background = '#00c853';
-  status.style.color = '#fff';
-  status.innerText = '⏳ Comprimindo...';
-  let loaded = 0;
-  files.forEach(f => {
-    comprimir(f, 350, 0.55, url => {
-      curImgs.push(url);
-      let d = document.createElement('div');
-      d.className = 'previewBox';
-      d.innerHTML = '<img src="'+url+'">';
-      wrap.appendChild(d);
-      loaded++;
-      if (loaded === files.length) {
-        status.innerText = '✅ ' + loaded + ' pronta(s)!';
-      }
-    });
-  });
-});
-
-function publicarAuto() {
-  let nome = document.getElementById('pNome').value.trim() || 'Produto';
-  let p = parseInt(document.getElementById('pPreco').value);
-  let o = parseInt(document.getElementById('pOld').value) || 0;
-  let grupo = document.getElementById('pGrupo').value;
-  if (!p) { alert('Digita preço!'); return; }
-  if (curImgs.length === 0) { alert('Escolhe foto!'); return; }
-
-  let btn = document.getElementById('btnPublicar');
-  btn.innerText = '⏳ PUBLICANDO...';
-  btn.disabled = true;
-
-  curImgs.forEach((img, i) => {
-    let n = curImgs.length > 1 ? nome + ' ' + (i+1) : nome;
-    salvarNoDB({n:n, p:p, o:o || Math.round(p*1.5), img:img, grupo:grupo});
-  });
-
-  setTimeout(() => {
-    document.getElementById('pNome').value = '';
-    document.getElementById('pPreco').value = '';
-    document.getElementById('pOld').value = '';
-    curImgs = [];
-    document.getElementById('previewWrap').innerHTML = '';
-    document.getElementById('fileInput').value = '';
-    document.getElementById('statusMsg').style.display = 'none';
-    alert('✅ Publicado em ' + grupo + '!');
-    fecharAdmin();
-    btn.innerText = '📤 PUBLICAR NO ESTILO CERTO';
-    btn.disabled = false;
-  }, 600);
-}
-
-function apagar(id) {
-  if (confirm('Apagar?')) {
-    let tx = db.transaction('produtos', 'readwrite');
-    tx.objectStore('produtos').delete(id);
-    tx.oncomplete = () => { carregarProdutos(); };
-  }
-}
-
-function moverGrupo(id) {
-  let novoGrupo = document.getElementById('editGrupo_' + id).value;
-  let tx = db.transaction('produtos', 'readwrite');
-  let store = tx.objectStore('produtos');
-  let req = store.get(id);
-  req.onsuccess = () => {
-    let pr = req.result;
-    pr.grupo = novoGrupo;
-    store.put(pr);
-    tx.oncomplete = () => {
-      carregarProdutos();
-      alert('✅ Movido para ' + novoGrupo);
-    };
-  };
-}
-
-function corrigirGrupos() {
-  if (!confirm('Corrigir grupos errados automaticamente?')) return;
-  let tx = db.transaction('produtos', 'readwrite');
-  let store = tx.objectStore('produtos');
-  store.getAll().onsuccess = e => {
-    let todos = e.target.result;
-    let corrigidos = 0;
-    todos.forEach(pr => {
-      let correto = detectarGrupoCorreto(pr.n);
-      if (correto && correto !== pr.grupo) {
-        pr.grupo = correto;
-        store.put(pr);
-        corrigidos++;
-      }
-    });
-    tx.oncomplete = () => {
-      carregarProdutos();
-      alert('✅ ' + corrigidos + ' produtos corrigidos!');
-    };
-  };
-}
+function render(){let c=document.getElementById('allSections');if(products.length===0){c.innerHTML='<div style="padding:30px;text-align:center;color:#666;font-size:11px">Nenhum produto ainda.</div>';document.getElementById('countProd').innerText='0';return;}c.innerHTML='';let grupos={};products.forEach((pr,idx)=>{let g=pr.grupo||'Outras roupas';if(!grupos[g])grupos[g]=[];grupos[g].push({pr,idx})});Object.keys(grupos).forEach(cat=>{let h='<div class="sec"><h2>'+cat+'</h2><div class="grid">';grupos[cat].forEach(it=>{let pr=it.pr;let img=pr.img?'<img src="'+pr.img+'">':'Foto';h+='<div class="card"><span class="badge">NAULANGUE</span><div class="img">'+img+'</div><h3>'+pr.n+'</h3><div class="preco">'+pr.p+' MT</div></div>';});h+='</div></div>';c.innerHTML+=h;});document.getElementById('countProd').innerText=products.length;let list=document.getElementById('adminList');list.innerHTML='';products.forEach(pr=>{list.innerHTML+='<div style="display:flex;gap:8px;background:#2a2a2a;border-radius:10px;padding:8px;margin-bottom:6px"><div style="flex:1"><b>'+pr.n+'</b> '+pr.grupo+'<br>'+pr.p+' MT</div><button onclick="apagar('+pr.id+')" style="background:#ff0040;color:#fff;border:none;border-radius:6px;padding:6px 10px">X</button></div>';});}
+function abrirAdmin(){document.getElementById('adminPanel').style.display='block';}
+function fecharAdmin(){document.getElementById('adminPanel').style.display='none';}
+function fazerLogin(){let s=document.getElementById('passInput').value;if(btoa(s)==='bWFmaW9zbzIwMjU='){document.getElementById('loginDiv').style.display='none';document.getElementById('adminContent').style.display='block';}else{alert('Senha errada!');}}
+function comprimir(file,max,qual,cb){let r=new FileReader();r.onload=e=>{let img=new Image();img.onload=()=>{let canvas=document.createElement('canvas');let w=img.width,h=img.height;if(w>h){if(w>max){h=h*max/w;w=max}}else{if(h>max){w=w*max/h;h=max}}canvas.width=w;canvas.height=h;canvas.getContext('2d').drawImage(img,0,0,w,h);cb(canvas.toDataURL('image/jpeg',qual))};img.src=e.target.result};r.readAsDataURL(file);}
+document.getElementById('fileInput').addEventListener('change',e=>{let files=Array.from(e.target.files);curImgs=[];let wrap=document.getElementById('previewWrap');wrap.innerHTML='';files.forEach(f=>{comprimir(f,350,0.55,url=>{curImgs.push(url);let d=document.createElement('div');d.className='previewBox';d.innerHTML='<img src="'+url+'">';wrap.appendChild(d);});});});
+function publicarAuto(){let nome=document.getElementById('pNome').value.trim()||'Produto';let p=parseInt(document.getElementById('pPreco').value);let grupo=document.getElementById('pGrupo').value;if(!p){alert('Preço!');return;}if(curImgs.length===0){alert('Foto!');return;}curImgs.forEach((img,i)=>{let n=curImgs.length>1?nome+' '+(i+1):nome;salvarNoDB({n:n,p:p,img:img,grupo:grupo});});setTimeout(()=>{document.getElementById('pNome').value='';document.getElementById('pPreco').value='';curImgs=[];document.getElementById('previewWrap').innerHTML='';alert('Publicado!');fecharAdmin();},500);}
+function apagar(id){if(confirm('Apagar?')){let tx=db.transaction('produtos','readwrite');tx.objectStore('produtos').delete(id);tx.oncomplete=()=>{carregarProdutos();};}}
 </script>
 </body>
 </html>
