@@ -3,199 +3,85 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Naulangue Shop - Loja Oficial</title>
+<title>NAULANGUE SHOP - Montepuez</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
-body{background:#f8f8f8;color:#111}
-header{background:#111;color:#fff;padding:16px 20px;position:sticky;top:0;z-index:100;display:flex;justify-content:space-between;align-items:center}
-header h1{font-size:20px;font-weight:800}
-.cart-btn{background:#fff;color:#111;border:0;padding:8px 16px;border-radius:999px;font-weight:600;cursor:pointer}
-.hero{background:#111;color:#fff;padding:30px 20px;text-align:center}
-.hero h2{font-size:28px;margin-bottom:8px}
-.hero p{opacity:.7}
-.container{max-width:1100px;margin:0 auto;padding:20px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px}
-.card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.05);display:flex;flex-direction:column}
-.card img{width:100%;height:160px;object-fit:cover;background:#eee}
-.card-body{padding:12px;flex:1;display:flex;flex-direction:column}
-.card-body h3{font-size:14px;height:34px;overflow:hidden}
-.price{font-weight:800;margin:8px 0;font-size:16px}
-.stock{font-size:11px;padding:3px 8px;border-radius:99px;width:fit-content}
-.stock.ok{background:#dcfce7;color:#166534}
-.stock.low{background:#fef9c3;color:#854d0e}
-.stock.out{background:#fee2e2;color:#991b1b}
-.btn{margin-top:auto;background:#111;color:#fff;border:0;padding:10px;border-radius:10px;font-weight:600;cursor:pointer}
-.btn:disabled{background:#ddd;color:#888;cursor:not-allowed}
-.cart-panel{position:fixed;top:0;right:-100%;width:100%;max-width:380px;height:100%;background:#fff;z-index:200;transition:.3s;box-shadow:-10px 0 30px rgba(0,0,0,.1);display:flex;flex-direction:column}
+body{background:#0e0e0e;color:#fff;padding-bottom:80px}
+.topbar{background:#1a1a1a;display:flex;align-items:center;gap:8px;padding:10px 14px;position:sticky;top:0;z-index:50}
+.topbar .url{background:#2a2a2a;border-radius:20px;padding:6px 14px;font-size:12px;display:flex;align-items:center;gap:6px;flex:1;white-space:nowrap;overflow:hidden}
+.hero{padding:14px 16px}
+.hero h1{font-size:22px;font-weight:800}
+.hero p{color:#888;font-size:13px;margin-top:2px}
+.container{padding:12px}
+.section-title{font-size:18px;font-weight:700;margin:18px 0 12px;color:#ccc}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.card{background:#1e1e1e;border-radius:18px;overflow:hidden;border:1px solid #2a2a2a;position:relative;display:flex;flex-direction:column}
+.card-img-wrap{position:relative;background:#d9d9d9;height:180px;display:flex;align-items:center;justify-content:center}
+.card-img-wrap img{width:100%;height:100%;object-fit:cover}
+.badge-loc{position:absolute;top:8px;left:8px;background:#ff0f3d;color:#fff;font-size:9px;font-weight:800;padding:4px 10px;border-radius:20px}
+.card-info{padding:10px 12px;background:#121212;flex:1;display:flex;flex-direction:column}
+.card-info h3{font-size:13px;font-weight:600;line-height:1.2;height:32px;overflow:hidden}
+.price-new{color:#ff1744;font-weight:800;font-size:16px}
+.price-old{color:#777;font-size:11px;text-decoration:line-through}
+.btn-add{margin-top:8px;background:#ff1744;color:#fff;border:0;padding:10px;border-radius:22px;font-weight:700;font-size:13px;cursor:pointer;width:100%}
+.btn-add:disabled{background:#333;color:#777}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#121212;border-top:1px solid #222;display:flex;justify-content:space-around;padding:8px 0 12px;z-index:60}
+.bottom-nav div{text-align:center;font-size:11px;color:#666;cursor:pointer}
+.bottom-nav div.active{color:#ff1744}
+.bottom-nav span{font-size:18px;display:block}
+.cart-panel{position:fixed;top:0;right:-100%;width:100%;max-width:380px;height:100%;background:#1a1a1a;z-index:100;transition:.3s;display:flex;flex-direction:column}
 .cart-panel.open{right:0}
-.cart-header{padding:20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eee}
-.cart-items{flex:1;overflow:auto;padding:16px;display:flex;flex-direction:column;gap:12px}
-.cart-item{display:flex;gap:10px;align-items:center;background:#f9f9f9;padding:10px;border-radius:12px}
+.cart-header{padding:18px;display:flex;justify-content:space-between;border-bottom:1px solid #222}
+.cart-items{flex:1;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:10px}
+.cart-item{display:flex;gap:10px;background:#222;padding:10px;border-radius:12px}
 .cart-item img{width:50px;height:50px;border-radius:8px;object-fit:cover}
-.cart-footer{padding:20px;border-top:1px solid #eee}
-.input{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-bottom:10px}
-.admin-fab{position:fixed;bottom:20px;left:20px;background:#111;color:#fff;border:0;width:48px;height:48px;border-radius:50%;font-size:20px;cursor:pointer;z-index:90}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:300;padding:20px}
+.cart-footer{padding:16px;border-top:1px solid #222}
+.input{width:100%;padding:12px;border:1px solid #333;border-radius:10px;background:#222;color:#fff;margin-bottom:10px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;z-index:200;padding:20px}
 .modal.open{display:flex}
-.modal-box{background:#fff;width:100%;max-width:420px;border-radius:20px;padding:24px;max-height:90vh;overflow:auto}
-.badge{position:absolute;top:-6px;right:-6px;background:#ef4444;color:#fff;font-size:10px;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center}
-.rel{position:relative}
+.modal-box{background:#1e1e1e;width:100%;max-width:420px;border-radius:18px;padding:20px;border:1px solid #333;max-height:90vh;overflow:auto}
+.admin-link{text-align:center;padding:20px;font-size:12px;color:#888}
+.admin-link span{color:#ff1744;text-decoration:underline;cursor:pointer}
+.badge-cart{position:absolute;top:-6px;right:-6px;background:#ff1744;color:#fff;font-size:10px;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center}
 </style>
 </head>
 <body>
-<header>
-<h1>NAULANGUE SHOP</h1>
-<div class="rel">
-<button class="cart-btn" onclick="toggleCart()">🛒 Carrinho</button>
-<div id="cartCount" class="badge" style="display:none">0</div>
-</div>
-</header>
-<div class="hero">
-<h2>Produtos Originais em Moçambique</h2>
-<p>Entrega em Maputo, Matola e envio nacional • Estoque em tempo real</p>
-</div>
-<div class="container">
-<div id="loading">Carregando produtos...</div>
-<div id="grid" class="grid"></div>
-</div>
-<div id="cartPanel" class="cart-panel">
-<div class="cart-header">
-<h3>Seu Carrinho</h3>
-<button onclick="toggleCart()" style="border:0;background:0;font-size:22px">×</button>
-</div>
-<div id="cartItems" class="cart-items"></div>
-<div class="cart-footer">
-<div style="display:flex;justify-content:space-between;font-weight:800;margin-bottom:12px">
-<span>Total:</span><span id="cartTotal">0 MT</span>
-</div>
-<input id="clientName" class="input" placeholder="Seu nome completo">
-<input id="clientPhone" class="input" placeholder="Seu WhatsApp (84... )">
-<input id="clientAddr" class="input" placeholder="Bairro / Endereço">
-<button class="btn" style="width:100%;background:#25D366" onclick="finalizarPedido()">Finalizar no WhatsApp</button>
-<p style="font-size:11px;color:#666;margin-top:8px;text-align:center">Estoque baixa automaticamente</p>
-</div>
-</div>
-<button class="admin-fab" onclick="openAdmin()">⚙️</button>
-<div id="adminModal" class="modal">
-<div class="modal-box">
-<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
-<h3>Adicionar Produto (Admin)</h3>
-<button onclick="closeAdmin()" style="border:0;background:0;font-size:22px">×</button>
-</div>
-<input id="pName" class="input" placeholder="Nome do produto">
-<input id="pPrice" class="input" type="number" placeholder="Preço em MT">
-<input id="pStock" class="input" type="number" placeholder="Estoque (quantidade)">
-<input id="pImage" class="input" placeholder="Link da imagem (https://...)">
-<input id="pCat" class="input" placeholder="Categoria">
-<button class="btn" style="width:100%" onclick="addProduct()">Salvar no Firebase</button>
-</div>
-</div>
+<div class="topbar"><div>🏠</div><div class="url">🔒 naulangue.github.io • Montepuez • 871585269</div><div id="cartCountTop">0</div></div>
+<div class="hero"><h1>NAULANGUE SHOP</h1><p>Entrega em Montepuez e envio nacional • Estoque em tempo real</p></div>
+<div class="container"><div id="loading" style="color:#666;text-align:center;padding:30px">Carregando...</div><div id="grid" class="grid"></div><div class="section-title">More to love - Montepuez</div><div id="grid2" class="grid"></div><div class="admin-link">Admin: <span onclick="openAdmin()">clique aqui</span> • WhatsApp 871585269</div></div>
+<div class="bottom-nav"><div class="active"><span>🏠</span>Accueil</div><div><span>🔍</span>Catégorie</div><div onclick="toggleCart(true)" style="position:relative"><span>🛒</span>Panier<div id="badgeCart" class="badge-cart" style="display:none">0</div></div><div><span>👤</span>Compte</div></div>
+<div id="cartPanel" class="cart-panel"><div class="cart-header"><h3>Panier</h3><button onclick="toggleCart()" style="background:0;border:0;color:#fff;font-size:24px">×</button></div><div id="cartItems" class="cart-items"></div><div class="cart-footer"><div style="display:flex;justify-content:space-between;font-weight:800;margin-bottom:12px"><span>Total:</span><span id="cartTotal">0 MT</span></div><input id="clientName" class="input" placeholder="Seu nome"><input id="clientPhone" class="input" placeholder="WhatsApp"><input id="clientAddr" class="input" placeholder="Bairro"><button class="btn-add" onclick="finalizarPedido()">Finalizar no WhatsApp</button></div></div>
+<div id="adminModal" class="modal"><div class="modal-box"><div style="display:flex;justify-content:space-between;margin-bottom:14px"><h3>Adicionar Produto</h3><button onclick="closeAdmin()" style="background:0;border:0;color:#fff;font-size:22px">×</button></div><input id="pName" class="input" placeholder="Nome: Montre Connectée Sport"><input id="pPrice" class="input" type="number" placeholder="Preço novo: 2450"><input id="pOldPrice" class="input" type="number" placeholder="Preço antigo: 4000"><input id="pStock" class="input" type="number" placeholder="Estoque: 20"><input id="pImage" class="input" placeholder="Link da imagem https://..."><input id="pLocation" class="input" placeholder="Local: MONTEPUEZ" value="MONTEPUEZ"><button class="btn-add" onclick="addProduct()">Salvar no Firebase</button></div></div>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getFirestore, collection, addDoc, doc, onSnapshot, query, orderBy, runTransaction } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-const firebaseConfig = {
-  apiKey: "AIzaSyBCWrloL--CRxPV4rL67uUvAyS2zqCZl7g",
-  authDomain: "naulangue-shop.firebaseapp.com",
-  projectId: "naulangue-shop",
-  storageBucket: "naulangue-shop.firebasestorage.app",
-  messagingSenderId: "695749077994",
-  appId: "1:695749077994:web:2b0549a24595ba944c6093",
-  measurementId: "G-2MG0G54PW1"
-};
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-let products = [];
-let cart = [];
-const grid = document.getElementById('grid');
-const loading = document.getElementById('loading');
+const firebaseConfig = { apiKey: "AIzaSyBCWrloL--CRxPV4rL67uUvAyS2zqCZl7g", authDomain: "naulangue-shop.firebaseapp.com", projectId: "naulangue-shop", storageBucket: "naulangue-shop.firebasestorage.app", messagingSenderId: "695749077994", appId: "1:695749077994:web:2b0549a24595ba944c6093", measurementId: "G-2MG0G54PW1" };
+const app = initializeApp(firebaseConfig); const db = getFirestore(app); let products=[]; let cart=[];
 function render(){
-  grid.innerHTML='';
-  if(products.length===0){ loading.innerHTML='Nenhum produto ainda. Clique ⚙️ para adicionar o primeiro!'; return; }
+  const grid=document.getElementById('grid'); const grid2=document.getElementById('grid2'); const loading=document.getElementById('loading');
+  grid.innerHTML=''; grid2.innerHTML='';
+  if(products.length===0){ loading.innerHTML='Nenhum produto. Clique em Admin > clique aqui!'; return; }
   loading.style.display='none';
-  products.forEach(p=>{
-    const s = p.stock>10 ? `<span class="stock ok">${p.stock} em estoque</span>` : p.stock>0 ? `<span class="stock low">Só ${p.stock} restantes!</span>` : `<span class="stock out">Esgotado</span>`;
-    const btn = p.stock<=0 ? `<button class="btn" disabled>Esgotado</button>` : `<button class="btn" onclick="addToCart('${p.id}')">Adicionar</button>`;
-    grid.innerHTML+=`<div class="card"><img src="${p.image}" onerror="this.src='https://via.placeholder.com/300?text=Sem+Imagem'"><div class="card-body"><h3>${p.name}</h3>${s}<div class="price">${Number(p.price).toLocaleString()} MT</div>${btn}</div></div>`;
+  products.forEach((p,i)=>{
+    const img = p.image ? `<img src="${p.image}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">` : '';
+    const ph = `<div style="display:${p.image?'none':'flex'};width:100%;height:100%;align-items:center;justify-content:center;color:#888">Foto</div>`;
+    const oldPrice = p.oldPrice ? `<div class="price-old">${Number(p.oldPrice).toLocaleString()} MT</div>` : `<div class="price-old">${Number(p.price*1.6).toFixed(0)} MT</div>`;
+    const card = `<div class="card"><div class="card-img-wrap">${img}${ph}<div class="badge-loc">${(p.location||'MONTEPUEZ').toUpperCase()}</div></div><div class="card-info"><h3>${p.name}</h3><div style="margin:8px 0 2px"><div class="price-new">${Number(p.price).toLocaleString()} MT</div>${oldPrice}</div><div style="font-size:10px;color:#888;margin-top:4px">${p.stock>0? p.stock+' em estoque' : 'Esgotado'}</div><button class="btn-add" ${p.stock<=0?'disabled':''} onclick="addToCart('${p.id}')">${p.stock<=0?'Esgotado':'Adicionar'}</button></div></div>`;
+    if(i<4) grid.innerHTML+=card; else grid2.innerHTML+=card;
   });
+  if(products.length<=4){ grid2.innerHTML=grid.innerHTML; grid.innerHTML=''; }
 }
 const q = query(collection(db,"products"), orderBy("createdAt","desc"));
-onSnapshot(q,(snap)=>{
-  products = snap.docs.map(d=>({id:d.id, ...d.data()}));
-  render();
-});
-window.addToCart = (id)=>{
-  const prod = products.find(x=>x.id===id);
-  if(!prod || prod.stock<=0) return alert('Produto sem estoque!');
-  const inCart = cart.find(c=>c.id===id);
-  if(inCart){
-    if(inCart.qty >= prod.stock) return alert('Você já tem todo estoque no carrinho!');
-    inCart.qty++;
-  } else {
-    cart.push({...prod, qty:1});
-  }
-  updateCartUI();
-  toggleCart(true);
-}
-window.updateCartUI = ()=>{
-  const count = cart.reduce((a,b)=>a+b.qty,0);
-  const badge = document.getElementById('cartCount');
-  if(count>0){ badge.style.display='flex'; badge.innerText=count; } else badge.style.display='none';
-  const itemsDiv = document.getElementById('cartItems');
-  itemsDiv.innerHTML = cart.length===0?'<p style="text-align:center;color:#888;margin-top:40px">Carrinho vazio</p>':'';
-  let total=0;
-  cart.forEach(c=>{
-    total+=c.price*c.qty;
-    itemsDiv.innerHTML+=`<div class="cart-item"><img src="${c.image}"><div style="flex:1"><div style="font-size:13px;font-weight:600">${c.name}</div><div style="font-size:12px">${c.price} MT x ${c.qty}</div></div><button onclick="removeCart('${c.id}')" style="border:0;background:#fee2e2;color:#991b1b;width:28px;height:28px;border-radius:50%">×</button></div>`;
-  });
-  document.getElementById('cartTotal').innerText=total.toLocaleString()+' MT';
-}
-window.removeCart = (id)=>{ cart = cart.filter(c=>c.id!==id); updateCartUI(); }
-window.toggleCart = (forceOpen)=>{
-  const p = document.getElementById('cartPanel');
-  if(forceOpen===true) p.classList.add('open');
-  else p.classList.toggle('open');
-}
-window.finalizarPedido = async ()=>{
-  const name = document.getElementById('clientName').value.trim();
-  const phone = document.getElementById('clientPhone').value.trim();
-  const addr = document.getElementById('clientAddr').value.trim();
-  if(cart.length===0) return alert('Carrinho vazio');
-  if(!name || !phone) return alert('Preencha nome e WhatsApp');
-  try{
-    for(const item of cart){
-      const prodRef = doc(db,"products",item.id);
-      await runTransaction(db, async (t)=>{
-        const snap = await t.get(prodRef);
-        if(!snap.exists()) throw "Produto não existe";
-        const curStock = snap.data().stock;
-        if(curStock < item.qty) throw `Só temos ${curStock} de ${snap.data().name}`;
-        t.update(prodRef, {stock: curStock - item.qty});
-      });
-    }
-    await addDoc(collection(db,"orders"),{name, phone, addr, items: cart, total: cart.reduce((a,b)=>a+b.price*b.qty,0), createdAt: new Date(), status: 'novo'});
-    let msg = `*NOVO PEDIDO - NAULANGUE SHOP*%0A%0ACliente: ${name}%0AWhatsApp: ${phone}%0AEndereço: ${addr}%0A%0A*Itens:*%0A`;
-    cart.forEach(c=>{ msg+=`• ${c.name} - ${c.qty}x ${c.price}MT = ${c.qty*c.price}MT%0A`; });
-    msg+=`%0A*Total: ${cart.reduce((a,b)=>a+b.price*b.qty,0)} MT*`;
-    window.open(`https://wa.me/258820000000?text=${msg}`,'_blank');
-    cart=[]; updateCartUI(); toggleCart(false);
-    alert('Pedido enviado! Estoque atualizado.');
-  }catch(e){ alert('Erro: '+e); }
-}
-window.openAdmin = ()=>document.getElementById('adminModal').classList.add('open');
-window.closeAdmin = ()=>document.getElementById('adminModal').classList.remove('open');
-window.addProduct = async ()=>{
-  const name=document.getElementById('pName').value.trim();
-  const price=Number(document.getElementById('pPrice').value);
-  const stock=Number(document.getElementById('pStock').value);
-  const image=document.getElementById('pImage').value.trim();
-  const category=document.getElementById('pCat').value.trim()||'geral';
-  if(!name || !price || isNaN(stock) || !image) return alert('Preencha nome, preço, estoque e imagem');
-  await addDoc(collection(db,"products"),{name,price,stock,image,category,createdAt:new Date()});
-  alert('Produto adicionado! Já aparece na loja.');
-  closeAdmin();
-  document.getElementById('pName').value='';document.getElementById('pPrice').value='';document.getElementById('pStock').value='';document.getElementById('pImage').value='';
-}
+onSnapshot(q,(snap)=>{ products=snap.docs.map(d=>({id:d.id,...d.data()})); render(); });
+window.addToCart=(id)=>{ const prod=products.find(x=>x.id===id); if(!prod||prod.stock<=0) return alert('Sem estoque'); const inCart=cart.find(c=>c.id===id); if(inCart){ if(inCart.qty>=prod.stock) return alert('Sem mais estoque'); inCart.qty++; } else cart.push({...prod,qty:1}); updateCart(); toggleCart(true); }
+window.updateCart=()=>{ const count=cart.reduce((a,b)=>a+b.qty,0); document.getElementById('badgeCart').style.display=count>0?'flex':'none'; document.getElementById('badgeCart').innerText=count; document.getElementById('cartCountTop').innerText=count; const itemsDiv=document.getElementById('cartItems'); itemsDiv.innerHTML=cart.length===0?'<p style="text-align:center;color:#666;margin-top:30px">Panier vide</p>':''; let total=0; cart.forEach(c=>{ total+=c.price*c.qty; itemsDiv.innerHTML+=`<div class="cart-item"><img src="${c.image||''}"><div style="flex:1"><div style="font-size:13px">${c.name}</div><div style="font-size:12px;color:#ff1744">${c.price} MT x ${c.qty}</div></div><button onclick="removeCart('${c.id}')" style="border:0;background:#333;color:#fff;width:26px;height:26px;border-radius:50%">×</button></div>`; }); document.getElementById('cartTotal').innerText=total.toLocaleString()+' MT'; }
+window.removeCart=(id)=>{ cart=cart.filter(c=>c.id!==id); updateCart(); }
+window.toggleCart=(force)=>{ const p=document.getElementById('cartPanel'); if(force===true) p.classList.add('open'); else p.classList.toggle('open'); }
+window.finalizarPedido=async()=>{ const name=document.getElementById('clientName').value.trim(); const phone=document.getElementById('clientPhone').value.trim(); const addr=document.getElementById('clientAddr').value.trim(); if(cart.length===0) return alert('Carrinho vazio'); if(!name||!phone) return alert('Nome e WhatsApp obrigatórios'); try{ for(const item of cart){ const ref=doc(db,"products",item.id); await runTransaction(db, async(t)=>{ const snap=await t.get(ref); if(!snap.exists()) throw "Produto não existe"; const cur=snap.data().stock; if(cur<item.qty) throw `Só ${cur} de ${snap.data().name}`; t.update(ref,{stock:cur-item.qty}); }); } await addDoc(collection(db,"orders"),{name,phone,addr,items:cart,total:cart.reduce((a,b)=>a+b.price*b.qty,0),createdAt:new Date(),status:'novo'}); let msg=`*PEDIDO - NAULANGUE*%0ACliente:${name}%0AWPP:${phone}%0AEnd:${addr}%0A%0AItens:%0A`; cart.forEach(c=>{ msg+=`• ${c.name} ${c.qty}x ${c.price}MT%0A`; }); msg+=`Total:${cart.reduce((a,b)=>a+b.price*b.qty,0)}MT`; window.open(`https://wa.me/258871585269?text=${msg}`,'_blank'); cart=[]; updateCart(); toggleCart(false); alert('Pedido enviado!'); }catch(e){ alert('Erro:'+e); } }
+window.openAdmin=()=>document.getElementById('adminModal').classList.add('open');
+window.closeAdmin=()=>document.getElementById('adminModal').classList.remove('open');
+window.addProduct=async()=>{ const name=document.getElementById('pName').value.trim(); const price=Number(document.getElementById('pPrice').value); const oldPrice=Number(document.getElementById('pOldPrice').value)||0; const stock=Number(document.getElementById('pStock').value); const image=document.getElementById('pImage').value.trim(); const location=document.getElementById('pLocation').value.trim()||'MONTEPUEZ'; if(!name||!price||isNaN(stock)) return alert('Nome, preço e estoque obrigatórios'); await addDoc(collection(db,"products"),{name,price,oldPrice,stock,image,location,createdAt:new Date()}); alert('Adicionado!'); closeAdmin(); document.getElementById('pName').value='';document.getElementById('pPrice').value='';document.getElementById('pOldPrice').value='';document.getElementById('pStock').value='';document.getElementById('pImage').value=''; }
 </script>
 </body>
 </html>
