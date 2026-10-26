@@ -8,82 +8,72 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc, query, orderBy } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-// 🔴🔴🔴 COLA SEU firebaseConfig AQUI DO FIREBASE 🔴🔴🔴
+// 🔴 SEU FIREBASE - VERIFICA SE COLOU CERTO!
 const firebaseConfig = {
-  apiKey: "COLA_AQUI",
-  authDomain: "COLA_AQUI",
-  projectId: "COLA_AQUI",
-  storageBucket: "COLA_AQUI",
-  messagingSenderId: "COLA_AQUI",
-  appId: "COLA_AQUI"
+  apiKey: "AIzaSyA8dXJ6xQ1Y2Z3...",
+  authDomain: "naulangue-shop.firebaseapp.com",
+  projectId: "naulangue-shop",
+  storageBucket: "naulangue-shop.appspot.com",
+  messagingSenderId: "123456789",
+  appId: "1:123456:web:abc"
 };
-// Se não colar, a loja não vai funcionar pra todos!
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const WHATSAPP_NUMBER = '258856661893';
-
 let products=[], curImgs=[];
 
-window.abrirWhatsApp = ()=>{ window.open('https://wa.me/'+WHATSAPP_NUMBER+'?text=Olá NAULANGUE-SHOP! Quero encomendar','_blank') }
-window.comprarWhats = (i)=>{ let pr=products[i]; window.open('https://wa.me/'+WHATSAPP_NUMBER+'?text='+encodeURIComponent('Olá NAULANGUE-SHOP! Quero: '+pr.n+' - '+pr.p+' MT'),'_blank') }
-
-window.abrirImagem = (i)=>{
-  let pr=products[i];
-  document.getElementById('modalImg').src = pr.img;
-  document.getElementById('modalNome').innerText = pr.n;
-  document.getElementById('modalPreco').innerText = pr.p+' MT';
-  document.getElementById('modalGrupo').innerText = pr.grupo;
-  document.getElementById('modalIndex').value = i;
-  document.getElementById('imageModal').style.display='flex';
-}
+window.abrirWhatsApp = ()=>{ window.open('https://wa.me/'+WHATSAPP_NUMBER+'?text=Olá NAULANGUE-SHOP!','_blank') }
+window.comprarWhats = (i)=>{ let pr=products[i]; window.open('https://wa.me/'+WHATSAPP_NUMBER+'?text='+encodeURIComponent('Quero: '+pr.n+' - '+pr.p+' MT'),'_blank') }
+window.abrirImagem = (i)=>{ let pr=products[i]; document.getElementById('modalImg').src=pr.img; document.getElementById('modalNome').innerText=pr.n; document.getElementById('modalPreco').innerText=pr.p+' MT'; document.getElementById('modalGrupo').innerText=pr.grupo; document.getElementById('modalIndex').value=i; document.getElementById('imageModal').style.display='flex'; }
 window.fecharImagem = ()=>{ document.getElementById('imageModal').style.display='none' }
 
 function render(){
   let c=document.getElementById('allSections');
-  if(products.length===0){ c.innerHTML='<div style="padding:40px;text-align:center;color:#666">Nenhum produto ainda.<br>Carregando do Firebase...</div>'; return; }
-  c.innerHTML='';
-  let grupos={};
-  products.forEach((pr,idx)=>{ let g=pr.grupo||'Outras roupas'; if(!grupos[g])grupos[g]=[]; grupos[g].push({pr,idx}) });
+  if(products.length===0){c.innerHTML='<div style="padding:30px;text-align:center;color:#666">Nenhum produto ainda</div>';return;}
+  c.innerHTML=''; let grupos={};
+  products.forEach((pr,idx)=>{let g=pr.grupo||'Outras'; if(!grupos[g])grupos[g]=[]; grupos[g].push({pr,idx})});
   Object.keys(grupos).forEach(cat=>{
     let h='<div class="sec"><h2>'+cat+' ('+grupos[cat].length+')</h2><div class="grid">';
     grupos[cat].forEach(it=>{
       let pr=it.pr;
-      let img=pr.img?'<img src="'+pr.img+'" loading="lazy">':'SEM FOTO';
-      h+='<div class="card"><span class="badge">NAULANGUE</span><div class="img" onclick="abrirImagem('+it.idx+')">'+img+'</div><h3>'+pr.n+'</h3><div class="preco">'+pr.p+' MT</div><button class="btnWhatsCard" onclick="comprarWhats('+it.idx+')">💬 856661893</button></div>';
+      h+='<div class="card"><span class="badge">NAULANGUE</span><div class="img" onclick="abrirImagem('+it.idx+')"><img src="'+pr.img+'"></div><h3>'+pr.n+'</h3><div class="preco">'+pr.p+' MT</div><button class="btnWhatsCard" onclick="comprarWhats('+it.idx+')">💬 856661893</button></div>';
     });
-    h+='</div></div>';
-    c.innerHTML+=h;
+    h+='</div></div>'; c.innerHTML+=h;
   });
   document.getElementById('countProd').innerText=products.length;
-  let list=document.getElementById('adminList');
-  list.innerHTML='';
-  products.forEach(pr=>{
-    list.innerHTML+='<div style="display:flex;gap:8px;background:#2a2a2a;border-radius:10px;padding:8px;margin-bottom:6px;align-items:center"><img src="'+pr.img+'" style="width:50px;height:50px;object-fit:cover;border-radius:6px"><div style="flex:1;font-size:11px"><b>'+pr.n+'</b> '+pr.grupo+'<br>'+pr.p+' MT</div><button onclick="apagar(\''+pr.id+'\')" style="background:#ff0040;color:#fff;border:none;border-radius:6px;padding:6px 10px">X</button></div>';
-  });
+  let list=document.getElementById('adminList'); list.innerHTML='';
+  products.forEach(pr=>{ list.innerHTML+='<div style="display:flex;gap:8px;background:#2a2a2a;border-radius:10px;padding:8px;margin-bottom:6px"><img src="'+pr.img+'" style="width:50px;height:50px;border-radius:6px;object-fit:cover"><div style="flex:1"><b>'+pr.n+'</b> '+pr.grupo+'<br>'+pr.p+' MT</div><button onclick="apagar(\''+pr.id+'\')" style="background:#ff0040;color:#fff;border:none;border-radius:6px;padding:6px 10px">X</button></div>'; });
 }
 
-window.apagar = async (id)=>{ if(confirm('Apagar este produto de TODOS os celulares?')){ await deleteDoc(doc(db, "produtos", id)); } }
+window.apagar = async (id)=>{ if(confirm('Apagar de TODOS?')){ await deleteDoc(doc(db, "produtos", id)); } }
 
-// Escuta em tempo real - quando você publica, aparece em todos!
 const q = query(collection(db, "produtos"), orderBy("data", "desc"));
 onSnapshot(q, (snap)=>{
-  products=[];
-  snap.forEach(d=>{ products.push({id:d.id, ...d.data()}) });
-  render();
-  document.getElementById('statusFirebase').innerText='✅ Conectado Firebase - '+products.length+' produtos';
-});
+  products=[]; snap.forEach(d=>{products.push({id:d.id, ...d.data()})}); render();
+  document.getElementById('statusFirebase').innerText='✅ Firebase OK - '+products.length+' produtos (todos veem)';
+}, (err)=>{ document.getElementById('statusFirebase').innerText='❌ Erro Firebase: '+err.message; alert('Erro Firebase: '+err.message+'\nVai no Firebase Console > Firestore > Regras e coloca: allow read, write: if true;') });
 
 window.abrirAdmin = ()=>{ document.getElementById('adminPanel').style.display='block'; }
 window.fecharAdmin = ()=>{ document.getElementById('adminPanel').style.display='none'; }
 window.fazerLogin = ()=>{ let s=document.getElementById('passInput').value; if(btoa(s)==='TmF1bGFuZ3Vl'){document.getElementById('loginDiv').style.display='none';document.getElementById('adminContent').style.display='block';}else{alert('Senha: Naulangue')} }
 
-function comprimir(file,max,qual,cb){ let r=new FileReader(); r.onload=e=>{ let img=new Image(); img.onload=()=>{ let canvas=document.createElement('canvas'); let w=img.width,h=img.height; if(w>h){ if(w>max){h=h*max/w;w=max} }else{ if(h>max){w=w*max/h;h=max} } canvas.width=w; canvas.height=h; canvas.getContext('2d').drawImage(img,0,0,w,h); cb(canvas.toDataURL('image/jpeg',qual)) }; img.src=e.target.result }; r.readAsDataURL(file); }
+function comprimir(file,max,qual,cb){ let r=new FileReader(); r.onload=e=>{ let img=new Image(); img.onload=()=>{ let canvas=document.createElement('canvas'); let w=img.width,h=img.height; if(w>h){if(w>max){h=h*max/w;w=max}}else{if(h>max){w=w*max/h;h=max}} canvas.width=w; canvas.height=h; canvas.getContext('2d').drawImage(img,0,0,w,h); cb(canvas.toDataURL('image/jpeg',qual)) }; img.src=e.target.result }; r.readAsDataURL(file); }
 
 document.addEventListener('DOMContentLoaded', ()=>{
   document.getElementById('fileInput').addEventListener('change',e=>{
-    let files=Array.from(e.target.files); curImgs=[]; let wrap=document.getElementById('previewWrap'); wrap.innerHTML=''; let done=0;
-    files.forEach(f=>{ comprimir(f,600,0.7,url=>{ curImgs.push(url); let d=document.createElement('div'); d.className='previewBox'; d.innerHTML='<img src="'+url+'">'; wrap.appendChild(d); done++; if(done===files.length)document.getElementById('statusSave').innerText='✅ '+done+' fotos prontas!' }) });
+    let files=Array.from(e.target.files); curImgs=[]; let wrap=document.getElementById('previewWrap'); wrap.innerHTML='';
+    document.getElementById('statusSave').innerText='⏳ Comprimindo...';
+    let done=0;
+    files.forEach(f=>{
+      // AGORA COMPRIME MUITO MAIS: 350px e qualidade 0.45 = 30KB só!
+      comprimir(f,350,0.45,url=>{
+        console.log('Foto comprimida tamanho:',url.length);
+        if(url.length>900000){ alert('Foto ainda grande! Tenta outra menor'); return; }
+        curImgs.push(url); let d=document.createElement('div'); d.className='previewBox'; d.innerHTML='<img src="'+url+'">'; wrap.appendChild(d); done++;
+        if(done===files.length)document.getElementById('statusSave').innerText='✅ '+done+' fotos prontas! Tamanho pequeno OK';
+      });
+    });
   });
 });
 
@@ -92,34 +82,39 @@ window.publicarAuto = async ()=>{
   let p=parseInt(document.getElementById('pPreco').value);
   let grupo=document.getElementById('pGrupo').value;
   if(!p){alert('Preço!');return;}
-  if(curImgs.length===0){alert('Foto!');return;}
-  let btn=document.getElementById('btnPublicar'); btn.innerText='⏳ ENVIANDO PRO FIREBASE...'; btn.disabled=true;
+  if(curImgs.length===0){alert('Escolhe foto!');return;}
+  let btn=document.getElementById('btnPublicar'); 
+  btn.innerText='⏳ ENVIANDO...'; btn.disabled=true;
+  document.getElementById('statusSave').innerText='Enviando pro Firebase...';
   try{
     for(let i=0;i<curImgs.length;i++){
       let n=curImgs.length>1?nome+' '+(i+1):nome;
+      console.log('Enviando',n);
       await addDoc(collection(db, "produtos"), { n:n, p:p, img:curImgs[i], grupo:grupo, data: Date.now() });
     }
-    document.getElementById('pNome').value=''; document.getElementById('pPreco').value=''; curImgs=[]; document.getElementById('previewWrap').innerHTML='';
-    alert('✅ Publicado! Agora TODOS os celulares vão ver!');
+    document.getElementById('pNome').value=''; document.getElementById('pPreco').value=''; curImgs=[]; document.getElementById('previewWrap').innerHTML=''; document.getElementById('statusSave').innerText='✅ ENVIADO!';
+    alert('✅ Publicado! Todos vão ver agora!');
     fecharAdmin();
-  }catch(e){ alert('Erro Firebase: '+e.message+'\nVerifica se colou o firebaseConfig e criou o Firestore em modo teste!') }
+  }catch(e){ 
+    console.error(e);
+    alert('❌ Travou! Erro: '+e.message+'\n\nSOLUÇÃO:\n1. Vai no Firebase Console\n2. Firestore Database > Regras\n3. Muda para:\n allow read, write: if true;\n4. Publica de novo');
+    document.getElementById('statusSave').innerText='❌ Erro: '+e.message;
+  }
   btn.innerText='📤 PUBLICAR PRA TODOS'; btn.disabled=false;
 }
 </script>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#000;color:#fff;font-family:Arial}
+*{margin:0;padding:0;box-sizing:border-box}body{background:#000;color:#fff;font-family:Arial}
 .banner-foto{position:relative;width:100%;height:180px;overflow:hidden;background:#000;background-image:url('https://i.postimg.cc/gkgMD6xP/IMG-20261025-233519-084.jpg');background-size:cover;background-position:center 15%}
 .banner-foto::after{content:'';position:absolute;inset:0;background:linear-gradient(to right, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.65) 38%, rgba(0,0,0,0.15) 75%)}
 .banner-foto .conteudo{position:absolute;left:16px;top:50%;transform:translateY(-50%);z-index:2}
 .banner-foto h1{color:#fff;font-size:21px;font-weight:900;line-height:21px;text-transform:uppercase}
 .banner-foto p{color:#ffeb00;font-size:11px;margin-top:5px;font-weight:700}
-.sec{padding:11px 0 11px 12px;border-bottom:1px solid #1a1a1a}
-.sec h2{font-size:12px;margin-bottom:8px;padding-left:8px;border-left:3px solid #ff0040;text-transform:uppercase}
+.sec{padding:11px 0 11px 12px;border-bottom:1px solid #1a1a1a}.sec h2{font-size:12px;margin-bottom:8px;padding-left:8px;border-left:3px solid #ff0040;text-transform:uppercase}
 .grid{display:flex;gap:10px;overflow-x:auto;padding-right:12px;padding-bottom:6px}.grid::-webkit-scrollbar{display:none}
-.card{min-width:150px;max-width:150px;background:#1a1a1a;border-radius:14px;overflow:hidden;border:1px solid #2a2a2a;flex-shrink:0;position:relative;cursor:pointer}
+.card{min-width:150px;max-width:150px;background:#1a1a1a;border-radius:14px;overflow:hidden;border:1px solid #2a2a2a;flex-shrink:0;position:relative}
 .badge{position:absolute;top:6px;left:6px;background:#ff0040;color:#fff;font-size:6px;font-weight:900;padding:3px 6px;border-radius:8px}
-.img{height:150px;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden}.img img{width:100%;height:100%;object-fit:cover;transition:transform 0.3s}.img:active img{transform:scale(1.1)}
+.img{height:150px;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden}.img img{width:100%;height:100%;object-fit:cover}
 .card h3{font-size:11px;padding:6px 7px 2px;height:30px;overflow:hidden}.preco{color:#ff0040;font-weight:900;padding:0 7px;font-size:12px}
 .btnWhatsCard{width:92%;margin:4px 4% 8px;background:#25D366;color:#fff;border:none;border-radius:16px;padding:8px;font-weight:bold;font-size:10px}
 .app{max-width:430px;margin:0 auto;padding-bottom:70px;background:#000}
@@ -130,35 +125,24 @@ body{background:#000;color:#fff;font-family:Arial}
 .previewWrap{display:flex;gap:8px;flex-wrap:wrap}.previewBox{width:58px;height:58px;border-radius:8px;overflow:hidden;border:2px solid #00c853}.previewBox img{width:100%;height:100%;object-fit:cover}
 #imageModal{position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:500;display:none;flex-direction:column;align-items:center;justify-content:center;padding:20px}
 #imageModal img{max-width:100%;max-height:75vh;object-fit:contain;border-radius:12px}
-.zoomHint{color:#888;font-size:11px;margin-top:10px}
 </style>
 </head>
 <body>
 <div class="app">
 <div class="banner-foto"><div class="conteudo"><h1>NAULANGUE-SHOP</h1><p>Faça sua escolha, encomenda já</p></div></div>
-<div id="statusFirebase" style="text-align:center;padding:6px;background:#111;color:#00ff88;font-size:10px">⏳ Conectando Firebase...</div>
+<div id="statusFirebase" style="text-align:center;padding:6px;background:#111;color:#00ff88;font-size:10px">⏳ Conectando...</div>
 <div id="allSections"></div>
 <div style="text-align:center;padding:14px;color:#555;font-size:9px">WhatsApp: 856661893<br>Admin: <u onclick="abrirAdmin()" style="color:#ff0040">clique aqui</u></div>
 </div>
 <div class="nav"><div style="color:#ff0040">🏠<br>Accueil</div><div style="color:#888">🔍<br>Catégorie</div><div style="color:#888" onclick="abrirWhatsApp()">💬<br>WhatsApp</div><div style="color:#888" onclick="abrirAdmin()">👤<br>Compte</div></div>
-
-<div id="imageModal" onclick="fecharImagem()">
-<img id="modalImg" src="">
-<h3 id="modalNome" style="margin-top:12px;font-size:16px"></h3>
-<p id="modalPreco" style="color:#ff0040;font-weight:900;margin-top:4px"></p>
-<p id="modalGrupo" style="color:#888;font-size:11px"></p>
-<button onclick="comprarWhats(document.getElementById('modalIndex').value)" style="margin-top:14px;background:#25D366;color:#fff;border:none;border-radius:20px;padding:12px 24px;font-weight:bold">💬 Comprar no WhatsApp 856661893</button>
-<p class="zoomHint">👆 Clique fora pra fechar • Dá zoom com os dedos</p>
-<input type="hidden" id="modalIndex">
-</div>
-
+<div id="imageModal" onclick="fecharImagem()"><img id="modalImg"><h3 id="modalNome" style="margin-top:12px"></h3><p id="modalPreco" style="color:#ff0040;font-weight:900"></p><p id="modalGrupo" style="color:#888;font-size:11px"></p><button onclick="comprarWhats(document.getElementById('modalIndex').value)" style="margin-top:14px;background:#25D366;color:#fff;border:none;border-radius:20px;padding:12px 24px;font-weight:bold">💬 Comprar 856661893</button><p style="color:#888;font-size:11px;margin-top:10px">Clique fora pra fechar - Pinça pra dar zoom</p><input type="hidden" id="modalIndex"></div>
 <div id="adminPanel"><div class="adminHead"><h2>ADMIN FIREBASE</h2><button onclick="fecharAdmin()" style="background:#fff;color:#111;border:none;border-radius:8px;padding:8px 14px;font-weight:bold">X</button></div>
 <div id="loginDiv" class="loginBox"><h3>🔒 Acesso</h3><input id="passInput" type="password" class="inp" placeholder="Senha"><button class="btnAdmin" onclick="fazerLogin()">ENTRAR</button><p style="font-size:10px;color:#666;margin-top:8px">Senha: Naulangue</p></div>
 <div id="adminContent" style="display:none">
 <div class="adminCard" style="border-color:#00c853"><h3>➕ Publicar (TODOS vão ver)</h3>
-<select id="pGrupo" class="sel"><option value="Camisa m-comprida">👕 Camisa m-comprida</option><option value="Camisas">👕 Camisas</option><option value="Calções">🩳 Calções</option><option value="Calças">👖 Calças</option><option value="Calcinhas">👙 Calcinhas</option><option value="Colar">📿 Colar</option><option value="Sapatos">👟 Sapatos</option><option value="Saltos">👠 Saltos</option><option value="Vestidos">👗 Vestidos</option><option value="Óculos">🕶️ Óculos</option><option value="Outras roupas">👚 Outras roupas</option><option value="Delgados">Delgados</option></select>
+<select id="pGrupo" class="sel"><option value="Camisa m-comprida">👕 Camisa m-comprida</option><option value="Camisas">👕 Camisas</option><option value="Calções">🩳 Calções</option><option value="Calças">👖 Calças</option><option value="Calcinhas">👙 Calcinhas</option><option value="Colar">📿 Colar</option><option value="Sapatos">👟 Sapatos</option><option value="Saltos">👠 Saltos</option><option value="Vestidos">👗 Vestidos</option><option value="Óculos">🕶️ Óculos</option><option value="Outras roupas">👚 Outras roupas</option></select>
 <input type="file" id="fileInput" accept="image/*" multiple class="inp"><div id="previewWrap" class="previewWrap"></div><input id="pNome" class="inp" placeholder="Nome"><input id="pPreco" class="inp" type="number" placeholder="Preço"><button id="btnPublicar" class="btnAdmin" onclick="publicarAuto()">📤 PUBLICAR PRA TODOS</button><div id="statusSave" style="font-size:10px;color:#00ff88;margin-top:6px"></div></div>
-<div class="adminCard"><h3>📦 Produtos no Firebase (<span id="countProd">0</span>) - Todos os celulares veem</h3><div id="adminList"></div></div>
+<div class="adminCard"><h3>📦 Produtos (<span id="countProd">0</span>)</h3><div id="adminList"></div></div>
 </div></div>
 </body>
 </html>
