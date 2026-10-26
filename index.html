@@ -1,86 +1,256 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NAULANGUE SHOP - Montepuez</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MAFIOSO-STORE</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
-body{background:#0e0e0e;color:#fff;padding-bottom:80px}
-.topbar{background:#1a1a1a;display:flex;align-items:center;gap:8px;padding:10px 14px;position:sticky;top:0;z-index:50}
-.topbar .url{background:#2a2a2a;border-radius:20px;padding:6px 14px;font-size:12px;display:flex;align-items:center;gap:6px;flex:1;white-space:nowrap;overflow:hidden}
-.hero{padding:14px 16px}
-.hero h1{font-size:22px;font-weight:800}
-.hero p{color:#888;font-size:13px;margin-top:2px}
-.container{padding:12px}
-.section-title{font-size:18px;font-weight:700;margin:18px 0 12px;color:#ccc}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.card{background:#1e1e1e;border-radius:18px;overflow:hidden;border:1px solid #2a2a2a;position:relative;display:flex;flex-direction:column}
-.card-img-wrap{position:relative;background:#d9d9d9;height:180px;display:flex;align-items:center;justify-content:center}
-.card-img-wrap img{width:100%;height:100%;object-fit:cover}
-.badge-loc{position:absolute;top:8px;left:8px;background:#ff0f3d;color:#fff;font-size:9px;font-weight:800;padding:4px 10px;border-radius:20px}
-.card-info{padding:10px 12px;background:#121212;flex:1;display:flex;flex-direction:column}
-.card-info h3{font-size:13px;font-weight:600;line-height:1.2;height:32px;overflow:hidden}
-.price-new{color:#ff1744;font-weight:800;font-size:16px}
-.price-old{color:#777;font-size:11px;text-decoration:line-through}
-.btn-add{margin-top:8px;background:#ff1744;color:#fff;border:0;padding:10px;border-radius:22px;font-weight:700;font-size:13px;cursor:pointer;width:100%}
-.btn-add:disabled{background:#333;color:#777}
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#121212;border-top:1px solid #222;display:flex;justify-content:space-around;padding:8px 0 12px;z-index:60}
-.bottom-nav div{text-align:center;font-size:11px;color:#666;cursor:pointer}
-.bottom-nav div.active{color:#ff1744}
-.bottom-nav span{font-size:18px;display:block}
-.cart-panel{position:fixed;top:0;right:-100%;width:100%;max-width:380px;height:100%;background:#1a1a1a;z-index:100;transition:.3s;display:flex;flex-direction:column}
-.cart-panel.open{right:0}
-.cart-header{padding:18px;display:flex;justify-content:space-between;border-bottom:1px solid #222}
-.cart-items{flex:1;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:10px}
-.cart-item{display:flex;gap:10px;background:#222;padding:10px;border-radius:12px}
-.cart-item img{width:50px;height:50px;border-radius:8px;object-fit:cover}
-.cart-footer{padding:16px;border-top:1px solid #222}
-.input{width:100%;padding:12px;border:1px solid #333;border-radius:10px;background:#222;color:#fff;margin-bottom:10px}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;z-index:200;padding:20px}
-.modal.open{display:flex}
-.modal-box{background:#1e1e1e;width:100%;max-width:420px;border-radius:18px;padding:20px;border:1px solid #333;max-height:90vh;overflow:auto}
-.admin-link{text-align:center;padding:20px;font-size:12px;color:#888}
-.admin-link span{color:#ff1744;text-decoration:underline;cursor:pointer}
-.badge-cart{position:absolute;top:-6px;right:-6px;background:#ff1744;color:#fff;font-size:10px;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#000;color:#fff;font-family:Arial}
+.banner-foto{
+  position:relative;
+  width:100%;
+  height:175px;
+  overflow:hidden;
+  background:#000;
+  background-image:url('https://i.postimg.cc/dVS872Dz/WA-1792963145462.jpg');
+  background-size:cover;
+  background-position:center 20%
+}
+.banner-foto::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.1) 75%)
+}
+.banner-foto .conteudo{
+  position:absolute;
+  left:16px;
+  top:50%;
+  transform:translateY(-50%);
+  z-index:2
+}
+.banner-foto h1{
+  color:#fff;
+  font-size:20px;
+  font-weight:900;
+  line-height:20px;
+  text-transform:uppercase
+}
+.banner-foto p{
+  color:#fff;
+  font-size:11px;
+  margin-top:4px;
+  font-weight:600
+}
+.sec{padding:11px 0 11px 12px;border-bottom:1px solid #1a1a1a}
+.sec h2{font-size:12px;margin-bottom:8px;padding-left:8px;border-left:3px solid #ff0040;text-transform:uppercase}
+.grid{display:flex;gap:10px;overflow-x:auto;padding-right:12px;padding-bottom:6px}
+.grid::-webkit-scrollbar{display:none}
+.card{min-width:150px;max-width:150px;background:#1a1a1a;border-radius:14px;overflow:hidden;border:1px solid #2a2a2a;flex-shrink:0;position:relative}
+.badge{position:absolute;top:6px;left:6px;background:#ff0040;color:#fff;font-size:6px;font-weight:900;padding:3px 6px;border-radius:8px}
+.img{height:150px;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.img img{width:100%;height:100%;object-fit:cover}
+.card h3{font-size:11px;padding:6px 7px 2px;height:30px;overflow:hidden}
+.preco{color:#ff0040;font-weight:900;padding:0 7px;font-size:12px}
+.old{color:#888;font-size:9px;text-decoration:line-through;padding:0 7px 3px}
+.btnAdd{width:92%;margin:4px 4% 8px;background:#ff0040;color:#fff;border:none;border-radius:16px;padding:7px;font-weight:bold;font-size:10px}
+.app{max-width:430px;margin:0 auto;padding-bottom:70px;background:#000}
+.nav{position:fixed;bottom:0;left:0;right:0;background:#111;display:flex;justify-content:space-around;padding:7px 0;border-top:1px solid #222;max-width:430px;margin:0 auto}
+.nav div{font-size:9px;text-align:center}
+#adminPanel{position:fixed;inset:0;background:#0a0a0a;z-index:300;display:none;overflow:auto}
+.adminHead{background:#111;padding:14px;display:flex;justify-content:space-between;position:sticky;top:0}
+.adminCard{background:#1e1e1e;margin:10px;border-radius:14px;padding:14px;border:1px solid #333}
+.inp,.sel{width:100%;padding:11px;border:1px solid #333;border-radius:10px;margin-bottom:8px;background:#2a2a2a;color:#fff;font-size:13px}
+.btnAdmin{width:100%;background:#00c853;color:#fff;border:none;border-radius:10px;padding:12px;font-weight:bold;margin-top:6px}
+.loginBox{max-width:320px;margin:80px auto;background:#1e1e1e;padding:24px;border-radius:16px;text-align:center}
+.previewWrap{display:flex;gap:8px;flex-wrap:wrap}
+.previewBox{width:58px;height:58px;border-radius:8px;overflow:hidden;border:2px solid #00c853}
+.previewBox img{width:100%;height:100%;object-fit:cover}
 </style>
 </head>
 <body>
-<div class="hero"><h1>NAULANGUE SHOP</h1><p>Entrega em Montepuez e envio nacional • Estoque em tempo real</p></div>
-<div class="container"><div id="loading" style="color:#666;text-align:center;padding:30px">Carregando...</div><div id="grid" class="grid"></div><div class="section-title">More to love - Montepuez</div><div id="grid2" class="grid"></div><div class="admin-link">Admin: <span onclick="openAdmin()">clique aqui</span> • WhatsApp 871585269</div></div>
-<div class="bottom-nav"><div class="active"><span>🏠</span>Accueil</div><div><span>🔍</span>Catégorie</div><div onclick="toggleCart(true)" style="position:relative"><span>🛒</span>Panier<div id="badgeCart" class="badge-cart" style="display:none">0</div></div><div><span>👤</span>Compte</div></div>
-<div id="cartPanel" class="cart-panel"><div class="cart-header"><h3>Panier</h3><button onclick="toggleCart()" style="background:0;border:0;color:#fff;font-size:24px">×</button></div><div id="cartItems" class="cart-items"></div><div class="cart-footer"><div style="display:flex;justify-content:space-between;font-weight:800;margin-bottom:12px"><span>Total:</span><span id="cartTotal">0 MT</span></div><input id="clientName" class="input" placeholder="Seu nome"><input id="clientPhone" class="input" placeholder="WhatsApp"><input id="clientAddr" class="input" placeholder="Bairro"><button class="btn-add" onclick="finalizarPedido()">Finalizar no WhatsApp</button></div></div>
-<div id="adminModal" class="modal"><div class="modal-box"><div style="display:flex;justify-content:space-between;margin-bottom:14px"><h3>Adicionar Produto</h3><button onclick="closeAdmin()" style="background:0;border:0;color:#fff;font-size:22px">×</button></div><input id="pName" class="input" placeholder="Nome: Montre Connectée Sport"><input id="pPrice" class="input" type="number" placeholder="Preço novo: 2450"><input id="pOldPrice" class="input" type="number" placeholder="Preço antigo: 4000"><input id="pStock" class="input" type="number" placeholder="Estoque: 20"><input id="pImage" class="input" placeholder="Link da imagem https://..."><input id="pLocation" class="input" placeholder="Local: MONTEPUEZ" value="MONTEPUEZ"><button class="btn-add" onclick="addProduct()">Salvar no Firebase</button></div></div>
+<div class="app">
+<div class="banner-foto" id="bannerTop">
+<div class="conteudo">
+<h1>MAFIOSO-STORE</h1>
+<p>Faça sua escolha, encomenda já</p>
+</div>
+</div>
+<div id="allSections"></div>
+<div style="text-align:center;padding:14px;color:#555;font-size:9px">Admin: <u onclick="abrirAdmin()" style="color:#ff0040">clique aqui</u></div>
+</div>
+<div class="nav"><div style="color:#ff0040">🏠<br>Accueil</div><div style="color:#888">🔍<br>Catégorie</div><div style="color:#888">🛒<br>Panier <span id="cartCount" style="background:#ff0040;color:#fff;border-radius:50%;padding:2px 5px;font-size:8px;display:none">0</span></div><div style="color:#888" onclick="abrirAdmin()">👤<br>Compte</div></div>
+<div id="adminPanel"><div class="adminHead"><h2>ADMIN</h2><button onclick="fecharAdmin()" style="background:#fff;color:#111;border:none;border-radius:8px;padding:8px 14px;font-weight:bold">X</button></div>
+<div id="loginDiv" class="loginBox"><h3>🔒 Acesso</h3><input id="passInput" type="password" class="inp" placeholder="Senha"><button class="btnAdmin" onclick="fazerLogin()">ENTRAR</button></div>
+<div id="adminContent" style="display:none">
+<div class="adminCard" style="border-color:#00c853"><h3>➕ Publicar</h3>
+<select id="pGrupo" class="sel">
+<option value="Camisa m-comprida">👕 Camisa m-comprida</option>
+<option value="Camisa m-curta">👕 Camisa m-curta</option>
+<option value="Camisas">👕 Camisas</option>
+<option value="Calções">🩳 Calções</option>
+<option value="Calças">👖 Calças</option>
+<option value="Colar">📿 Colar</option>
+<option value="Sapatos">👟 Sapatos</option>
+<option value="Saltos">👠 Saltos</option>
+<option value="Bermudas">🩳 Bermudas</option>
+<option value="Vestidos">👗 Vestidos</option>
+<option value="Saias">👗 Saias</option>
+<option value="Blusas">👚 Blusas</option>
+<option value="Jaquetas">🧥 Jaquetas</option>
+<option value="Sutiãs">👙 Sutiãs</option>
+<option value="Conjuntos">👗 Conjuntos</option>
+<option value="Óculos">🕶️ Óculos</option>
+<option value="Outras roupas">👚 Outras roupas</option>
+<option value="Delgados">Delgados</option>
+</select>
+<input type="file" id="fileInput" accept="image/*" multiple class="inp"><div id="previewWrap" class="previewWrap"></div><input id="pNome" class="inp" placeholder="Nome"><input id="pPreco" class="inp" type="number" placeholder="Preço"><input id="pOld" class="inp" type="number" placeholder="Preço antigo"><button id="btnPublicar" class="btnAdmin" onclick="publicarAuto()">📤 PUBLICAR</button>
+<p style="font-size:10px;color:#888;margin-top:8px;text-align:center">🔥 Agora salva no FIREBASE - aparece em todos os celulares!</p>
+</div>
+<div class="adminCard"><h3>📦 Produtos (<span id="countProd">0</span>)</h3><div id="adminList"></div></div>
+</div></div>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getFirestore, collection, addDoc, doc, onSnapshot, query, orderBy, runTransaction } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-const firebaseConfig = { apiKey: "AIzaSyBCWrloL--CRxPV4rL67uUvAyS2zqCZl7g", authDomain: "naulangue-shop.firebaseapp.com", projectId: "naulangue-shop", storageBucket: "naulangue-shop.firebasestorage.app", messagingSenderId: "695749077994", appId: "1:695749077994:web:2b0549a24595ba944c6093", measurementId: "G-2MG0G54PW1" };
-const app = initializeApp(firebaseConfig); const db = getFirestore(app); let products=[]; let cart=[];
-function render(){
-  const grid=document.getElementById('grid'); const grid2=document.getElementById('grid2'); const loading=document.getElementById('loading');
-  grid.innerHTML=''; grid2.innerHTML='';
-  if(products.length===0){ loading.innerHTML='Nenhum produto. Clique em Admin > clique aqui!'; return; }
-  loading.style.display='none';
-  products.forEach((p,i)=>{
-    const img = p.image ? `<img src="${p.image}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">` : '';
-    const ph = `<div style="display:${p.image?'none':'flex'};width:100%;height:100%;align-items:center;justify-content:center;color:#888">Foto</div>`;
-    const oldPrice = p.oldPrice ? `<div class="price-old">${Number(p.oldPrice).toLocaleString()} MT</div>` : `<div class="price-old">${Number(p.price*1.6).toFixed(0)} MT</div>`;
-    const card = `<div class="card"><div class="card-img-wrap">${img}${ph}<div class="badge-loc">${(p.location||'MONTEPUEZ').toUpperCase()}</div></div><div class="card-info"><h3>${p.name}</h3><div style="margin:8px 0 2px"><div class="price-new">${Number(p.price).toLocaleString()} MT</div>${oldPrice}</div><div style="font-size:10px;color:#888;margin-top:4px">${p.stock>0? p.stock+' em estoque' : 'Esgotado'}</div><button class="btn-add" ${p.stock<=0?'disabled':''} onclick="addToCart('${p.id}')">${p.stock<=0?'Esgotado':'Adicionar'}</button></div></div>`;
-    if(i<4) grid.innerHTML+=card; else grid2.innerHTML+=card;
+import { getFirestore, collection, addDoc, deleteDoc, doc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+const firebaseConfig = {
+  apiKey: "AIzaSyBCWrloL--CRxPV4rL67uUvAyS2zqCZl7g",
+  authDomain: "naulangue-shop.firebaseapp.com",
+  projectId: "naulangue-shop",
+  storageBucket: "naulangue-shop.firebasestorage.app",
+  messagingSenderId: "695749077994",
+  appId: "1:695749077994:web:2b0549a24595ba944c6093",
+  measurementId: "G-2MG0G54PW1"
+};
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+let products = [];
+let cart = JSON.parse(localStorage.getItem('cart_final')||'[]');
+let curImgs = [];
+function carregarProdutos(){
+  const q = query(collection(db,"products"), orderBy("createdAt","desc"));
+  onSnapshot(q,(snap)=>{
+    products = snap.docs.map(d=>({idFirebase:d.id, ...d.data()}));
+    render();
+    atualizarCarrinho();
   });
-  if(products.length<=4){ grid2.innerHTML=grid.innerHTML; grid.innerHTML=''; }
 }
-const q = query(collection(db,"products"), orderBy("createdAt","desc"));
-onSnapshot(q,(snap)=>{ products=snap.docs.map(d=>({id:d.id,...d.data()})); render(); });
-window.addToCart=(id)=>{ const prod=products.find(x=>x.id===id); if(!prod||prod.stock<=0) return alert('Sem estoque'); const inCart=cart.find(c=>c.id===id); if(inCart){ if(inCart.qty>=prod.stock) return alert('Sem mais estoque'); inCart.qty++; } else cart.push({...prod,qty:1}); updateCart(); toggleCart(true); }
-window.updateCart=()=>{ const count=cart.reduce((a,b)=>a+b.qty,0); document.getElementById('badgeCart').style.display=count>0?'flex':'none'; document.getElementById('badgeCart').innerText=count; document.getElementById('cartCountTop').innerText=count; const itemsDiv=document.getElementById('cartItems'); itemsDiv.innerHTML=cart.length===0?'<p style="text-align:center;color:#666;margin-top:30px">Panier vide</p>':''; let total=0; cart.forEach(c=>{ total+=c.price*c.qty; itemsDiv.innerHTML+=`<div class="cart-item"><img src="${c.image||''}"><div style="flex:1"><div style="font-size:13px">${c.name}</div><div style="font-size:12px;color:#ff1744">${c.price} MT x ${c.qty}</div></div><button onclick="removeCart('${c.id}')" style="border:0;background:#333;color:#fff;width:26px;height:26px;border-radius:50%">×</button></div>`; }); document.getElementById('cartTotal').innerText=total.toLocaleString()+' MT'; }
-window.removeCart=(id)=>{ cart=cart.filter(c=>c.id!==id); updateCart(); }
-window.toggleCart=(force)=>{ const p=document.getElementById('cartPanel'); if(force===true) p.classList.add('open'); else p.classList.toggle('open'); }
-window.finalizarPedido=async()=>{ const name=document.getElementById('clientName').value.trim(); const phone=document.getElementById('clientPhone').value.trim(); const addr=document.getElementById('clientAddr').value.trim(); if(cart.length===0) return alert('Carrinho vazio'); if(!name||!phone) return alert('Nome e WhatsApp obrigatórios'); try{ for(const item of cart){ const ref=doc(db,"products",item.id); await runTransaction(db, async(t)=>{ const snap=await t.get(ref); if(!snap.exists()) throw "Produto não existe"; const cur=snap.data().stock; if(cur<item.qty) throw `Só ${cur} de ${snap.data().name}`; t.update(ref,{stock:cur-item.qty}); }); } await addDoc(collection(db,"orders"),{name,phone,addr,items:cart,total:cart.reduce((a,b)=>a+b.price*b.qty,0),createdAt:new Date(),status:'novo'}); let msg=`*PEDIDO - NAULANGUE*%0ACliente:${name}%0AWPP:${phone}%0AEnd:${addr}%0A%0AItens:%0A`; cart.forEach(c=>{ msg+=`• ${c.name} ${c.qty}x ${c.price}MT%0A`; }); msg+=`Total:${cart.reduce((a,b)=>a+b.price*b.qty,0)}MT`; window.open(`https://wa.me/258871585269?text=${msg}`,'_blank'); cart=[]; updateCart(); toggleCart(false); alert('Pedido enviado!'); }catch(e){ alert('Erro:'+e); } }
-window.openAdmin=()=>document.getElementById('adminModal').classList.add('open');
-window.closeAdmin=()=>document.getElementById('adminModal').classList.remove('open');
-window.addProduct=async()=>{ const name=document.getElementById('pName').value.trim(); const price=Number(document.getElementById('pPrice').value); const oldPrice=Number(document.getElementById('pOldPrice').value)||0; const stock=Number(document.getElementById('pStock').value); const image=document.getElementById('pImage').value.trim(); const location=document.getElementById('pLocation').value.trim()||'MONTEPUEZ'; if(!name||!price||isNaN(stock)) return alert('Nome, preço e estoque obrigatórios'); await addDoc(collection(db,"products"),{name,price,oldPrice,stock,image,location,createdAt:new Date()}); alert('Adicionado!'); closeAdmin(); document.getElementById('pName').value='';document.getElementById('pPrice').value='';document.getElementById('pOldPrice').value='';document.getElementById('pStock').value='';document.getElementById('pImage').value=''; }
+carregarProdutos();
+function render(){
+  let container=document.getElementById('allSections');
+  if(products.length===0){
+    container.innerHTML='<div style="padding:30px 20px;text-align:center;color:#666;font-size:11px">Nenhum produto ainda.<br>Admin e publique!</div>';
+    document.getElementById('countProd').innerText='0';
+    return;
+  }
+  container.innerHTML='';
+  let grupos={};
+  products.forEach((pr,idx)=>{
+    let g=pr.grupo||'Delgados';
+    if(!grupos[g])grupos[g]=[];
+    grupos[g].push({pr,idx})
+  });
+  Object.keys(grupos).forEach(cat=>{
+    let html='<div class="sec"><h2>'+cat+'</h2><div class="grid">';
+    grupos[cat].forEach(item=>{
+      let pr=item.pr;
+      let img=pr.img?'<img src="'+pr.img+'">':'<span style="color:#999;font-size:10px">Foto</span>';
+      html+='<div class="card"><span class="badge">MONTEPUEZ</span><div class="img">'+img+'</div><h3>'+pr.n+'</h3><div class="preco">'+pr.p+' MT</div><div class="old">'+(pr.o?pr.o+' MT':'')+'</div><button class="btnAdd" onclick="adicionar('+item.idx+')">Adicionar</button></div>';
+    });
+    html+='</div></div>';
+    container.innerHTML+=html;
+  });
+  document.getElementById('countProd').innerText=products.length;
+  let list=document.getElementById('adminList');
+  list.innerHTML='';
+  products.forEach(pr=>{
+    let thumb=pr.img?'<img src="'+pr.img+'" style="width:50px;height:50px;object-fit:cover;border-radius:6px">':'👕';
+    list.innerHTML+='<div style="display:flex;gap:8px;background:#2a2a2a;border-radius:10px;padding:8px;align-items:center;margin-bottom:6px">'+thumb+'<div style="flex:1"><b style="font-size:11px">'+pr.n+'</b> <span style="background:#6ab6ff;color:#fff;padding:2px 6px;border-radius:8px;font-size:8px">'+pr.grupo+'</span><br><span style="color:#ff2d55;font-size:11px">'+pr.p+' MT</span></div><button onclick="apagarFirebase(\''+pr.idFirebase+'\')" style="background:#ff0040;color:#fff;border:none;border-radius:6px;padding:6px 10px">X</button></div>';
+  });
+}
+window.atualizarCarrinho = function(){
+  let c = document.getElementById('cartCount');
+  if(cart.length>0){ c.style.display='inline-block'; c.innerText=cart.length; } else { c.style.display='none'; }
+}
+window.adicionar = function(i){
+  cart.push(products[i]);
+  localStorage.setItem('cart_final',JSON.stringify(cart));
+  atualizarCarrinho();
+  alert('✅ Adicionado!');
+}
+window.abrirAdmin = function(){document.getElementById('adminPanel').style.display='block';}
+window.fecharAdmin = function(){document.getElementById('adminPanel').style.display='none';}
+window.fazerLogin = function(){
+  let s=document.getElementById('passInput').value;
+  let k='bWFmaW9zbzIwMjU=';
+  if(btoa(s)===k){document.getElementById('loginDiv').style.display='none';document.getElementById('adminContent').style.display='block';}
+  else{alert('Senha errada!');}
+}
+function comprimir(file,max,qual,cb){
+  let r=new FileReader();
+  r.onload=e=>{
+    let img=new Image();
+    img.onload=()=>{
+      let c=document.createElement('canvas');
+      let w=img.width,h=img.height;
+      if(w>h){if(w>max){h=h*max/w;w=max}}else{if(h>max){w=w*max/h;h=max}}
+      c.width=w;c.height=h;c.getContext('2d').drawImage(img,0,0,w,h);
+      cb(c.toDataURL('image/jpeg',qual))
+    };
+    img.src=e.target.result
+  };
+  r.readAsDataURL(file);
+}
+document.getElementById('fileInput').addEventListener('change',e=>{
+  let files=Array.from(e.target.files);
+  curImgs=[];
+  let wrap=document.getElementById('previewWrap');
+  wrap.innerHTML='';
+  files.forEach(f=>{
+    comprimir(f,350,0.55,url=>{
+      curImgs.push(url);
+      let d=document.createElement('div');
+      d.className='previewBox';
+      d.innerHTML='<img src="'+url+'">';
+      wrap.appendChild(d);
+    });
+  });
+});
+window.publicarAuto = async function(){
+  let nome=document.getElementById('pNome').value.trim()||'Produto';
+  let p=parseInt(document.getElementById('pPreco').value);
+  let o=parseInt(document.getElementById('pOld').value)||0;
+  let grupo=document.getElementById('pGrupo').value;
+  if(!p){alert('Digita preço!');return;}
+  if(curImgs.length===0){alert('Escolhe foto!');return;}
+  let btn=document.getElementById('btnPublicar');
+  btn.innerText='⏳ PUBLICANDO NO FIREBASE...';
+  btn.disabled=true;
+  try{
+    for(let i=0;i<curImgs.length;i++){
+      let n=curImgs.length>1?nome+' '+(i+1):nome;
+      await addDoc(collection(db,"products"),{
+        n:n, p:p, o:o||Math.round(p*1.5), img:curImgs[i], grupo:grupo,
+        createdAt: new Date()
+      });
+    }
+    document.getElementById('pNome').value='';
+    document.getElementById('pPreco').value='';
+    document.getElementById('pOld').value='';
+    curImgs=[];
+    document.getElementById('previewWrap').innerHTML='';
+    document.getElementById('fileInput').value='';
+    alert('✅ Publicado no FIREBASE! Agora aparece em todos os celulares!');
+    fecharAdmin();
+  }catch(err){ alert('Erro Firebase: '+err); }
+  btn.innerText='📤 PUBLICAR';
+  btn.disabled=false;
+}
+window.apagarFirebase = async function(idFirebase){
+  if(confirm('Apagar do Firebase?')){
+    await deleteDoc(doc(db,"products",idFirebase));
+  }
+}
 </script>
 </body>
 </html>
