@@ -67,7 +67,6 @@ body{background:#000;color:#fff;font-family:Arial}
 .previewWrap{display:flex;gap:8px;flex-wrap:wrap}
 .previewBox{width:58px;height:58px;border-radius:8px;overflow:hidden;border:2px solid #00c853}
 .previewBox img{width:100%;height:100%;object-fit:cover}
-/* === ADICIONADO: WHATSAPP + PAGINA PRODUTO === */
 .whatsFloat{position:fixed;bottom:75px;right:12px;background:#25D366;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;z-index:90;box-shadow:0 4px 12px rgba(0,0,0,.6);cursor:pointer}
 #productPage{position:fixed;inset:0;background:#000;z-index:250;display:none;overflow:auto;padding-bottom:20px}
 .prodTop{position:sticky;top:0;background:#111;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;z-index:10;border-bottom:1px solid #222}
@@ -100,8 +99,6 @@ body{background:#000;color:#fff;font-family:Arial}
 </div>
 <div class="whatsFloat" onclick="abrirWhatsGeral()">💬</div>
 <div class="nav"><div style="color:#ff0040">🏠<br>Accueil</div><div style="color:#888">🔍<br>Catégorie</div><div style="color:#888">🛒<br>Panier <span id="cartCount" style="background:#ff0040;color:#fff;border-radius:50%;padding:2px 5px;font-size:8px;display:none">0</span></div><div style="color:#888" onclick="abrirAdmin()">👤<br>Compte</div></div>
-
-<!-- PAGINA DO PRODUTO - AMPLIAR IMAGEM + OUTRAS IMAGENS EMBAIXO -->
 <div id="productPage">
 <div class="prodTop"><button onclick="fecharProduto()" style="background:#222;color:#fff;border:none;border-radius:8px;padding:8px 14px;font-weight:bold">← Voltar</button><div style="font-size:11px;color:#888">MAFIOSO-STORE</div><button onclick="abrirWhatsProduto()" style="background:#25D366;color:#fff;border:none;border-radius:8px;padding:8px 12px;font-weight:bold">WhatsApp</button></div>
 <div class="prodMainImgWrap" id="mainImgWrap" onclick="toggleZoom()"><img id="prodMainImg" src=""></div>
@@ -116,7 +113,6 @@ body{background:#000;color:#fff;font-family:Arial}
 <div style="margin-top:18px"><h3 style="font-size:11px;border-left:3px solid #ff0040;padding-left:8px;margin-bottom:10px">MAIS PRODUTOS</h3><div id="moreProducts" class="grid"></div></div>
 </div>
 </div>
-
 <div id="adminPanel"><div class="adminHead"><h2>ADMIN</h2><button onclick="fecharAdmin()" style="background:#fff;color:#111;border:none;border-radius:8px;padding:8px 14px;font-weight:bold">X</button></div>
 <div id="loginDiv" class="loginBox"><h3>🔒 Acesso</h3><input id="passInput" type="password" class="inp" placeholder="Senha"><button class="btnAdmin" onclick="fazerLogin()">ENTRAR</button></div>
 <div id="adminContent" style="display:none">
@@ -164,6 +160,7 @@ let products = [];
 let cart = JSON.parse(localStorage.getItem('cart_final')||'[]');
 let curImgs = [];
 let currentProductIndex = 0;
+
 function carregarProdutos(){
   const q = query(collection(db,"products"), orderBy("createdAt","desc"));
   onSnapshot(q,(snap)=>{
@@ -173,6 +170,7 @@ function carregarProdutos(){
   });
 }
 carregarProdutos();
+
 function render(){
   let container=document.getElementById('allSections');
   if(products.length===0){
@@ -207,6 +205,7 @@ function render(){
     list.innerHTML+='<div style="display:flex;gap:8px;background:#2a2a2a;border-radius:10px;padding:8px;align-items:center;margin-bottom:6px">'+thumb+'<div style="flex:1"><b style="font-size:11px">'+pr.n+'</b> <span style="background:#6ab6ff;color:#fff;padding:2px 6px;border-radius:8px;font-size:8px">'+pr.grupo+'</span><br><span style="color:#ff2d55;font-size:11px">'+pr.p+' MT</span> <span style="font-size:8px;color:#888">'+(pr.imgs?pr.imgs.length:1)+' fotos</span></div><button onclick="apagarFirebase(\''+pr.idFirebase+'\')" style="background:#ff0040;color:#fff;border:none;border-radius:6px;padding:6px 10px">X</button></div>';
   });
 }
+
 window.abrirProduto = function(idx){
   currentProductIndex = idx;
   let pr = products[idx];
@@ -273,48 +272,64 @@ window.fazerLogin = function(){
   if(btoa(s)===k){document.getElementById('loginDiv').style.display='none';document.getElementById('adminContent').style.display='block';}
   else{alert('Senha errada!');}
 }
-function comprimir(file,max,qual,cb){
-  let r=new FileReader();
-  r.onload=e=>{
-    let img=new Image();
-    img.onload=()=>{
-      let c=document.createElement('canvas');
-      let w=img.width,h=img.height;
-      if(w>h){if(w>max){h=h*max/w;w=max}}else{if(h>max){w=w*max/h;h=max}}
-      c.width=w;c.height=h;c.getContext('2d').drawImage(img,0,0,w,h);
-      cb(c.toDataURL('image/jpeg',qual))
+
+// === CORREÇÃO: AGORA ESPERA TODAS AS FOTOS ===
+function comprimirPromise(file,max,qual){
+  return new Promise(resolve=>{
+    let r=new FileReader();
+    r.onload=e=>{
+      let img=new Image();
+      img.onload=()=>{
+        let c=document.createElement('canvas');
+        let w=img.width,h=img.height;
+        if(w>h){if(w>max){h=h*max/w;w=max}}else{if(h>max){w=w*max/h;h=max}}
+        c.width=w;c.height=h;c.getContext('2d').drawImage(img,0,0,w,h);
+        resolve(c.toDataURL('image/jpeg',qual))
+      };
+      img.src=e.target.result
     };
-    img.src=e.target.result
-  };
-  r.readAsDataURL(file);
+    r.readAsDataURL(file);
+  });
 }
-document.getElementById('fileInput').addEventListener('change',e=>{
+
+document.getElementById('fileInput').addEventListener('change', async e=>{
   let files=Array.from(e.target.files);
+  if(files.length==0) return;
   curImgs=[];
   let wrap=document.getElementById('previewWrap');
-  wrap.innerHTML='';
-  files.forEach(f=>{
-    comprimir(f,450,0.65,url=>{
-      curImgs.push(url);
+  let btn=document.getElementById('btnPublicar');
+  wrap.innerHTML='<div style="color:#00c853;font-size:11px">⏳ Carregando '+files.length+' fotos...</div>';
+  btn.disabled=true;
+  btn.innerText='⏳ AGUARDE '+files.length+' FOTOS...';
+  let urls=[];
+  for(let f of files){
+    let url = await comprimirPromise(f,450,0.65);
+    urls.push(url);
+    wrap.innerHTML='';
+    urls.forEach(u=>{
       let d=document.createElement('div');
       d.className='previewBox';
-      d.innerHTML='<img src="'+url+'">';
+      d.innerHTML='<img src="'+u+'">';
       wrap.appendChild(d);
     });
-  });
+  }
+  curImgs=urls;
+  btn.disabled=false;
+  btn.innerText='📤 PUBLICAR ('+curImgs.length+' FOTOS)';
 });
+
 window.publicarAuto = async function(){
   let nome=document.getElementById('pNome').value.trim()||'Produto';
   let p=parseInt(document.getElementById('pPreco').value);
   let o=parseInt(document.getElementById('pOld').value)||0;
   let grupo=document.getElementById('pGrupo').value;
   if(!p){alert('Digita preço!');return;}
-  if(curImgs.length===0){alert('Escolhe foto!');return;}
+  if(curImgs.length===0){alert('Escolhe foto e aguarde carregar!');return;}
   let btn=document.getElementById('btnPublicar');
-  btn.innerText='⏳ PUBLICANDO...';
+  let qtd = curImgs.length; // guarda antes de apagar - CORREÇÃO
+  btn.innerText='⏳ PUBLICANDO '+qtd+' FOTOS...';
   btn.disabled=true;
   try{
-    // Agora salva TODAS as fotos no mesmo produto!
     await addDoc(collection(db,"products"),{
       n:nome, p:p, o:o||Math.round(p*1.5), img:curImgs[0], imgs:curImgs, grupo:grupo,
       createdAt: new Date()
@@ -322,15 +337,16 @@ window.publicarAuto = async function(){
     document.getElementById('pNome').value='';
     document.getElementById('pPreco').value='';
     document.getElementById('pOld').value='';
-    curImgs=[];
     document.getElementById('previewWrap').innerHTML='';
     document.getElementById('fileInput').value='';
-    alert('✅ Publicado com '+curImgs.length+' fotos! Cliente pode ampliar!');
+    alert('✅ Publicado com '+qtd+' fotos! Cliente vai ver todas embaixo!');
+    curImgs=[];
     fecharAdmin();
   }catch(err){ alert('Erro Firebase: '+err); }
   btn.innerText='📤 PUBLICAR';
   btn.disabled=false;
 }
+
 window.apagarFirebase = async function(idFirebase){
   if(confirm('Apagar do Firebase?')){
     await deleteDoc(doc(db,"products",idFirebase));
