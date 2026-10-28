@@ -3,145 +3,126 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>MAFIOSO-STORE</title>
+<title>NAULANGUE-SHOP</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#000;color:#fff;font-family:Arial}
-.banner-foto{
-  position:relative;
-  width:100%;
-  height:175px;
-  overflow:hidden;
-  background:#000;
-  background-image:url('https://i.postimg.cc/dVS872Dz/WA-1792963145462.jpg');
-  background-size:cover;
-  background-position:center 20%
-}
-.banner-foto::after{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.1) 75%)
-}
-.banner-foto .conteudo{
-  position:absolute;
-  left:16px;
-  top:50%;
-  transform:translateY(-50%);
-  z-index:2
-}
-.banner-foto h1{
-  color:#fff;
-  font-size:20px;
-  font-weight:900;
-  line-height:20px;
-  text-transform:uppercase
-}
-.banner-foto p{
-  color:#fff;
-  font-size:11px;
-  margin-top:4px;
-  font-weight:600
-}
-.sec{padding:11px 0 11px 12px;border-bottom:1px solid #1a1a1a}
-.sec h2{font-size:12px;margin-bottom:8px;padding-left:8px;border-left:3px solid #ff0040;text-transform:uppercase}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{background:#f5f7fb;color:#111}
+.app{max-width:430px;margin:0 auto;padding-bottom:75px;background:#f5f7fb;min-height:100vh}
+.header{background:#fff;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 12px rgba(0,0,0,.06);position:sticky;top:0;z-index:50}
+.logo{font-weight:900;font-size:18px} .logo span{color:#2563eb}
+.nav-top{display:flex;gap:12px;font-size:12px} .nav-top a{text-decoration:none;color:#111;font-weight:600}
+.nav-top a.active{color:#2563eb;border-bottom:2px solid #2563eb}
+.hero{background:#fff;margin:12px;border-radius:20px;padding:18px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 6px 20px rgba(0,0,0,.05)}
+.hero h1{font-size:24px;line-height:1.1;font-weight:900} .hero p{font-size:11px;color:#666;margin:6px 0}
+.btn-shop{background:#111;color:#fff;border:none;border-radius:20px;padding:10px 16px;font-weight:900;font-size:11px;cursor:pointer}
+.hero-img{width:160px} .hero-img img{width:100%;transform:rotate(-12deg)}
+.badges{display:flex;gap:6px;margin-top:10px}
+.badges span{background:#e8efff;color:#2563eb;padding:4px 8px;border-radius:12px;font-size:8px;font-weight:700}
+.sec{padding:12px 0 12px 12px;background:#fff;margin-top:10px}
+.sec h2{font-size:12px;margin-bottom:10px;padding-left:8px;border-left:3px solid #2563eb;text-transform:uppercase;font-weight:900}
 .grid{display:flex;gap:10px;overflow-x:auto;padding-right:12px;padding-bottom:6px}
 .grid::-webkit-scrollbar{display:none}
-.card{min-width:150px;max-width:150px;background:#1a1a1a;border-radius:14px;overflow:hidden;border:1px solid #2a2a2a;flex-shrink:0;position:relative;cursor:pointer}
-.badge{position:absolute;top:6px;left:6px;background:#ff0040;color:#fff;font-size:6px;font-weight:900;padding:3px 6px;border-radius:8px;z-index:2}
-.img{height:150px;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.card{min-width:155px;max-width:155px;background:#fff;border-radius:16px;overflow:hidden;border:1px solid #eef2ff;flex-shrink:0;position:relative;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.05)}
+.badge{position:absolute;top:6px;left:6px;background:#2563eb;color:#fff;font-size:6px;font-weight:900;padding:3px 6px;border-radius:8px;z-index:2}
+.img{height:130px;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .img img{width:100%;height:100%;object-fit:cover}
-.card h3{font-size:11px;padding:6px 7px 2px;height:30px;overflow:hidden}
-.preco{color:#ff0040;font-weight:900;padding:0 7px;font-size:12px}
-.old{color:#888;font-size:9px;text-decoration:line-through;padding:0 7px 3px}
-.btnAdd{width:92%;margin:4px 4% 8px;background:#ff0040;color:#fff;border:none;border-radius:16px;padding:7px;font-weight:bold;font-size:10px}
-.app{max-width:430px;margin:0 auto;padding-bottom:70px;background:#000}
-.nav{position:fixed;bottom:0;left:0;right:0;background:#111;display:flex;justify-content:space-around;padding:7px 0;border-top:1px solid #222;max-width:430px;margin:0 auto;z-index:100}
-.nav div{font-size:9px;text-align:center}
-#adminPanel{position:fixed;inset:0;background:#0a0a0a;z-index:300;display:none;overflow:auto}
-.adminHead{background:#111;padding:14px;display:flex;justify-content:space-between;position:sticky;top:0}
-.adminCard{background:#1e1e1e;margin:10px;border-radius:14px;padding:14px;border:1px solid #333}
-.inp,.sel{width:100%;padding:11px;border:1px solid #333;border-radius:10px;margin-bottom:8px;background:#2a2a2a;color:#fff;font-size:13px}
-.btnAdmin{width:100%;background:#00c853;color:#fff;border:none;border-radius:10px;padding:12px;font-weight:bold;margin-top:6px}
-.loginBox{max-width:320px;margin:80px auto;background:#1e1e1e;padding:24px;border-radius:16px;text-align:center}
+.card h3{font-size:11px;padding:6px 8px 2px;height:30px;overflow:hidden}
+.preco{color:#111;font-weight:900;padding:0 8px;font-size:13px}
+.old{color:#888;font-size:9px;text-decoration:line-through;padding:0 8px 3px}
+.btnAdd{width:92%;margin:6px 4% 8px;background:#111;color:#fff;border:none;border-radius:12px;padding:8px;font-weight:900;font-size:10px;cursor:pointer}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #eee;max-width:430px;margin:0 auto;z-index:100}
+.bottom-nav div{font-size:9px;text-align:center;color:#888}
+#adminPanel{position:fixed;inset:0;background:#f5f7fb;z-index:300;display:none;overflow:auto}
+.adminHead{background:#fff;padding:14px;display:flex;justify-content:space-between;position:sticky;top:0;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.adminCard{background:#fff;margin:10px;border-radius:14px;padding:14px;border:1px solid #e5e7eb;box-shadow:0 4px 12px rgba(0,0,0,.04)}
+.inp,.sel{width:100%;padding:11px;border:1px solid #ddd;border-radius:10px;margin-bottom:8px;background:#fff;color:#111;font-size:13px}
+.btnAdmin{width:100%;background:#2563eb;color:#fff;border:none;border-radius:10px;padding:12px;font-weight:bold;margin-top:6px;cursor:pointer}
+.loginBox{max-width:320px;margin:80px auto;background:#fff;padding:24px;border-radius:16px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.1)}
 .previewWrap{display:flex;gap:8px;flex-wrap:wrap}
-.previewBox{width:58px;height:58px;border-radius:8px;overflow:hidden;border:2px solid #00c853}
+.previewBox{width:58px;height:58px;border-radius:8px;overflow:hidden;border:2px solid #2563eb}
 .previewBox img{width:100%;height:100%;object-fit:cover}
-.whatsFloat{position:fixed;bottom:75px;right:12px;background:#25D366;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;z-index:90;box-shadow:0 4px 12px rgba(0,0,0,.6);cursor:pointer}
-#productPage{position:fixed;inset:0;background:#000;z-index:250;display:none;overflow:auto;padding-bottom:20px}
-.prodTop{position:sticky;top:0;background:#111;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;z-index:10;border-bottom:1px solid #222}
-.prodMainImgWrap{width:100%;height:400px;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.whatsFloat{position:fixed;bottom:80px;right:12px;background:#25D366;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;z-index:90;box-shadow:0 4px 12px rgba(0,0,0,.3);cursor:pointer}
+#productPage{position:fixed;inset:0;background:#fff;z-index:250;display:none;overflow:auto;padding-bottom:20px}
+.prodTop{position:sticky;top:0;background:#fff;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;z-index:10;border-bottom:1px solid #eee}
+.prodMainImgWrap{width:100%;height:380px;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .prodMainImgWrap img{width:100%;height:100%;object-fit:contain;transition:.3s}
 .prodMainImgWrap.zoomed img{transform:scale(2.2);cursor:zoom-out}
-.thumbs{display:flex;gap:8px;overflow-x:auto;padding:10px 12px;background:#0a0a0a;border-bottom:1px solid #1a1a1a}
+.thumbs{display:flex;gap:8px;overflow-x:auto;padding:10px 12px;background:#f5f7fb;border-bottom:1px solid #eee}
 .thumbs::-webkit-scrollbar{display:none}
-.thumb{width:64px;height:64px;border-radius:10px;overflow:hidden;border:2px solid #222;flex-shrink:0;cursor:pointer}
-.thumb.active{border-color:#ff0040}
+.thumb{width:64px;height:64px;border-radius:10px;overflow:hidden;border:2px solid #ddd;flex-shrink:0;cursor:pointer;background:#fff}
+.thumb.active{border-color:#2563eb}
 .thumb img{width:100%;height:100%;object-fit:cover}
 .prodInfo{padding:14px}
-.precoBig{color:#ff0040;font-size:22px;font-weight:900}
+.precoBig{color:#111;font-size:22px;font-weight:900}
 .oldBig{color:#888;font-size:12px;text-decoration:line-through}
 .btnRow{display:flex;gap:8px;margin-top:14px}
-.btnWhats{flex:1;background:#25D366;color:#fff;border:none;border-radius:12px;padding:14px;font-weight:900;font-size:13px}
-.btnAddBig{flex:1;background:#ff0040;color:#fff;border:none;border-radius:12px;padding:14px;font-weight:900;font-size:13px}
+.btnWhats{flex:1;background:#25D366;color:#fff;border:none;border-radius:12px;padding:14px;font-weight:900;font-size:13px;cursor:pointer}
+.btnAddBig{flex:1;background:#111;color:#fff;border:none;border-radius:12px;padding:14px;font-weight:900;font-size:13px;cursor:pointer}
+.banner-20{background:linear-gradient(135deg,#dbeafe,#bfdbfe);margin:12px;border-radius:16px;padding:16px;display:flex;justify-content:space-between;align-items:center}
 </style>
 </head>
 <body>
 <div class="app">
-<div class="banner-foto" id="bannerTop">
-<div class="conteudo">
-<h1>MAFIOSO-STORE</h1>
-<p>Faça sua escolha, encomenda já</p>
+<div class="header"><div class="logo">NAULANGUE<span>-SHOP</span></div><div class="nav-top"><a class="active">Home</a><a>Shop</a><a>Men</a></div><div>🛒 <span id="cartCount" style="background:#2563eb;color:#fff;border-radius:50%;padding:2px 6px;font-size:10px;display:none">0</span></div></div>
+
+<div class="hero">
+<div>
+<p style="color:#2563eb;font-weight:800;font-size:9px">Step Up Your Game</p>
+<h1>Find Your<br>Perfect Pair</h1>
+<p>Premium sneakers for any style</p>
+<button class="btn-shop" onclick="abrirWhatsGeral()">Shop Now →</button>
+<div class="badges"><span>🚚 Free Shipping</span><span>✓ 30-Day Returns</span><span>✓ Secure</span></div>
 </div>
+<div class="hero-img"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400"></div>
 </div>
+
+<div class="banner-20">
+<div><p style="font-size:10px">Special Offer</p><h3 style="font-size:16px">Get 20% Off</h3><p style="font-size:10px">Use Code: NAULANGUE20</p></div>
+<img src="https://images.unsplash.com/photo-1600269452121-4f2416e55c28?w=200" style="width:120px;border-radius:12px">
+</div>
+
 <div id="allSections"></div>
-<div style="text-align:center;padding:14px;color:#555;font-size:9px">Admin: <u onclick="abrirAdmin()" style="color:#ff0040">clique aqui</u> • WhatsApp 871585269</div>
+<div style="text-align:center;padding:14px;color:#888;font-size:9px">Admin: <u onclick="abrirAdmin()" style="color:#2563eb">clique aqui</u> • NAULANGUE-SHOP • WhatsApp 871585269</div>
 </div>
+
 <div class="whatsFloat" onclick="abrirWhatsGeral()">💬</div>
-<div class="nav"><div style="color:#ff0040">🏠<br>Accueil</div><div style="color:#888">🔍<br>Catégorie</div><div style="color:#888">🛒<br>Panier <span id="cartCount" style="background:#ff0040;color:#fff;border-radius:50%;padding:2px 5px;font-size:8px;display:none">0</span></div><div style="color:#888" onclick="abrirAdmin()">👤<br>Compte</div></div>
+<div class="bottom-nav"><div style="color:#2563eb">🏠<br>Home</div><div>🔍<br>Shop</div><div>🛒<br>Cart</div><div onclick="abrirAdmin()">👤<br>Conta</div></div>
+
 <div id="productPage">
-<div class="prodTop"><button onclick="fecharProduto()" style="background:#222;color:#fff;border:none;border-radius:8px;padding:8px 14px;font-weight:bold">← Voltar</button><div style="font-size:11px;color:#888">MAFIOSO-STORE</div><button onclick="abrirWhatsProduto()" style="background:#25D366;color:#fff;border:none;border-radius:8px;padding:8px 12px;font-weight:bold">WhatsApp</button></div>
+<div class="prodTop"><button onclick="fecharProduto()" style="background:#eee;color:#111;border:none;border-radius:8px;padding:8px 14px;font-weight:bold">← Voltar</button><div style="font-size:11px;color:#888">NAULANGUE-SHOP</div><button onclick="abrirWhatsProduto()" style="background:#25D366;color:#fff;border:none;border-radius:8px;padding:8px 12px;font-weight:bold">WhatsApp</button></div>
 <div class="prodMainImgWrap" id="mainImgWrap" onclick="toggleZoom()"><img id="prodMainImg" src=""></div>
 <div class="thumbs" id="prodThumbs"></div>
 <div class="prodInfo">
 <h2 id="prodNome" style="font-size:16px;margin-bottom:6px">Nome</h2>
 <div class="precoBig" id="prodPreco">0 MT</div>
 <div class="oldBig" id="prodOld"></div>
-<div style="margin-top:10px;font-size:11px;color:#aaa">📍 MONTEPUEZ • Entrega imediata • Toque na imagem para ampliar • WhatsApp 871585269</div>
+<div style="margin-top:10px;font-size:11px;color:#888">📍 MONTEPUEZ • Entrega imediata • Toque na imagem para ampliar • NAULANGUE-SHOP</div>
 <div class="btnRow"><button class="btnAddBig" onclick="adicionarDoDetalhe()">🛒 Adicionar</button><button class="btnWhats" onclick="abrirWhatsProduto()">💬 871585269</button></div>
-<div style="margin-top:18px"><h3 style="font-size:11px;border-left:3px solid #ff0040;padding-left:8px;margin-bottom:10px">OUTRAS FOTOS DESSE PRODUTO EM BAIXO</h3><div id="moreImgs" style="display:flex;gap:8px;flex-wrap:wrap"></div></div>
-<div style="margin-top:18px"><h3 style="font-size:11px;border-left:3px solid #ff0040;padding-left:8px;margin-bottom:10px">MAIS PRODUTOS</h3><div id="moreProducts" class="grid"></div></div>
+<div style="margin-top:18px"><h3 style="font-size:11px;border-left:3px solid #2563eb;padding-left:8px;margin-bottom:10px">OUTRAS FOTOS</h3><div id="moreImgs" style="display:flex;gap:8px;flex-wrap:wrap"></div></div>
+<div style="margin-top:18px"><h3 style="font-size:11px;border-left:3px solid #2563eb;padding-left:8px;margin-bottom:10px">MAIS PRODUTOS</h3><div id="moreProducts" class="grid"></div></div>
 </div>
 </div>
-<div id="adminPanel"><div class="adminHead"><h2>ADMIN</h2><button onclick="fecharAdmin()" style="background:#fff;color:#111;border:none;border-radius:8px;padding:8px 14px;font-weight:bold">X</button></div>
-<div id="loginDiv" class="loginBox"><h3>🔒 Acesso</h3><input id="passInput" type="password" class="inp" placeholder="Senha"><button class="btnAdmin" onclick="fazerLogin()">ENTRAR</button></div>
+
+<div id="adminPanel"><div class="adminHead"><h2>ADMIN NAULANGUE-SHOP</h2><button onclick="fecharAdmin()" style="background:#111;color:#fff;border:none;border-radius:8px;padding:8px 14px;font-weight:bold">X</button></div>
+<div id="loginDiv" class="loginBox"><h3>🔒 Acesso NAULANGUE-SHOP</h3><p style="font-size:11px;color:#888;margin:8px 0">Senha: Naulangue</p><input id="passInput" type="password" class="inp" placeholder="Digite a senha"><button class="btnAdmin" onclick="fazerLogin()">ENTRAR</button></div>
 <div id="adminContent" style="display:none">
-<div class="adminCard" style="border-color:#00c853"><h3>➕ Publicar</h3>
+<div class="adminCard" style="border-color:#2563eb"><h3>➕ Publicar em NAULANGUE-SHOP</h3>
 <select id="pGrupo" class="sel">
+<option value="Sapatos">👟 Sapatos</option>
 <option value="Camisa m-comprida">👕 Camisa m-comprida</option>
 <option value="Camisa m-curta">👕 Camisa m-curta</option>
 <option value="Camisas">👕 Camisas</option>
 <option value="Calções">🩳 Calções</option>
 <option value="Calças">👖 Calças</option>
-<option value="Colar">📿 Colar</option>
-<option value="Sapatos">👟 Sapatos</option>
-<option value="Saltos">👠 Saltos</option>
-<option value="Bermudas">🩳 Bermudas</option>
 <option value="Vestidos">👗 Vestidos</option>
-<option value="Saias">👗 Saias</option>
-<option value="Blusas">👚 Blusas</option>
-<option value="Jaquetas">🧥 Jaquetas</option>
-<option value="Sutiãs">👙 Sutiãs</option>
-<option value="Conjuntos">👗 Conjuntos</option>
-<option value="Óculos">🕶️ Óculos</option>
 <option value="Outras roupas">👚 Outras roupas</option>
-<option value="Delgados">Delgados</option>
 </select>
-<input type="file" id="fileInput" accept="image/*" multiple class="inp"><div id="previewWrap" class="previewWrap"></div><input id="pNome" class="inp" placeholder="Nome"><input id="pPreco" class="inp" type="number" placeholder="Preço"><input id="pOld" class="inp" type="number" placeholder="Preço antigo"><button id="btnPublicar" class="btnAdmin" onclick="publicarAuto()">📤 PUBLICAR</button>
+<input type="file" id="fileInput" accept="image/*" multiple class="inp"><div id="previewWrap" class="previewWrap"></div><input id="pNome" class="inp" placeholder="Nome do produto"><input id="pPreco" class="inp" type="number" placeholder="Preço MT"><input id="pOld" class="inp" type="number" placeholder="Preço antigo"><button id="btnPublicar" class="btnAdmin" onclick="publicarAuto()">📤 PUBLICAR NA NAULANGUE-SHOP</button>
 <p style="font-size:10px;color:#888;margin-top:8px;text-align:center">🔥 Firebase + várias fotos!</p>
 </div>
-<div class="adminCard"><h3>📦 Produtos (<span id="countProd">0</span>)</h3><div id="adminList"></div></div>
+<div class="adminCard"><h3>📦 Produtos NAULANGUE-SHOP (<span id="countProd">0</span>)</h3><div id="adminList"></div></div>
 </div></div>
+
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getFirestore, collection, addDoc, deleteDoc, doc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
@@ -151,8 +132,7 @@ const firebaseConfig = {
   projectId: "naulangue-shop",
   storageBucket: "naulangue-shop.firebasestorage.app",
   messagingSenderId: "695749077994",
-  appId: "1:695749077994:web:2b0549a24595ba944c6093",
-  measurementId: "G-2MG0G54PW1"
+  appId: "1:695749077994:web:2b0549a24595ba944c6093"
 };
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -174,14 +154,14 @@ carregarProdutos();
 function render(){
   let container=document.getElementById('allSections');
   if(products.length===0){
-    container.innerHTML='<div style="padding:30px 20px;text-align:center;color:#666;font-size:11px">Nenhum produto ainda.<br>Admin e publique!</div>';
+    container.innerHTML='<div style="padding:30px 20px;text-align:center;color:#888;font-size:11px;background:#fff;margin:12px;border-radius:16px">Nenhum produto ainda.<br>Vai em Admin e publique!</div>';
     document.getElementById('countProd').innerText='0';
     return;
   }
   container.innerHTML='';
   let grupos={};
   products.forEach((pr,idx)=>{
-    let g=pr.grupo||'Delgados';
+    let g=pr.grupo||'Sapatos';
     if(!grupos[g])grupos[g]=[];
     grupos[g].push({pr,idx})
   });
@@ -191,7 +171,7 @@ function render(){
       let pr=item.pr;
       let firstImg = pr.imgs && pr.imgs.length>0 ? pr.imgs[0] : pr.img;
       let img=firstImg?'<img src="'+firstImg+'">':'<span style="color:#999;font-size:10px">Foto</span>';
-      html+='<div class="card" onclick="abrirProduto('+item.idx+')"><span class="badge">MONTEPUEZ</span><div class="img">'+img+'</div><h3>'+pr.n+'</h3><div class="preco">'+pr.p+' MT</div><div class="old">'+(pr.o?pr.o+' MT':'')+'</div><button class="btnAdd" onclick="event.stopPropagation();adicionar('+item.idx+')">Adicionar</button></div>';
+      html+='<div class="card" onclick="abrirProduto('+item.idx+')"><span class="badge">NAULANGUE-SHOP</span><div class="img">'+img+'</div><h3>'+pr.n+'</h3><div class="preco">'+pr.p+' MT</div><div class="old">'+(pr.o?pr.o+' MT':'')+'</div><button class="btnAdd" onclick="event.stopPropagation();adicionar('+item.idx+')">Add to Cart</button></div>';
     });
     html+='</div></div>';
     container.innerHTML+=html;
@@ -201,8 +181,8 @@ function render(){
   list.innerHTML='';
   products.forEach(pr=>{
     let firstImg = pr.imgs && pr.imgs.length>0 ? pr.imgs[0] : pr.img;
-    let thumb=firstImg?'<img src="'+firstImg+'" style="width:50px;height:50px;object-fit:cover;border-radius:6px">':'👕';
-    list.innerHTML+='<div style="display:flex;gap:8px;background:#2a2a2a;border-radius:10px;padding:8px;align-items:center;margin-bottom:6px">'+thumb+'<div style="flex:1"><b style="font-size:11px">'+pr.n+'</b> <span style="background:#6ab6ff;color:#fff;padding:2px 6px;border-radius:8px;font-size:8px">'+pr.grupo+'</span><br><span style="color:#ff2d55;font-size:11px">'+pr.p+' MT</span> <span style="font-size:8px;color:#888">'+(pr.imgs?pr.imgs.length:1)+' fotos</span></div><button onclick="apagarFirebase(\''+pr.idFirebase+'\')" style="background:#ff0040;color:#fff;border:none;border-radius:6px;padding:6px 10px">X</button></div>';
+    let thumb=firstImg?'<img src="'+firstImg+'" style="width:50px;height:50px;object-fit:cover;border-radius:6px">':'👟';
+    list.innerHTML+='<div style="display:flex;gap:8px;background:#f5f7fb;border-radius:10px;padding:8px;align-items:center;margin-bottom:6px">'+thumb+'<div style="flex:1"><b style="font-size:11px">'+pr.n+'</b> <span style="background:#2563eb;color:#fff;padding:2px 6px;border-radius:8px;font-size:8px">'+pr.grupo+'</span><br><span style="color:#111;font-size:11px;font-weight:900">'+pr.p+' MT</span> <span style="font-size:8px;color:#888">'+(pr.imgs?pr.imgs.length:1)+' fotos</span></div><button onclick="apagarFirebase(\''+pr.idFirebase+'\')" style="background:#ff0040;color:#fff;border:none;border-radius:6px;padding:6px 10px">X</button></div>';
   });
 }
 
@@ -210,7 +190,6 @@ window.abrirProduto = function(idx){
   currentProductIndex = idx;
   let pr = products[idx];
   let allImgs = pr.imgs && pr.imgs.length>0 ? pr.imgs : (pr.img ? [pr.img] : []);
-  if(allImgs.length==0) allImgs = [pr.img];
   document.getElementById('prodNome').innerText = pr.n;
   document.getElementById('prodPreco').innerText = pr.p + ' MT';
   document.getElementById('prodOld').innerText = pr.o ? pr.o + ' MT' : '';
@@ -248,11 +227,11 @@ window.toggleZoom = function(){document.getElementById('mainImgWrap').classList.
 window.adicionarDoDetalhe = function(){adicionar(currentProductIndex);}
 window.abrirWhatsProduto = function(){
   let pr = products[currentProductIndex];
-  let msg = "Olá! Quero encomendar: " + pr.n + " - " + pr.p + " MT - Vi na MAFIOSO-STORE";
+  let msg = "Olá! Quero encomendar: " + pr.n + " - " + pr.p + " MT - Vi na NAULANGUE-SHOP";
   window.open("https://wa.me/258871585269?text=" + encodeURIComponent(msg), "_blank");
 }
 window.abrirWhatsGeral = function(){
-  window.open("https://wa.me/258871585269?text=" + encodeURIComponent("Olá! Vim pela MAFIOSO-STORE, quero encomendar! 871585269"), "_blank");
+  window.open("https://wa.me/258871585269?text=" + encodeURIComponent("Olá! Vim pela NAULANGUE-SHOP, quero encomendar! 871585269"), "_blank");
 }
 window.atualizarCarrinho = function(){
   let c = document.getElementById('cartCount');
@@ -262,18 +241,16 @@ window.adicionar = function(i){
   cart.push(products[i]);
   localStorage.setItem('cart_final',JSON.stringify(cart));
   atualizarCarrinho();
-  alert('✅ Adicionado!');
+  alert('✅ Adicionado na NAULANGUE-SHOP!');
 }
 window.abrirAdmin = function(){document.getElementById('adminPanel').style.display='block';}
 window.fecharAdmin = function(){document.getElementById('adminPanel').style.display='none';}
 window.fazerLogin = function(){
   let s=document.getElementById('passInput').value;
-  let k='bWFmaW9zbzIwMjU=';
+  let k='TmF1bGFuZ3Vl'; // SENHA = Naulangue
   if(btoa(s)===k){document.getElementById('loginDiv').style.display='none';document.getElementById('adminContent').style.display='block';}
-  else{alert('Senha errada!');}
+  else{alert('Senha errada! Dica: Naulangue');}
 }
-
-// === CORREÇÃO: AGORA ESPERA TODAS AS FOTOS ===
 function comprimirPromise(file,max,qual){
   return new Promise(resolve=>{
     let r=new FileReader();
@@ -291,14 +268,13 @@ function comprimirPromise(file,max,qual){
     r.readAsDataURL(file);
   });
 }
-
 document.getElementById('fileInput').addEventListener('change', async e=>{
   let files=Array.from(e.target.files);
   if(files.length==0) return;
   curImgs=[];
   let wrap=document.getElementById('previewWrap');
   let btn=document.getElementById('btnPublicar');
-  wrap.innerHTML='<div style="color:#00c853;font-size:11px">⏳ Carregando '+files.length+' fotos...</div>';
+  wrap.innerHTML='<div style="color:#2563eb;font-size:11px">⏳ Carregando '+files.length+' fotos...</div>';
   btn.disabled=true;
   btn.innerText='⏳ AGUARDE '+files.length+' FOTOS...';
   let urls=[];
@@ -317,16 +293,15 @@ document.getElementById('fileInput').addEventListener('change', async e=>{
   btn.disabled=false;
   btn.innerText='📤 PUBLICAR ('+curImgs.length+' FOTOS)';
 });
-
 window.publicarAuto = async function(){
-  let nome=document.getElementById('pNome').value.trim()||'Produto';
+  let nome=document.getElementById('pNome').value.trim()||'Produto NAULANGUE-SHOP';
   let p=parseInt(document.getElementById('pPreco').value);
   let o=parseInt(document.getElementById('pOld').value)||0;
   let grupo=document.getElementById('pGrupo').value;
   if(!p){alert('Digita preço!');return;}
   if(curImgs.length===0){alert('Escolhe foto e aguarde carregar!');return;}
   let btn=document.getElementById('btnPublicar');
-  let qtd = curImgs.length; // guarda antes de apagar - CORREÇÃO
+  let qtd = curImgs.length;
   btn.innerText='⏳ PUBLICANDO '+qtd+' FOTOS...';
   btn.disabled=true;
   try{
@@ -339,19 +314,11 @@ window.publicarAuto = async function(){
     document.getElementById('pOld').value='';
     document.getElementById('previewWrap').innerHTML='';
     document.getElementById('fileInput').value='';
-    alert('✅ Publicado com '+qtd+' fotos! Cliente vai ver todas embaixo!');
+    alert('✅ Publicado com '+qtd+' fotos na NAULANGUE-SHOP!');
     curImgs=[];
     fecharAdmin();
   }catch(err){ alert('Erro Firebase: '+err); }
-  btn.innerText='📤 PUBLICAR';
+  btn.innerText='📤 PUBLICAR NA NAULANGUE-SHOP';
   btn.disabled=false;
 }
-
-window.apagarFirebase = async function(idFirebase){
-  if(confirm('Apagar do Firebase?')){
-    await deleteDoc(doc(db,"products",idFirebase));
-  }
-}
-</script>
-</body>
-</html>
+window.apagarFirebase = async func
