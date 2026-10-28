@@ -321,4 +321,11 @@ window.publicarAuto = async function(){
   btn.innerText='📤 PUBLICAR NA NAULANGUE-SHOP';
   btn.disabled=false;
 }
-window.apagarFirebase = async func
+window.apagarFirebase = async function(idFirebase){
+  if(confirm('Apagar da NAULANGUE-SHOP?')){
+    await deleteDoc(doc(db,"products",idFirebase));
+  }
+}
+</script>
+</body>
+</html>
