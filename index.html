@@ -1,331 +1,615 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>NAULANGUE-SHOP</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LOOPS EDUCAÇÃO</title>
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-body{background:#f5f7fb;color:#111}
-.app{max-width:430px;margin:0 auto;padding-bottom:75px;background:#f5f7fb;min-height:100vh}
-.header{background:#fff;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 12px rgba(0,0,0,.06);position:sticky;top:0;z-index:50}
-.logo{font-weight:900;font-size:18px} .logo span{color:#2563eb}
-.nav-top{display:flex;gap:12px;font-size:12px} .nav-top a{text-decoration:none;color:#111;font-weight:600}
-.nav-top a.active{color:#2563eb;border-bottom:2px solid #2563eb}
-.hero{background:#fff;margin:12px;border-radius:20px;padding:18px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 6px 20px rgba(0,0,0,.05)}
-.hero h1{font-size:24px;line-height:1.1;font-weight:900} .hero p{font-size:11px;color:#666;margin:6px 0}
-.btn-shop{background:#111;color:#fff;border:none;border-radius:20px;padding:10px 16px;font-weight:900;font-size:11px;cursor:pointer}
-.hero-img{width:160px} .hero-img img{width:100%;transform:rotate(-12deg)}
-.badges{display:flex;gap:6px;margin-top:10px}
-.badges span{background:#e8efff;color:#2563eb;padding:4px 8px;border-radius:12px;font-size:8px;font-weight:700}
-.sec{padding:12px 0 12px 12px;background:#fff;margin-top:10px}
-.sec h2{font-size:12px;margin-bottom:10px;padding-left:8px;border-left:3px solid #2563eb;text-transform:uppercase;font-weight:900}
-.grid{display:flex;gap:10px;overflow-x:auto;padding-right:12px;padding-bottom:6px}
-.grid::-webkit-scrollbar{display:none}
-.card{min-width:155px;max-width:155px;background:#fff;border-radius:16px;overflow:hidden;border:1px solid #eef2ff;flex-shrink:0;position:relative;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.05)}
-.badge{position:absolute;top:6px;left:6px;background:#2563eb;color:#fff;font-size:6px;font-weight:900;padding:3px 6px;border-radius:8px;z-index:2}
-.img{height:130px;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.img img{width:100%;height:100%;object-fit:cover}
-.card h3{font-size:11px;padding:6px 8px 2px;height:30px;overflow:hidden}
-.preco{color:#111;font-weight:900;padding:0 8px;font-size:13px}
-.old{color:#888;font-size:9px;text-decoration:line-through;padding:0 8px 3px}
-.btnAdd{width:92%;margin:6px 4% 8px;background:#111;color:#fff;border:none;border-radius:12px;padding:8px;font-weight:900;font-size:10px;cursor:pointer}
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #eee;max-width:430px;margin:0 auto;z-index:100}
-.bottom-nav div{font-size:9px;text-align:center;color:#888}
-#adminPanel{position:fixed;inset:0;background:#f5f7fb;z-index:300;display:none;overflow:auto}
-.adminHead{background:#fff;padding:14px;display:flex;justify-content:space-between;position:sticky;top:0;box-shadow:0 2px 10px rgba(0,0,0,.06)}
-.adminCard{background:#fff;margin:10px;border-radius:14px;padding:14px;border:1px solid #e5e7eb;box-shadow:0 4px 12px rgba(0,0,0,.04)}
-.inp,.sel{width:100%;padding:11px;border:1px solid #ddd;border-radius:10px;margin-bottom:8px;background:#fff;color:#111;font-size:13px}
-.btnAdmin{width:100%;background:#2563eb;color:#fff;border:none;border-radius:10px;padding:12px;font-weight:bold;margin-top:6px;cursor:pointer}
-.loginBox{max-width:320px;margin:80px auto;background:#fff;padding:24px;border-radius:16px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.1)}
-.previewWrap{display:flex;gap:8px;flex-wrap:wrap}
-.previewBox{width:58px;height:58px;border-radius:8px;overflow:hidden;border:2px solid #2563eb}
-.previewBox img{width:100%;height:100%;object-fit:cover}
-.whatsFloat{position:fixed;bottom:80px;right:12px;background:#25D366;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;z-index:90;box-shadow:0 4px 12px rgba(0,0,0,.3);cursor:pointer}
-#productPage{position:fixed;inset:0;background:#fff;z-index:250;display:none;overflow:auto;padding-bottom:20px}
-.prodTop{position:sticky;top:0;background:#fff;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;z-index:10;border-bottom:1px solid #eee}
-.prodMainImgWrap{width:100%;height:380px;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.prodMainImgWrap img{width:100%;height:100%;object-fit:contain;transition:.3s}
-.prodMainImgWrap.zoomed img{transform:scale(2.2);cursor:zoom-out}
-.thumbs{display:flex;gap:8px;overflow-x:auto;padding:10px 12px;background:#f5f7fb;border-bottom:1px solid #eee}
-.thumbs::-webkit-scrollbar{display:none}
-.thumb{width:64px;height:64px;border-radius:10px;overflow:hidden;border:2px solid #ddd;flex-shrink:0;cursor:pointer;background:#fff}
-.thumb.active{border-color:#2563eb}
-.thumb img{width:100%;height:100%;object-fit:cover}
-.prodInfo{padding:14px}
-.precoBig{color:#111;font-size:22px;font-weight:900}
-.oldBig{color:#888;font-size:12px;text-decoration:line-through}
-.btnRow{display:flex;gap:8px;margin-top:14px}
-.btnWhats{flex:1;background:#25D366;color:#fff;border:none;border-radius:12px;padding:14px;font-weight:900;font-size:13px;cursor:pointer}
-.btnAddBig{flex:1;background:#111;color:#fff;border:none;border-radius:12px;padding:14px;font-weight:900;font-size:13px;cursor:pointer}
-.banner-20{background:linear-gradient(135deg,#dbeafe,#bfdbfe);margin:12px;border-radius:16px;padding:16px;display:flex;justify-content:space-between;align-items:center}
+:root {
+    --blue: #1261a0;
+    --dark: #123b70;
+    --light: #eaf3fb;
+    --white: #fff;
+    --bg: #f3f6fa;
+    --text: #263445;
+    --red: #dc3545;
+    --green: #198754;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+header {
+    height: 65px;
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    box-shadow: 0 2px 10px #0001;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--blue);
+}
+
+.logo span {
+    color: var(--dark);
+}
+
+.menu-btn {
+    font-size: 25px;
+    border: none;
+    background: none;
+    color: var(--blue);
+    cursor: pointer;
+}
+
+.layout {
+    display: flex;
+    min-height: calc(100vh - 65px);
+}
+
+aside {
+    width: 240px;
+    background: var(--dark);
+    color: white;
+    padding: 20px 10px;
+    flex-shrink: 0;
+}
+
+aside h3 {
+    font-size: 12px;
+    color: #b8d8f5;
+    padding: 10px;
+    text-transform: uppercase;
+}
+
+nav button {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    background: transparent;
+    color: white;
+    text-align: left;
+    border-radius: 7px;
+    cursor: pointer;
+    margin: 3px 0;
+    font-size: 14px;
+}
+
+nav button:hover,
+nav button.active {
+    background: #ffffff25;
+}
+
+main {
+    flex: 1;
+    padding: 25px;
+    min-width: 0;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+.page-title {
+    font-size: 24px;
+    color: var(--dark);
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    color: #718096;
+    margin-bottom: 22px;
+    font-size: 14px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(160px,1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px #00000008;
+    border-left: 4px solid var(--blue);
+}
+
+.card h4 {
+    font-size: 13px;
+    color: #718096;
+}
+
+.card strong {
+    display: block;
+    font-size: 27px;
+    color: var(--dark);
+    margin-top: 10px;
+}
+
+.panel {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px #00000008;
+    margin-bottom: 20px;
+}
+
+.panel h3 {
+    color: var(--dark);
+    margin-bottom: 15px;
+}
+
+.toolbar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+input, select {
+    padding: 11px;
+    border: 1px solid #dce3eb;
+    border-radius: 7px;
+    width: 100%;
+    background: white;
+    font-size: 14px;
+}
+
+.toolbar input {
+    flex: 1;
+    min-width: 150px;
+}
+
+button.primary {
+    background: var(--blue);
+    color: white;
+    border: none;
+    padding: 11px 16px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+button.danger {
+    background: var(--red);
+    color: white;
+    border: none;
+    padding: 7px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button.success {
+    background: var(--green);
+    color: white;
+    border: none;
+    padding: 7px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.table-wrap {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 500px;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #edf0f4;
+    text-align: left;
+    font-size: 13px;
+}
+
+th {
+    color: var(--dark);
+    background: var(--light);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #0008;
+    z-index: 30;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    width: 100%;
+    max-width: 480px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 22px;
+    border-radius: 12px;
+}
+
+.modal-content h3 {
+    color: var(--dark);
+    margin-bottom: 18px;
+}
+
+.form-group {
+    margin-bottom: 13px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.form-actions button {
+    flex: 1;
+}
+
+.empty {
+    color: #888;
+    text-align: center;
+    padding: 20px;
+}
+
+@media(max-width:700px) {
+    .layout {
+        display: block;
+    }
+
+    aside {
+        display: none;
+        width: 100%;
+    }
+
+    aside.open {
+        display: block;
+    }
+
+    main {
+        padding: 15px;
+    }
+
+    .page-title {
+        font-size: 21px;
+    }
+}
 </style>
 </head>
+
 <body>
-<div class="app">
-<div class="header"><div class="logo">NAULANGUE<span>-SHOP</span></div><div class="nav-top"><a class="active">Home</a><a>Shop</a><a>Men</a></div><div>🛒 <span id="cartCount" style="background:#2563eb;color:#fff;border-radius:50%;padding:2px 6px;font-size:10px;display:none">0</span></div></div>
 
-<div class="hero">
-<div>
-<p style="color:#2563eb;font-weight:800;font-size:9px">Step Up Your Game</p>
-<h1>Find Your<br>Perfect Pair</h1>
-<p>Premium sneakers for any style</p>
-<button class="btn-shop" onclick="abrirWhatsGeral()">Shop Now →</button>
-<div class="badges"><span>🚚 Free Shipping</span><span>✓ 30-Day Returns</span><span>✓ Secure</span></div>
-</div>
-<div class="hero-img"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400"></div>
+<header>
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+    <div class="logo">LOOPS <span>EDUCAÇÃO</span></div>
+    <div>👤 Admin</div>
+</header>
+
+<div class="layout">
+
+<aside id="sidebar">
+    <h3>Menu principal</h3>
+    <nav id="navigation">
+        <button class="active" onclick="showPage('dashboard',this)">▦ Painel principal</button>
+        <button onclick="showPage('escolas',this)">🏫 Escolas</button>
+        <button onclick="showPage('alunos',this)">👨‍🎓 Alunos</button>
+        <button onclick="showPage('professores',this)">👨‍🏫 Professores</button>
+        <button onclick="showPage('turmas',this)">📚 Turmas</button>
+        <button onclick="showPage('disciplinas',this)">📖 Disciplinas</button>
+        <button onclick="showPage('matriculas',this)">📝 Matrículas</button>
+        <button onclick="showPage('notas',this)">📊 Notas</button>
+        <button onclick="showPage('presencas',this)">📅 Presenças</button>
+        <button onclick="showPage('pagamentos',this)">💳 Pagamentos</button>
+    </nav>
+</aside>
+
+<main>
+
+<section id="dashboard" class="page active">
+    <h1 class="page-title">Painel principal</h1>
+    <p class="subtitle">Bem-vindo ao LOOPS EDUCAÇÃO.</p>
+
+    <div class="cards">
+        <div class="card"><h4>Total de escolas</h4><strong id="count-escolas">0</strong></div>
+        <div class="card"><h4>Total de alunos</h4><strong id="count-alunos">0</strong></div>
+        <div class="card"><h4>Professores</h4><strong id="count-professores">0</strong></div>
+        <div class="card"><h4>Turmas</h4><strong id="count-turmas">0</strong></div>
+        <div class="card"><h4>Matrículas</h4><strong id="count-matriculas">0</strong></div>
+    </div>
+
+    <div class="panel">
+        <h3>Sobre o sistema</h3>
+        <p>O LOOPS EDUCAÇÃO foi concebido para facilitar a gestão escolar, organizar informações académicas e apoiar a administração de instituições de ensino.</p>
+    </div>
+
+    <div class="panel">
+        <h3>Atividades recentes</h3>
+        <div id="recentes">Ainda não existem atividades registadas.</div>
+    </div>
+</section>
+
+<section id="escolas" class="page"></section>
+<section id="alunos" class="page"></section>
+<section id="professores" class="page"></section>
+<section id="turmas" class="page"></section>
+<section id="disciplinas" class="page"></section>
+<section id="matriculas" class="page"></section>
+<section id="notas" class="page"></section>
+<section id="presencas" class="page"></section>
+<section id="pagamentos" class="page"></section>
+
+</main>
 </div>
 
-<div class="banner-20">
-<div><p style="font-size:10px">Special Offer</p><h3 style="font-size:16px">Get 20% Off</h3><p style="font-size:10px">Use Code: NAULANGUE20</p></div>
-<img src="https://images.unsplash.com/photo-1600269452121-4f2416e55c28?w=200" style="width:120px;border-radius:12px">
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <h3 id="modal-title">Adicionar registo</h3>
+        <form id="record-form">
+            <div id="form-fields"></div>
+            <div class="form-actions">
+                <button type="button" class="danger" onclick="closeModal()">Cancelar</button>
+                <button type="submit" class="primary">Guardar</button>
+            </div>
+        </form>
+    </div>
 </div>
 
-<div id="allSections"></div>
-<div style="text-align:center;padding:14px;color:#888;font-size:9px">Admin: <u onclick="abrirAdmin()" style="color:#2563eb">clique aqui</u> • NAULANGUE-SHOP • WhatsApp 871585269</div>
-</div>
-
-<div class="whatsFloat" onclick="abrirWhatsGeral()">💬</div>
-<div class="bottom-nav"><div style="color:#2563eb">🏠<br>Home</div><div>🔍<br>Shop</div><div>🛒<br>Cart</div><div onclick="abrirAdmin()">👤<br>Conta</div></div>
-
-<div id="productPage">
-<div class="prodTop"><button onclick="fecharProduto()" style="background:#eee;color:#111;border:none;border-radius:8px;padding:8px 14px;font-weight:bold">← Voltar</button><div style="font-size:11px;color:#888">NAULANGUE-SHOP</div><button onclick="abrirWhatsProduto()" style="background:#25D366;color:#fff;border:none;border-radius:8px;padding:8px 12px;font-weight:bold">WhatsApp</button></div>
-<div class="prodMainImgWrap" id="mainImgWrap" onclick="toggleZoom()"><img id="prodMainImg" src=""></div>
-<div class="thumbs" id="prodThumbs"></div>
-<div class="prodInfo">
-<h2 id="prodNome" style="font-size:16px;margin-bottom:6px">Nome</h2>
-<div class="precoBig" id="prodPreco">0 MT</div>
-<div class="oldBig" id="prodOld"></div>
-<div style="margin-top:10px;font-size:11px;color:#888">📍 MONTEPUEZ • Entrega imediata • Toque na imagem para ampliar • NAULANGUE-SHOP</div>
-<div class="btnRow"><button class="btnAddBig" onclick="adicionarDoDetalhe()">🛒 Adicionar</button><button class="btnWhats" onclick="abrirWhatsProduto()">💬 871585269</button></div>
-<div style="margin-top:18px"><h3 style="font-size:11px;border-left:3px solid #2563eb;padding-left:8px;margin-bottom:10px">OUTRAS FOTOS</h3><div id="moreImgs" style="display:flex;gap:8px;flex-wrap:wrap"></div></div>
-<div style="margin-top:18px"><h3 style="font-size:11px;border-left:3px solid #2563eb;padding-left:8px;margin-bottom:10px">MAIS PRODUTOS</h3><div id="moreProducts" class="grid"></div></div>
-</div>
-</div>
-
-<div id="adminPanel"><div class="adminHead"><h2>ADMIN NAULANGUE-SHOP</h2><button onclick="fecharAdmin()" style="background:#111;color:#fff;border:none;border-radius:8px;padding:8px 14px;font-weight:bold">X</button></div>
-<div id="loginDiv" class="loginBox"><h3>🔒 Acesso NAULANGUE-SHOP</h3><p style="font-size:11px;color:#888;margin:8px 0">Senha: Naulangue</p><input id="passInput" type="password" class="inp" placeholder="Digite a senha"><button class="btnAdmin" onclick="fazerLogin()">ENTRAR</button></div>
-<div id="adminContent" style="display:none">
-<div class="adminCard" style="border-color:#2563eb"><h3>➕ Publicar em NAULANGUE-SHOP</h3>
-<select id="pGrupo" class="sel">
-<option value="Sapatos">👟 Sapatos</option>
-<option value="Camisa m-comprida">👕 Camisa m-comprida</option>
-<option value="Camisa m-curta">👕 Camisa m-curta</option>
-<option value="Camisas">👕 Camisas</option>
-<option value="Calções">🩳 Calções</option>
-<option value="Calças">👖 Calças</option>
-<option value="Vestidos">👗 Vestidos</option>
-<option value="Outras roupas">👚 Outras roupas</option>
-</select>
-<input type="file" id="fileInput" accept="image/*" multiple class="inp"><div id="previewWrap" class="previewWrap"></div><input id="pNome" class="inp" placeholder="Nome do produto"><input id="pPreco" class="inp" type="number" placeholder="Preço MT"><input id="pOld" class="inp" type="number" placeholder="Preço antigo"><button id="btnPublicar" class="btnAdmin" onclick="publicarAuto()">📤 PUBLICAR NA NAULANGUE-SHOP</button>
-<p style="font-size:10px;color:#888;margin-top:8px;text-align:center">🔥 Firebase + várias fotos!</p>
-</div>
-<div class="adminCard"><h3>📦 Produtos NAULANGUE-SHOP (<span id="countProd">0</span>)</h3><div id="adminList"></div></div>
-</div></div>
-
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getFirestore, collection, addDoc, deleteDoc, doc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-const firebaseConfig = {
-  apiKey: "AIzaSyBCWrloL--CRxPV4rL67uUvAyS2zqCZl7g",
-  authDomain: "naulangue-shop.firebaseapp.com",
-  projectId: "naulangue-shop",
-  storageBucket: "naulangue-shop.firebasestorage.app",
-  messagingSenderId: "695749077994",
-  appId: "1:695749077994:web:2b0549a24595ba944c6093"
+<script>
+const definitions = {
+    escolas: {
+        title: "Gestão de escolas",
+        fields: ["Nome da escola","Código da escola","Localização","Telefone"]
+    },
+    alunos: {
+        title: "Gestão de alunos",
+        fields: ["Nome completo","Número do processo","Data de nascimento","Turma","Contacto"]
+    },
+    professores: {
+        title: "Gestão de professores",
+        fields: ["Nome completo","Número de identificação","Especialidade","Telefone"]
+    },
+    turmas: {
+        title: "Gestão de turmas",
+        fields: ["Nome da turma","Classe","Período","Ano letivo"]
+    },
+    disciplinas: {
+        title: "Gestão de disciplinas",
+        fields: ["Nome da disciplina","Código","Classe"]
+    },
+    matriculas: {
+        title: "Gestão de matrículas",
+        fields: ["Nome do aluno","Turma","Ano letivo","Estado"]
+    },
+    notas: {
+        title: "Gestão de notas",
+        fields: ["Nome do aluno","Disciplina","Avaliação","Nota"]
+    },
+    presencas: {
+        title: "Gestão de presenças",
+        fields: ["Nome do aluno","Turma","Data","Estado"]
+    },
+    pagamentos: {
+        title: "Gestão de pagamentos",
+        fields: ["Nome do aluno","Descrição","Valor (MT)","Estado"]
+    }
 };
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-let products = [];
-let cart = JSON.parse(localStorage.getItem('cart_final')||'[]');
-let curImgs = [];
-let currentProductIndex = 0;
 
-function carregarProdutos(){
-  const q = query(collection(db,"products"), orderBy("createdAt","desc"));
-  onSnapshot(q,(snap)=>{
-    products = snap.docs.map(d=>({idFirebase:d.id, ...d.data()}));
-    render();
-    atualizarCarrinho();
-  });
-}
-carregarProdutos();
+let currentModule = "";
+let records = {};
+let editingId = null;
 
-function render(){
-  let container=document.getElementById('allSections');
-  if(products.length===0){
-    container.innerHTML='<div style="padding:30px 20px;text-align:center;color:#888;font-size:11px;background:#fff;margin:12px;border-radius:16px">Nenhum produto ainda.<br>Vai em Admin e publique!</div>';
-    document.getElementById('countProd').innerText='0';
-    return;
-  }
-  container.innerHTML='';
-  let grupos={};
-  products.forEach((pr,idx)=>{
-    let g=pr.grupo||'Sapatos';
-    if(!grupos[g])grupos[g]=[];
-    grupos[g].push({pr,idx})
-  });
-  Object.keys(grupos).forEach(cat=>{
-    let html='<div class="sec"><h2>'+cat+'</h2><div class="grid">';
-    grupos[cat].forEach(item=>{
-      let pr=item.pr;
-      let firstImg = pr.imgs && pr.imgs.length>0 ? pr.imgs[0] : pr.img;
-      let img=firstImg?'<img src="'+firstImg+'">':'<span style="color:#999;font-size:10px">Foto</span>';
-      html+='<div class="card" onclick="abrirProduto('+item.idx+')"><span class="badge">NAULANGUE-SHOP</span><div class="img">'+img+'</div><h3>'+pr.n+'</h3><div class="preco">'+pr.p+' MT</div><div class="old">'+(pr.o?pr.o+' MT':'')+'</div><button class="btnAdd" onclick="event.stopPropagation();adicionar('+item.idx+')">Add to Cart</button></div>';
-    });
-    html+='</div></div>';
-    container.innerHTML+=html;
-  });
-  document.getElementById('countProd').innerText=products.length;
-  let list=document.getElementById('adminList');
-  list.innerHTML='';
-  products.forEach(pr=>{
-    let firstImg = pr.imgs && pr.imgs.length>0 ? pr.imgs[0] : pr.img;
-    let thumb=firstImg?'<img src="'+firstImg+'" style="width:50px;height:50px;object-fit:cover;border-radius:6px">':'👟';
-    list.innerHTML+='<div style="display:flex;gap:8px;background:#f5f7fb;border-radius:10px;padding:8px;align-items:center;margin-bottom:6px">'+thumb+'<div style="flex:1"><b style="font-size:11px">'+pr.n+'</b> <span style="background:#2563eb;color:#fff;padding:2px 6px;border-radius:8px;font-size:8px">'+pr.grupo+'</span><br><span style="color:#111;font-size:11px;font-weight:900">'+pr.p+' MT</span> <span style="font-size:8px;color:#888">'+(pr.imgs?pr.imgs.length:1)+' fotos</span></div><button onclick="apagarFirebase(\''+pr.idFirebase+'\')" style="background:#ff0040;color:#fff;border:none;border-radius:6px;padding:6px 10px">X</button></div>';
-  });
-}
-
-window.abrirProduto = function(idx){
-  currentProductIndex = idx;
-  let pr = products[idx];
-  let allImgs = pr.imgs && pr.imgs.length>0 ? pr.imgs : (pr.img ? [pr.img] : []);
-  document.getElementById('prodNome').innerText = pr.n;
-  document.getElementById('prodPreco').innerText = pr.p + ' MT';
-  document.getElementById('prodOld').innerText = pr.o ? pr.o + ' MT' : '';
-  document.getElementById('prodMainImg').src = allImgs[0];
-  document.getElementById('mainImgWrap').classList.remove('zoomed');
-  let thumbsDiv = document.getElementById('prodThumbs');
-  thumbsDiv.innerHTML = '';
-  allImgs.forEach((im,i)=>{
-    thumbsDiv.innerHTML += '<div class="thumb '+(i==0?'active':'')+'" onclick="trocarImagem('+i+')"><img src="'+im+'"></div>';
-  });
-  let moreImgsDiv = document.getElementById('moreImgs');
-  moreImgsDiv.innerHTML = '';
-  allImgs.forEach((im,i)=>{
-    moreImgsDiv.innerHTML += '<div class="thumb" style="width:80px;height:80px" onclick="trocarImagem('+i+')"><img src="'+im+'"></div>';
-  });
-  let moreDiv = document.getElementById('moreProducts');
-  moreDiv.innerHTML = '';
-  products.slice(0,10).forEach((p,j)=>{
-    if(j==idx) return;
-    let f = p.imgs && p.imgs.length>0 ? p.imgs[0] : p.img;
-    let im = f?'<img src="'+f+'">':'Foto';
-    moreDiv.innerHTML += '<div class="card" style="min-width:120px;max-width:120px" onclick="abrirProduto('+j+')"><div class="img" style="height:110px">'+im+'</div><h3 style="font-size:10px">'+p.n+'</h3><div class="preco" style="font-size:11px">'+p.p+' MT</div></div>';
-  });
-  document.getElementById('productPage').style.display='block';
-}
-window.fecharProduto = function(){document.getElementById('productPage').style.display='none';}
-window.trocarImagem = function(i){
-  let pr = products[currentProductIndex];
-  let allImgs = pr.imgs && pr.imgs.length>0 ? pr.imgs : [pr.img];
-  document.getElementById('prodMainImg').src = allImgs[i];
-  document.querySelectorAll('#prodThumbs .thumb').forEach((t,idx)=>{ t.classList.toggle('active', idx==i); });
-  document.getElementById('mainImgWrap').classList.remove('zoomed');
-}
-window.toggleZoom = function(){document.getElementById('mainImgWrap').classList.toggle('zoomed');}
-window.adicionarDoDetalhe = function(){adicionar(currentProductIndex);}
-window.abrirWhatsProduto = function(){
-  let pr = products[currentProductIndex];
-  let msg = "Olá! Quero encomendar: " + pr.n + " - " + pr.p + " MT - Vi na NAULANGUE-SHOP";
-  window.open("https://wa.me/258871585269?text=" + encodeURIComponent(msg), "_blank");
-}
-window.abrirWhatsGeral = function(){
-  window.open("https://wa.me/258871585269?text=" + encodeURIComponent("Olá! Vim pela NAULANGUE-SHOP, quero encomendar! 871585269"), "_blank");
-}
-window.atualizarCarrinho = function(){
-  let c = document.getElementById('cartCount');
-  if(cart.length>0){ c.style.display='inline-block'; c.innerText=cart.length; } else { c.style.display='none'; }
-}
-window.adicionar = function(i){
-  cart.push(products[i]);
-  localStorage.setItem('cart_final',JSON.stringify(cart));
-  atualizarCarrinho();
-  alert('✅ Adicionado na NAULANGUE-SHOP!');
-}
-window.abrirAdmin = function(){document.getElementById('adminPanel').style.display='block';}
-window.fecharAdmin = function(){document.getElementById('adminPanel').style.display='none';}
-window.fazerLogin = function(){
-  let s=document.getElementById('passInput').value;
-  let k='TmF1bGFuZ3Vl'; // SENHA = Naulangue
-  if(btoa(s)===k){document.getElementById('loginDiv').style.display='none';document.getElementById('adminContent').style.display='block';}
-  else{alert('Senha errada! Dica: Naulangue');}
-}
-function comprimirPromise(file,max,qual){
-  return new Promise(resolve=>{
-    let r=new FileReader();
-    r.onload=e=>{
-      let img=new Image();
-      img.onload=()=>{
-        let c=document.createElement('canvas');
-        let w=img.width,h=img.height;
-        if(w>h){if(w>max){h=h*max/w;w=max}}else{if(h>max){w=w*max/h;h=max}}
-        c.width=w;c.height=h;c.getContext('2d').drawImage(img,0,0,w,h);
-        resolve(c.toDataURL('image/jpeg',qual))
-      };
-      img.src=e.target.result
-    };
-    r.readAsDataURL(file);
-  });
-}
-document.getElementById('fileInput').addEventListener('change', async e=>{
-  let files=Array.from(e.target.files);
-  if(files.length==0) return;
-  curImgs=[];
-  let wrap=document.getElementById('previewWrap');
-  let btn=document.getElementById('btnPublicar');
-  wrap.innerHTML='<div style="color:#2563eb;font-size:11px">⏳ Carregando '+files.length+' fotos...</div>';
-  btn.disabled=true;
-  btn.innerText='⏳ AGUARDE '+files.length+' FOTOS...';
-  let urls=[];
-  for(let f of files){
-    let url = await comprimirPromise(f,450,0.65);
-    urls.push(url);
-    wrap.innerHTML='';
-    urls.forEach(u=>{
-      let d=document.createElement('div');
-      d.className='previewBox';
-      d.innerHTML='<img src="'+u+'">';
-      wrap.appendChild(d);
-    });
-  }
-  curImgs=urls;
-  btn.disabled=false;
-  btn.innerText='📤 PUBLICAR ('+curImgs.length+' FOTOS)';
+Object.keys(definitions).forEach(key => {
+    records[key] = JSON.parse(localStorage.getItem("loops_" + key) || "[]");
+    renderModule(key);
 });
-window.publicarAuto = async function(){
-  let nome=document.getElementById('pNome').value.trim()||'Produto NAULANGUE-SHOP';
-  let p=parseInt(document.getElementById('pPreco').value);
-  let o=parseInt(document.getElementById('pOld').value)||0;
-  let grupo=document.getElementById('pGrupo').value;
-  if(!p){alert('Digita preço!');return;}
-  if(curImgs.length===0){alert('Escolhe foto e aguarde carregar!');return;}
-  let btn=document.getElementById('btnPublicar');
-  let qtd = curImgs.length;
-  btn.innerText='⏳ PUBLICANDO '+qtd+' FOTOS...';
-  btn.disabled=true;
-  try{
-    await addDoc(collection(db,"products"),{
-      n:nome, p:p, o:o||Math.round(p*1.5), img:curImgs[0], imgs:curImgs, grupo:grupo,
-      createdAt: new Date()
+
+function toggleMenu() {
+    document.getElementById("sidebar").classList.toggle("open");
+}
+
+function showPage(id, button) {
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+
+    document.querySelectorAll("nav button").forEach(b => b.classList.remove("active"));
+    if(button) button.classList.add("active");
+
+    document.getElementById("sidebar").classList.remove("open");
+}
+
+function renderModule(key) {
+    const def = definitions[key];
+    const section = document.getElementById(key);
+
+    section.innerHTML = `
+        <h1 class="page-title">${def.title}</h1>
+        <p class="subtitle">Adicionar, pesquisar e organizar registos.</p>
+
+        <div class="panel">
+            <div class="toolbar">
+                <input type="search" placeholder="Pesquisar..." oninput="searchRecords('${key}',this.value)">
+                <button class="primary" onclick="openModal('${key}')">+ Adicionar</button>
+            </div>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>${def.fields.map(f=>`<th>${f}</th>`).join("")}<th>Ações</th></tr>
+                    </thead>
+                    <tbody id="body-${key}"></tbody>
+                </table>
+            </div>
+        </div>
+    `;
+    drawRows(key);
+}
+
+function drawRows(key, list = records[key]) {
+    const tbody = document.getElementById("body-" + key);
+
+    if(!list.length) {
+        tbody.innerHTML = `<tr><td colspan="${definitions[key].fields.length+1}" class="empty">Nenhum registo encontrado.</td></tr>`;
+        updateCounts();
+        return;
+    }
+
+    tbody.innerHTML = list.map(row => `
+        <tr>
+            ${row.values.map(v=>`<td>${escapeHTML(v)}</td>`).join("")}
+            <td>
+                <button class="success" onclick="editRecord('${key}','${row.id}')">Editar</button>
+                <button class="danger" onclick="deleteRecord('${key}','${row.id}')">Eliminar</button>
+            </td>
+        </tr>
+    `).join("");
+
+    updateCounts();
+}
+
+function openModal(key, id = null) {
+    currentModule = key;
+    editingId = id;
+
+    const record = id ? records[key].find(r => r.id === id) : null;
+    document.getElementById("modal-title").textContent =
+        record ? "Editar registo" : "Adicionar registo";
+
+    document.getElementById("form-fields").innerHTML =
+        definitions[key].fields.map((field,i)=>`
+            <div class="form-group">
+                <label>${field}</label>
+                <input name="field${i}" required value="${record ? escapeHTML(record.values[i]) : ""}">
+            </div>
+        `).join("");
+
+    document.getElementById("modal").classList.add("show");
+}
+
+function closeModal() {
+    document.getElementById("modal").classList.remove("show");
+}
+
+document.getElementById("record-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const values = definitions[currentModule].fields.map((_,i) =>
+        this.elements["field"+i].value.trim()
+    );
+
+    if(values.some(v=>!v)) {
+        alert("Preencha todos os campos.");
+        return;
+    }
+
+    if(editingId) {
+        const record = records[currentModule].find(r=>r.id===editingId);
+        record.values = values;
+    } else {
+        records[currentModule].push({
+            id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now()),
+            values
+        });
+    }
+
+    save(currentModule);
+    renderModule(currentModule);
+    addActivity("Registo atualizado em " + definitions[currentModule].title);
+    closeModal();
+    this.reset();
+});
+
+function editRecord(key,id) {
+    openModal(key,id);
+}
+
+function deleteRecord(key,id) {
+    if(!confirm("Tem a certeza de que pretende eliminar este registo?")) return;
+
+    records[key] = records[key].filter(r=>r.id!==id);
+    save(key);
+    drawRows(key);
+    addActivity("Registo eliminado em " + definitions[key].title);
+}
+
+function searchRecords(key, query) {
+    const q = query.toLowerCase();
+    const filtered = records[key].filter(row =>
+        row.values.some(v=>String(v).toLowerCase().includes(q))
+    );
+    drawRows(key,filtered);
+}
+
+function save(key) {
+    localStorage.setItem("loops_" + key, JSON.stringify(records[key]));
+    updateCounts();
+}
+
+function updateCounts() {
+    Object.keys(definitions).forEach(key=>{
+        const el = document.getElementById("count-" + key);
+        if(el) el.textContent = records[key].length;
     });
-    document.getElementById('pNome').value='';
-    document.getElementById('pPreco').value='';
-    document.getElementById('pOld').value='';
-    document.getElementById('previewWrap').innerHTML='';
-    document.getElementById('fileInput').value='';
-    alert('✅ Publicado com '+qtd+' fotos na NAULANGUE-SHOP!');
-    curImgs=[];
-    fecharAdmin();
-  }catch(err){ alert('Erro Firebase: '+err); }
-  btn.innerText='📤 PUBLICAR NA NAULANGUE-SHOP';
-  btn.disabled=false;
 }
-window.apagarFirebase = async function(idFirebase){
-  if(confirm('Apagar da NAULANGUE-SHOP?')){
-    await deleteDoc(doc(db,"products",idFirebase));
-  }
+
+function addActivity(message) {
+    const el = document.getElementById("recentes");
+    const line = document.createElement("p");
+    line.textContent = "• " + message;
+    line.style.margin = "8px 0";
+    if(el.textContent.includes("Ainda não existem")) el.innerHTML = "";
+    el.prepend(line);
 }
+
+function escapeHTML(value) {
+    return String(value).replace(/[&<>"']/g, c => ({
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#39;"
+    })[c]);
+}
+
+updateCounts();
 </script>
+
 </body>
 </html>
