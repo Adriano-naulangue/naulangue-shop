@@ -3,269 +3,119 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LOOPS EDUCAÇÃO</title>
+<title>Adriano Naulangue - Aprenda Packet Tracer</title>
 <style>
-:root{--blue:#1261a0;--dark:#123b70;--light:#eaf3fb;--white:#fff;--bg:#f3f6fa;--text:#263445;--red:#dc3545;--green:#198754}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Arial,sans-serif;background:var(--bg);color:var(--text)}
-header{height:65px;background:var(--white);display:flex;align-items:center;justify-content:space-between;padding:0 20px;box-shadow:0 2px 10px #0001;position:sticky;top:0;z-index:10}
-.logo{font-size:20px;font-weight:bold;color:var(--blue)} .logo span{color:var(--dark)}
-.menu-btn{font-size:25px;border:none;background:none;color:var(--blue);cursor:pointer}
-.admin-btn{background:var(--dark);color:white;border:none;padding:8px 16px;border-radius:20px;cursor:pointer;font-size:13px;font-weight:bold}
-.admin-btn.logged{background:var(--green)}
-.layout{display:flex;min-height:calc(100vh - 65px)}
-aside{width:240px;background:var(--dark);color:white;padding:20px 10px;flex-shrink:0}
-aside h3{font-size:12px;color:#b8d8f5;padding:10px;text-transform:uppercase}
-nav button{width:100%;padding:13px;border:none;background:transparent;color:white;text-align:left;border-radius:7px;cursor:pointer;margin:3px 0;font-size:14px}
-nav button:hover,nav button.active{background:#ffffff25}
-main{flex:1;padding:25px;min-width:0}
-.page{display:none}.page.active{display:block}
-.page-title{font-size:24px;color:var(--dark);margin-bottom:8px}
-.subtitle{color:#718096;margin-bottom:22px;font-size:14px}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:15px;margin-bottom:25px}
-.card{background:white;padding:20px;border-radius:12px;box-shadow:0 3px 12px #00000008;border-left:4px solid var(--blue)}
-.card h4{font-size:13px;color:#718096}
-.card strong{display:block;font-size:27px;color:var(--dark);margin-top:10px}
-.panel{background:white;padding:20px;border-radius:12px;box-shadow:0 3px 12px #00000008;margin-bottom:20px}
-.panel h3{color:var(--dark);margin-bottom:15px}
-.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:15px}
-input,select,textarea{padding:11px;border:1px solid #dce3eb;border-radius:7px;width:100%;background:white;font-size:14px}
-.toolbar input{flex:1;min-width:150px}
-button.primary{background:var(--blue);color:white;border:none;padding:11px 16px;border-radius:7px;cursor:pointer}
-button.danger{background:var(--red);color:white;border:none;padding:7px 10px;border-radius:5px;cursor:pointer}
-button.success{background:var(--green);color:white;border:none;padding:7px 10px;border-radius:5px;cursor:pointer}
-button.warning{background:#f59e0b;color:white;border:none;padding:11px 16px;border-radius:7px;cursor:pointer}
-.table-wrap{overflow-x:auto}
-table{width:100%;border-collapse:collapse;min-width:500px}
-th,td{padding:12px;border-bottom:1px solid #edf0f4;text-align:left;font-size:13px}
-th{color:var(--dark);background:var(--light)}
-.modal{display:none;position:fixed;inset:0;background:#0008;z-index:30;align-items:center;justify-content:center;padding:15px}
-.modal.show{display:flex}
-.modal-content{background:white;width:100%;max-width:480px;max-height:90vh;overflow-y:auto;padding:22px;border-radius:12px}
-.modal-content h3{color:var(--dark);margin-bottom:18px}
-.form-group{margin-bottom:13px}.form-group label{display:block;font-size:13px;margin-bottom:6px;font-weight:bold}
-.form-actions{display:flex;gap:10px;margin-top:15px}.form-actions button{flex:1}
-.empty{color:#888;text-align:center;padding:20px}
-.badge{background:var(--light);color:var(--blue);padding:4px 8px;border-radius:12px;font-size:11px;font-weight:bold}
-.pub-item{border-left:4px solid var(--blue);padding:15px;background:var(--bg);border-radius:8px;margin-bottom:12px}
-.pub-item h4{color:var(--dark);margin-bottom:6px}.pub-item p{font-size:13px;line-height:1.5}.pub-item small{color:#888;font-size:11px}
-.admin-only{display:none !important} body.is-admin .admin-only{display:inline-block !important}
-body.is-admin .admin-only-flex{display:flex !important} body.is-admin .admin-only-block{display:block !important}
-.not-admin-msg{background:#fff3cd;border:1px solid #ffc107;padding:12px;border-radius:8px;color:#856404;font-size:13px;margin-bottom:15px;text-align:center}
-@media(max-width:700px){.layout{display:block} aside{display:none;width:100%} aside.open{display:block} main{padding:15px} .page-title{font-size:21px}}
+  *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+  body{background:#f1f1f1;color:#111}
+  header{background:#000;color:#fff;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0}
+  header h1{font-size:22px;line-height:1}
+  header h1 span{color:#e11d2e}
+  nav a{color:#fff;text-decoration:none;margin-left:15px;font-size:14px}
+  nav a.active{color:#e11d2e;border-bottom:2px solid #e11d2e;padding-bottom:3px}
+  .wrap{max-width:1100px;margin:20px auto;padding:0 15px}
+  .top{display:flex;gap:20px;flex-wrap:wrap}
+  .card{background:#fff;border-radius:14px;padding:20px;flex:1;min-width:280px;box-shadow:0 4px 14px rgba(0,0,0,.08)}
+  .avatar{width:70px;height:70px;background:#e11d2e;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:bold}
+  .badge{background:#e11d2e;color:#fff;padding:4px 10px;border-radius:20px;font-size:12px;display:inline-block;margin:10px 0}
+  .bar{height:10px;background:#ddd;border-radius:20px;overflow:hidden;margin:10px 0}
+  .bar i{display:block;height:100%;background:#e11d2e;width:22%}
+  .bar2 i{width:20%}
+  .btn{background:#e11d2e;color:#fff;border:none;width:100%;padding:14px;border-radius:10px;font-size:16px;font-weight:bold;cursor:pointer}
+  .btn:hover{background:#000}
+  h2{font-size:26px;margin-bottom:15px}
+  h3{font-size:20px;margin:8px 0}
+  .modulo{border:1px solid #ddd;border-radius:10px;padding:12px;margin:10px 0;display:flex;justify-content:space-between;align-items:center}
+  .modulo b{color:#e11d2e}
+  footer{text-align:center;padding:20px;color:#777;font-size:13px}
+  input{width:100%;padding:12px;border:1px solid #ccc;border-radius:8px;margin:8px 0}
+  @media(max-width:600px){header h1{font-size:18px} nav{display:none}}
 </style>
 </head>
 <body>
+
 <header>
-<button class="menu-btn" onclick="toggleMenu()">☰</button>
-<div class="logo">LOOPS <span>EDUCAÇÃO</span></div>
-<button id="adminBtn" class="admin-btn" onclick="openAdminLogin()">🔒 Admin</button>
+  <h1>Adriano<br><span>Naulangue</span></h1>
+  <nav>
+    <a href="#" class="active" onclick="mostrar('painel')">Painel</a>
+    <a href="#" onclick="mostrar('cursos')">Meus Cursos</a>
+    <a href="#" onclick="mostrar('notas')">Minhas Notas</a>
+    <a href="#" onclick="mostrar('calendario')">Calendário</a>
+  </nav>
+  <div>🔔 👤</div>
 </header>
-<div class="layout">
-<aside id="sidebar">
-<h3>Menu principal</h3>
-<nav id="navigation">
-<button class="active" onclick="showPage('dashboard',this)">▦ Painel principal</button>
-<button onclick="showPage('inscricao',this)">📝 Inscrição Aluno</button>
-<button onclick="showPage('escolas',this)">🏫 Escolas</button>
-<button onclick="showPage('alunos',this)">👨‍🎓 Alunos</button>
-<button onclick="showPage('professores',this)">👨‍🏫 Professores</button>
-<button onclick="showPage('turmas',this)">📚 Turmas</button>
-<button onclick="showPage('disciplinas',this)">📖 Disciplinas</button>
-<button onclick="showPage('matriculas',this)">📝 Matrículas</button>
-<button onclick="showPage('notas',this)">📊 Notas</button>
-<button onclick="showPage('presencas',this)">📅 Presenças</button>
-<button onclick="showPage('pagamentos',this)">💳 Pagamentos</button>
-<button onclick="showPage('publicacoes',this)">📢 Publicações</button>
-</nav>
-</aside>
-<main>
-<section id="dashboard" class="page active">
-<h1 class="page-title">Painel principal</h1>
-<p class="subtitle">Bem-vindo ao LOOPS EDUCAÇÃO.</p>
-<div class="cards">
-<div class="card"><h4>Total de escolas</h4><strong id="count-escolas">0</strong></div>
-<div class="card"><h4>Total de alunos</h4><strong id="count-alunos">0</strong></div>
-<div class="card"><h4>Professores</h4><strong id="count-professores">0</strong></div>
-<div class="card"><h4>Turmas</h4><strong id="count-turmas">0</strong></div>
-<div class="card"><h4>Matrículas</h4><strong id="count-matriculas">0</strong></div>
+
+<div class="wrap" id="painel">
+  <h2>Painel do Estudante</h2>
+  <div class="top">
+    <div class="card">
+      <div class="avatar">AN</div>
+      <h3>Adriano Naulangue</h3>
+      <p>Estudante • Nível 2</p>
+      <p style="margin-top:10px">Email: adriano@naulangue.com</p>
+      <p>Membro desde: Nov 2026</p>
+      <p>Cursos inscritos: 1</p>
+      <div style="background:#f1f1f1;padding:15px;border-radius:10px;margin-top:15px">
+        <b>Progresso Geral</b>
+        <h3 style="color:#e11d2e;font-size:36px">22%</h3>
+        <p>21 de 95 aulas concluídas</p>
+        <div class="bar"><i></i></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Continuar Aprendendo</h3>
+      <span class="badge">EM ANDAMENTO</span>
+      <h3>Curso de Packet Tracer para Iniciantes: Módulo 1</h3>
+      <p>Fundamentos de redes e simulação • Módulo 1 de 5</p>
+      <p style="margin-top:15px">Progresso do curso: 20%</p>
+      <div class="bar bar2"><i></i></div>
+      <p>21/95 aulas concluídas</p>
+      <button class="btn" onclick="mostrar('cursos')">▶ Continuar Aprendendo</button>
+      <p style="text-align:center;margin-top:10px;font-size:13px;color:#777">Último acesso: hoje às 14:32</p>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:20px">
+    <h3>📚 Meus Módulos - Packet Tracer</h3>
+    <div class="modulo"><span><b>Módulo 1:</b> O que é Packet Tracer + Primeira Rede</span><span>20% ✅</span></div>
+    <div class="modulo"><span><b>Módulo 2:</b> Switches, Cabos e Endereços IP</span><span>0%</span></div>
+    <div class="modulo"><span><b>Módulo 3:</b> VLANs e Spanning Tree</span><span>0%</span></div>
+    <div class="modulo"><span><b>Módulo 4:</b> Routers e Configuração</span><span>0%</span></div>
+    <div class="modulo"><span><b>Módulo 5:</b> Projeto Final - Rede de Empresa</span><span>0%</span></div>
+  </div>
 </div>
-<div class="panel">
-<h3>Sobre o sistema</h3>
-<p>O LOOPS EDUCAÇÃO foi concebido para facilitar a gestão escolar, organizar informações académicas e apoiar a administração de instituições de ensino.</p>
-<div id="public-list-dashboard" style="margin-top:15px;"></div>
-<button class="primary admin-only" style="margin-top:10px;" onclick="openPubModal()">+ Nova Publicação (Admin)</button>
+
+<div class="wrap" id="cursos" style="display:none">
+  <h2>Meus Cursos</h2>
+  <div class="card">
+    <span class="badge">PACKET TRACER</span>
+    <h3>Curso de Packet Tracer para Iniciantes</h3>
+    <p>Aprende do zero a criar redes, configurar switches, routers, VLANs e Spanning Tree, mesmo sem experiência.</p>
+    <br>
+    <p><b>Aula atual:</b> 1.2 - Como instalar o Packet Tracer</p>
+    <div class="bar bar2"><i></i></div>
+    <button class="btn" onclick="alert('Próxima aula: Como instalar o Packet Tracer - Vamos fazer no passo B!')">Continuar Aula</button>
+  </div>
 </div>
-<div class="panel">
-<h3>Atividades recentes</h3>
-<div id="recentes">Ainda não existem atividades registadas.</div>
+
+<div class="wrap" id="notas" style="display:none">
+  <h2>Minhas Notas</h2>
+  <div class="card"><p>📝 Ainda não tens notas. Quando completares um teste, a tua nota aparece aqui.</p></div>
 </div>
-</section>
-<section id="inscricao" class="page">
-<h1 class="page-title">Inscrição de Alunos</h1>
-<p class="subtitle">Os alunos podem se cadastrar aqui. O cadastro ficará visível para o Admin.</p>
-<div class="panel">
-<h3>Formulário de Cadastro</h3>
-<form id="student-signup-form">
-<div class="form-group"><label>Nome completo</label><input id="s_nome" required placeholder="Ex: Tima Issa"></div>
-<div class="form-group"><label>Data de nascimento</label><input id="s_nasc" type="date" required></div>
-<div class="form-group"><label>Turma / Classe</label><select id="s_turma"><option>8ª Classe</option><option>9ª Classe</option><option>10ª Classe</option><option>11ª Classe</option><option>12ª Classe</option></select></div>
-<div class="form-group"><label>Contacto / Telefone</label><input id="s_contacto" required placeholder="Ex: 84xxxxxxx"></div>
-<div class="form-group"><label>Nome do Encarregado</label><input id="s_enc" placeholder="Opcional"></div>
-<button type="submit" class="primary" style="width:100%;">Enviar Inscrição</button>
-</form>
-<p id="signup-msg" style="margin-top:10px;color:green;display:none;">Inscrição enviada com sucesso! O admin já pode ver.</p>
+
+<div class="wrap" id="calendario" style="display:none">
+  <h2>Calendário</h2>
+  <div class="card"><p>📅 Sexta-feira: Aula de Packet Tracer - VLANs<br>📅 Sábado: Revisão + Prática<br>📅 Domingo: Projeto Final</p></div>
 </div>
-</section>
-<section id="escolas" class="page"></section>
-<section id="alunos" class="page"></section>
-<section id="professores" class="page"></section>
-<section id="turmas" class="page"></section>
-<section id="disciplinas" class="page"></section>
-<section id="matriculas" class="page"></section>
-<section id="notas" class="page"></section>
-<section id="presencas" class="page"></section>
-<section id="pagamentos" class="page"></section>
-<section id="publicacoes" class="page">
-<h1 class="page-title">Publicações do Site</h1>
-<p class="subtitle">Aqui o Admin publica tudo que o site faz.</p>
-<div class="panel">
-<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;">
-<h3>Últimas publicações</h3>
-<button class="primary admin-only" onclick="openPubModal()">+ Publicar</button>
-</div>
-<div id="public-list"></div>
-</div>
-</section>
-</main>
-</div>
-<div class="modal" id="modal">
-<div class="modal-content">
-<h3 id="modal-title">Adicionar registo</h3>
-<form id="record-form">
-<div id="form-fields"></div>
-<div class="form-actions">
-<button type="button" class="danger" onclick="closeModal()">Cancelar</button>
-<button type="submit" class="primary">Guardar</button>
-</div>
-</form>
-</div>
-</div>
-<div class="modal" id="admin-modal">
-<div class="modal-content">
-<h3>🔒 Acesso Admin</h3>
-<p style="font-size:13px;color:#666;margin-bottom:15px;">Digite a senha de administrador para gerenciar o sistema.</p>
-<div class="form-group"><label>Senha</label><input id="admin-pass" type="password" placeholder="Digite a senha"></div>
-<p id="admin-error" style="color:red;font-size:13px;display:none;">Senha incorreta!</p>
-<div class="form-actions">
-<button type="button" class="danger" onclick="closeAdminModal()">Cancelar</button>
-<button type="button" class="primary" onclick="doAdminLogin()">Entrar</button>
-</div>
-</div>
-</div>
-<div class="modal" id="pub-modal">
-<div class="modal-content">
-<h3>📢 Nova Publicação</h3>
-<div class="form-group"><label>Título</label><input id="pub-titulo" placeholder="Ex: Inscrições abertas 2026"></div>
-<div class="form-group"><label>O que o site faz / Descrição</label><textarea id="pub-desc" rows="4" placeholder="Escreva sobre o que a escola faz..."></textarea></div>
-<div class="form-actions">
-<button type="button" class="danger" onclick="closePubModal()">Cancelar</button>
-<button type="button" class="primary" onclick="savePublicacao()">Publicar</button>
-</div>
-</div>
-</div>
+
+<footer>© 2026 Adriano Naulangue • Feito em Gurué, Moçambique • Todos os direitos reservados</footer>
+
 <script>
-const ADMIN_PASSWORD="TimaIssa29";
-let isAdmin=localStorage.getItem("loops_is_admin")==="true";
-const definitions={
-escolas:{title:"Gestão de escolas",fields:["Nome da escola","Código da escola","Localização","Telefone"]},
-alunos:{title:"Gestão de alunos",fields:["Nome completo","Número do processo","Data de nascimento","Turma","Contacto"]},
-professores:{title:"Gestão de professores",fields:["Nome completo","Número de identificação","Especialidade","Telefone"]},
-turmas:{title:"Gestão de turmas",fields:["Nome da turma","Classe","Período","Ano letivo"]},
-disciplinas:{title:"Gestão de disciplinas",fields:["Nome da disciplina","Código","Classe"]},
-matriculas:{title:"Gestão de matrículas",fields:["Nome do aluno","Turma","Ano letivo","Estado"]},
-notas:{title:"Gestão de notas",fields:["Nome do aluno","Disciplina","Avaliação","Nota"]},
-presencas:{title:"Gestão de presenças",fields:["Nome do aluno","Turma","Data","Estado"]},
-pagamentos:{title:"Gestão de pagamentos",fields:["Nome do aluno","Descrição","Valor (MT)","Estado"]}
-};
-const ALL_DISCIPLINAS=[
-["Matemática","MAT01","8ª-12ª"],["Português","PORT01","8ª-12ª"],["Inglês","ING01","8ª-12ª"],
-["Física","FIS01","10ª-12ª"],["Química","QUI01","10ª-12ª"],["Biologia","BIO01","8ª-12ª"],
-["História","HIST01","8ª-12ª"],["Geografia","GEO01","8ª-12ª"],["Filosofia","FIL01","11ª-12ª"],
-["Educação Física","EDF01","8ª-12ª"],["TICs / Informática","TIC01","8ª-12ª"],["Francês","FRA01","8ª-12ª"],
-["Desenho","DES01","8ª-10ª"],["Empreendedorismo","EMP01","11ª-12ª"]
-];
-let currentModule="";let records={};let editingId=null;
-let publicacoes=JSON.parse(localStorage.getItem("loops_publicacoes")||"[]");
-Object.keys(definitions).forEach(key=>{records[key]=JSON.parse(localStorage.getItem("loops_"+key)||"[]");renderModule(key);});
-function checkAdmin(){
-document.body.classList.toggle("is-admin",isAdmin);
-const btn=document.getElementById("adminBtn");
-if(isAdmin){btn.textContent="👑 Admin ON";btn.classList.add("logged");}else{btn.textContent="🔒 Admin";btn.classList.remove("logged");}
-Object.keys(definitions).forEach(k=>drawRows(k));renderPublicacoes();
+function mostrar(id){
+  ['painel','cursos','notas','calendario'].forEach(x=>document.getElementById(x).style.display='none');
+  document.getElementById(id).style.display='block';
+  window.scrollTo(0,0);
 }
-function openAdminLogin(){
-if(isAdmin){if(confirm("Sair do modo Admin?")){isAdmin=false;localStorage.setItem("loops_is_admin","false");checkAdmin();}return;}
-document.getElementById("admin-modal").classList.add("show");document.getElementById("admin-pass").value="";document.getElementById("admin-error").style.display="none";
-}
-function closeAdminModal(){document.getElementById("admin-modal").classList.remove("show");}
-function doAdminLogin(){
-const p=document.getElementById("admin-pass").value;
-if(p===ADMIN_PASSWORD){isAdmin=true;localStorage.setItem("loops_is_admin","true");closeAdminModal();checkAdmin();addActivity("Admin fez login");alert("✅ Acesso liberado! Agora você é Admin.");}else{document.getElementById("admin-error").style.display="block";}
-}
-function toggleMenu(){document.getElementById("sidebar").classList.toggle("open");}
-function showPage(id,button){
-document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));document.getElementById(id).classList.add("active");
-document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));if(button)button.classList.add("active");
-document.getElementById("sidebar").classList.remove("open");if(id==="disciplinas"||id==="alunos")renderModule(id);
-}
-function renderModule(key){
-const def=definitions[key];const section=document.getElementById(key);const isDisc=key==="disciplinas";
-section.innerHTML=`<h1 class="page-title">${def.title}</h1><p class="subtitle">Adicionar, pesquisar e organizar registos. ${!isAdmin?'<span class="badge">🔒 Só Admin pode editar</span>':''}</p>${!isAdmin?'<div class="not-admin-msg">🔒 Você está no modo visitante. Clique em <b>Admin</b> no topo e digite a senha <b>TimaIssa29</b> para adicionar/editar.</div>':''}<div class="panel"><div class="toolbar"><input type="search" placeholder="Pesquisar..." oninput="searchRecords('${key}',this.value)"><button class="primary admin-only" onclick="openModal('${key}')">+ Adicionar</button>${isDisc?'<button class="warning admin-only" onclick="addAllDisciplinas()">+ Adicionar Todas Disciplinas</button>':''}</div><div class="table-wrap"><table><thead><tr>${def.fields.map(f=>`<th>${f}</th>`).join("")}<th>Ações</th></tr></thead><tbody id="body-${key}"></tbody></table></div></div>`;
-drawRows(key);
-}
-function drawRows(key,list=records[key]){
-const tbody=document.getElementById("body-"+key);if(!tbody)return;
-if(!list.length){tbody.innerHTML=`<tr><td colspan="${definitions[key].fields.length+1}" class="empty">Nenhum registo encontrado.</td></tr>`;updateCounts();return;}
-tbody.innerHTML=list.map(row=>`<tr>${row.values.map(v=>`<td>${escapeHTML(v)}</td>`).join("")}<td>${isAdmin?`<button class="success" onclick="editRecord('${key}','${row.id}')">Editar</button> <button class="danger" onclick="deleteRecord('${key}','${row.id}')">Eliminar</button>`:'<span style="color:#999;font-size:11px;">🔒 Só Admin</span>'}</td></tr>`).join("");updateCounts();
-}
-function openModal(key,id=null){
-if(!isAdmin){alert("🔒 Só Admin pode fazer isso! Clique em Admin e digite TimaIssa29");openAdminLogin();return;}
-currentModule=key;editingId=id;
-const record=id?records[key].find(r=>r.id===id):null;
-document.getElementById("modal-title").textContent=record?"Editar registo":"Adicionar registo";
-document.getElementById("form-fields").innerHTML=definitions[key].fields.map((field,i)=>`<div class="form-group"><label>${field}</label><input name="field${i}" required value="${record?escapeHTML(record.values[i]):""}"></div>`).join("");
-document.getElementById("modal").classList.add("show");
-}
-function closeModal(){document.getElementById("modal").classList.remove("show");}
-document.getElementById("record-form").addEventListener("submit",function(e){
-e.preventDefault();
-const values=definitions[currentModule].fields.map((_,i)=>this.elements["field"+i].value.trim());
-if(values.some(v=>!v)){alert("Preencha todos os campos.");return;}
-if(editingId){const record=records[currentModule].find(r=>r.id===editingId);record.values=values;}else{records[currentModule].push({id:crypto.randomUUID?crypto.randomUUID():String(Date.now()),values});}
-save(currentModule);renderModule(currentModule);addActivity("Registo atualizado em "+definitions[currentModule].title);closeModal();this.reset();
-});
-function editRecord(key,id){openModal(key,id);}
-function deleteRecord(key,id){if(!isAdmin)return;if(!confirm("Tem a certeza de que pretende eliminar este registo?"))return;records[key]=records[key].filter(r=>r.id!==id);save(key);drawRows(key);addActivity("Registo eliminado em "+definitions[key].title);}
-function searchRecords(key,query){const q=query.toLowerCase();const filtered=records[key].filter(row=>row.values.some(v=>String(v).toLowerCase().includes(q)));drawRows(key,filtered);}
-function save(key){localStorage.setItem("loops_"+key,JSON.stringify(records[key]));updateCounts();}
-function updateCounts(){Object.keys(definitions).forEach(key=>{const el=document.getElementById("count-"+key);if(el)el.textContent=records[key].length;});}
-function addActivity(message){const el=document.getElementById("recentes");const line=document.createElement("p");line.textContent="• "+message+" - "+new Date().toLocaleString();line.style.margin="8px 0";line.style.fontSize="13px";if(el.textContent.includes("Ainda não existem"))el.innerHTML="";el.prepend(line);}
-function escapeHTML(value){return String(value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
-document.getElementById("student-signup-form").addEventListener("submit",function(e){
-e.preventDefault();
-const nome=document.getElementById("s_nome").value.trim();const nasc=document.getElementById("s_nasc").value;const turma=document.getElementById("s_turma").value;const contacto=document.getElementById("s_contacto").value.trim();
-const numero="PROC-"+Date.now().toString().slice(-6);
-records["alunos"].push({id:String(Date.now()),values:[nome,numero,nasc,turma,contacto]});
-save("alunos");document.getElementById("signup-msg").style.display="block";this.reset();addActivity("Novo aluno cadastrado: "+nome);setTimeout(()=>{document.getElementById("signup-msg").style.display="none";showPage("alunos",null);renderModule("alunos");},1500);
-});
-function openPubModal(){if(!isAdmin){alert("Só Admin! Senha TimaIssa29");openAdminLogin();return;}document.getElementById("pub-modal").classList.add("show");}
-function closePubModal(){document.getElementById("pub-modal").classList.remove("show");}
-function savePublicacao(){const t=document.getElementById("pub-titulo").value.trim();const d=document.getElementById("pub-desc").value.trim();if(!t||!d){alert("Preencha tudo");return;}publicacoes.unshift({id:String(Date.now()),titulo:t,desc:d,data:new Date().toLocaleString()});localStorage.setItem("loops_publicacoes",JSON.stringify(publicacoes));document.getElementById("pub-titulo").value="";document.getElementById("pub-desc").value="";closePubModal();renderPublicacoes();addActivity("Nova publicação: "+t);}
-function renderPublicacoes(){const html=publicacoes.length?publicacoes.map(p=>`<div class="pub-item"><h4>${escapeHTML(p.titulo)} ${isAdmin?`<button class="danger" style="float:right;" onclick="deletePub('${p.id}')">X</button>`:''}</h4><p>${escapeHTML(p.desc)}</p><small>${p.data}</small></div>`).join(""):'<p class="empty">Nenhuma publicação ainda.</p>';document.getElementById("public-list").innerHTML=html;document.getElementById("public-list-dashboard").innerHTML=html;}
-function deletePub(id){if(!isAdmin)return;if(!confirm("Apagar publicação?"))return;publicacoes=publicacoes.filter(p=>p.id!==id);localStorage.setItem("loops_publicacoes",JSON.stringify(publicacoes));renderPublicacoes();}
-function addAllDisciplinas(){if(!isAdmin)return;let added=0;ALL_DISCIPLINAS.forEach(d=>{const exists=records["disciplinas"].some(r=>r.values[0].toLowerCase()===d[0].toLowerCase());if(!exists){records["disciplinas"].push({id:String(Date.now()+added),values:d});added++;}});save("disciplinas");renderModule("disciplinas");alert(added?`✅ ${added} disciplinas adicionadas!`:"Todas já existem!");addActivity(added+" disciplinas adicionadas");}
-checkAdmin();renderPublicacoes();updateCounts();
 </script>
 </body>
 </html>
