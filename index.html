@@ -3,219 +3,205 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CURSO DE PACKET TRACER 👽 | NAULANGUE TECH</title>
+<title>NAULANGUE TECH 👽 | Packet Tracer</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial, sans-serif}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
 body{background:#020617;color:#fff;overflow-x:hidden}
-header{background:linear-gradient(90deg,#0ea5e9,#1e3a8a);padding:18px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
-header h1{font-size:22px}
-header h1 span{color:#7dd3fc}
-.btn{background:#0ea5e9;border:none;color:#fff;padding:10px 18px;border-radius:20px;cursor:pointer;font-weight:bold}
-.btn-outline{background:transparent;border:2px solid #fff}
-.hero{padding:50px 20px;text-align:center;background:radial-gradient(circle at top,#1e3a8a,#020617)}
-.hero h2{font-size:42px;line-height:1.1}
-.hero h2 b{color:#38bdf8}
-.hero p{margin:15px auto;max-width:600px;color:#cbd5e1}
-.hero img{width:100%;max-width:850px;border-radius:16px;margin-top:20px;border:3px solid #0ea5e9}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;padding:30px 20px}
+/* TOPO - AQUI SIM TEM IMAGEM */
+header{
+  background:linear-gradient(rgba(2,6,23,.72),rgba(2,6,23,.82)),url('https://i.postimg.cc/hGTwL7Kv/IMG-20261111-WA0351.jpg') center/cover no-repeat;
+  padding:14px 12px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;
+  min-height:78px;border-bottom:3px solid #0ea5e9;
+}
+.left-top{display:flex;align-items:center;gap:12px}
+.hamburger{font-size:26px;cursor:pointer;background:rgba(0,0,0,.45);padding:6px 11px;border-radius:10px;border:1px solid #fff}
+.logo{font-size:22px;font-weight:900;line-height:1;text-shadow:0 2px 8px #000}
+.logo span{color:#38bdf8}
+.top-right{display:flex;flex-direction:column;gap:6px;align-items:flex-end}
+.btn-admin{background:rgba(0,0,0,.45);border:1.2px solid #fff;color:#fff;padding:3px 9px;border-radius:20px;cursor:pointer;font-size:10px}
+.btn-inscrever{background:#0ea5e9;border:none;color:#fff;padding:9px 15px;border-radius:20px;cursor:pointer;font-weight:bold;font-size:13px}
+.btn{border:none;color:#fff;padding:12px 20px;border-radius:20px;cursor:pointer;font-weight:bold;background:#0ea5e9}
+.btn-red{background:#ef4444}.btn-green{background:#22c55e}.btn-orange{background:#f59e0b}
+#sidebar{position:fixed;top:0;left:-320px;width:300px;height:100%;background:#0f172a;z-index:999;transition:.3s;padding:20px;border-right:3px solid #0ea5e9;overflow-y:auto}
+#sidebar.open{left:0}
+#sidebar h3{color:#38bdf8;margin-bottom:12px}
+.fechar{float:right;cursor:pointer;font-size:26px}
+.menu-item{display:block;background:#1e293b;padding:13px;border-radius:12px;margin-bottom:9px;color:#fff;text-decoration:none;font-weight:bold;cursor:pointer;border-left:4px solid #0ea5e9}
+.menu-item small{display:block;color:#94a3b8;font-weight:normal;font-size:12px;margin-top:3px}
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:998}
+.overlay.show{display:block}
+.page{display:none;padding:18px}.page.active{display:block}
+/* HERO SEM IMAGEM - SÓ COR LIMPA */
+.hero{min-height:460px;background:linear-gradient(180deg,#0b2a4a,#020617);padding:50px 18px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:0 0 20px 20px;border-bottom:2px solid #0ea5e9}
+.hero h2{font-size:38px;line-height:1.05;text-transform:uppercase}.hero h2 b{color:#38bdf8}
+.hero p{margin:15px auto;max-width:600px;color:#e2e8f0;line-height:1.5}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;padding:15px 0}
 .card{background:#0f172a;border:1px solid #1e293b;padding:20px;border-radius:16px}
-.card h3{color:#38bdf8;margin-bottom:8px}
-.card p{color:#cbd5e1;font-size:14px;line-height:1.5}
-.card .price{font-size:24px;font-weight:bold;margin:12px 0;color:#22c55e}
-.card input,.card select{width:100%;padding:10px;border-radius:10px;border:none;margin-top:8px}
-.admin-badge{background:#a855f7;padding:4px 10px;border-radius:20px;font-size:12px}
-section{padding:0 20px 30px}
-h2.title{margin:20px 0 10px}
-/* MODAL */
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);justify-content:center;align-items:center;z-index:999;padding:15px}
+.card h3{color:#38bdf8;margin-bottom:8px}.card p{color:#cbd5e1;font-size:14px;line-height:1.5}
+.price{font-size:24px;font-weight:bold;margin:12px 0;color:#22c55e}
+.info-box{background:#0f172a;border:1px solid #1e293b;padding:22px;border-radius:16px;margin:12px 0;line-height:1.7}
+.info-box h3{color:#38bdf8;margin-bottom:8px}
+.post-card{background:#0f172a;border:1px solid #334155;border-radius:16px;overflow:hidden;margin:12px 0}
+.post-card img{width:100%;max-height:320px;object-fit:cover;display:block}
+.post-card div{padding:16px}.post-card h3{color:#38bdf8}.post-card p{color:#cbd5e1;margin-top:6px;line-height:1.5}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);justify-content:center;align-items:center;z-index:1000;padding:15px}
 .modal.active{display:flex}
-.box{background:#0f172a;width:100%;max-width:480px;padding:25px;border-radius:18px;border:2px solid #0ea5e9}
-.box h2{margin-bottom:12px}
+.box{background:#0f172a;width:100%;max-width:520px;padding:25px;border-radius:18px;border:2px solid #0ea5e9;max-height:92vh;overflow:auto}
 .box input,.box textarea,.box select{width:100%;padding:12px;border-radius:10px;border:none;margin:8px 0;background:#1e293b;color:#fff}
-.box textarea{height:80px}
-.close{float:right;cursor:pointer;font-size:22px}
-.list-item{background:#1e293b;padding:12px;border-radius:12px;margin:8px 0;display:flex;justify-content:space-between;align-items:center}
+.box textarea{height:90px}.close{float:right;cursor:pointer;font-size:22px}
+.list-item{background:#1e293b;padding:12px;border-radius:12px;margin:8px 0;display:flex;justify-content:space-between;align-items:center;gap:8px}
 .small{font-size:13px;color:#94a3b8}
 footer{text-align:center;padding:20px;color:#64748b}
-.alien{font-size:40px}
+.back{margin-bottom:12px;background:#1e293b}
+input[type=file]{background:#1e293b;padding:10px}
+.preview{width:100%;border-radius:12px;margin-top:8px;display:none}
+.admin-section{background:#1e293b;padding:15px;border-radius:14px;margin:12px 0;border:1px dashed #0ea5e9}
 </style>
 </head>
 <body>
 
-<header>
-  <h1>👽 PONGOLO <span>TECH</span></h1>
-  <div>
-    <button class="btn btn-outline" onclick="openModal('loginModal')">Admin 👽</button>
-    <button class="btn" onclick="openModal('inscreverModal')">Inscrever-se</button>
-  </div>
+<div class="overlay" id="overlay" onclick="fecharMenu()"></div>
+<div id="sidebar">
+<span class="fechar" onclick="fecharMenu()">×</span>
+<h3>👽 MENU - 10 OPÇÕES</h3>
+<a class="menu-item" onclick="showPage('home')">🏠 1. Início<small>Voltar para capa</small></a>
+<a class="menu-item" onclick="showPage('p1')">❓ 2. O que é Packet Tracer?<small>O que é, para que serve</small></a>
+<a class="menu-item" onclick="showPage('p2')">📚 3. O que vais aprender<small>Matérias do curso</small></a>
+<a class="menu-item" onclick="showPage('p3')">👨‍💻 4. O que vais ser depois<small>Profissão e futuro</small></a>
+<a class="menu-item" onclick="showPage('p4')">⚙️ 5. Como funciona<small>Aulas, duração, certificado</small></a>
+<a class="menu-item" onclick="showPage('p5')">🛜 6. Redes e Protocolos<small>IP, TCP, VLANs, Roteamento</small></a>
+<a class="menu-item" onclick="showPage('p6')">💰 7. Preços e Pacotes<small>Ver cursos e preços</small></a>
+<a class="menu-item" onclick="showPage('p7')">🖼️ 8. Fotos e Novidades<small>Publicações do Admin</small></a>
+<a class="menu-item" onclick="showPage('p8')">⭐ 9. Depoimentos<small>O que dizem os alunos</small></a>
+<a class="menu-item" onclick="showPage('p9')">📞 10. Contacto e Inscrição<small>Fala connosco, inscreve-te</small></a>
+<button class="btn" style="width:100%;margin-top:8px" onclick="fecharMenu();openModal('inscreverModal')">Inscrever-se 🚀</button>
+</div>
+
+<header id="headerBg">
+<div class="left-top"><div class="hamburger" onclick="abrirMenu()">☰</div><div class="logo">NAULANGUE<br><span>TECH</span></div></div>
+<div class="top-right">
+<button class="btn-admin" onclick="openModal('loginModal')">Admin 👽</button>
+<button class="btn-inscrever" onclick="openModal('inscreverModal')">Inscrever-se</button>
+</div>
 </header>
 
-<div class="hero">
-  <div class="alien">👽</div>
-  <h2>CURSO DE <b>PACKET TRACER</b><br>DO BÁSICO AO AVANÇADO</h2>
-  <p>Redes, Roteamento, Switching, IP, ICMP, TCP/UDP, VLANs, Simulação e Testes. Aprenda na prática com laboratório real.</p>
-  <button class="btn" onclick="openModal('inscreverModal')">QUERO APRENDER AGORA 🚀</button>
-  <br>
-  <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=900" alt="Redes">
+<div class="page active" id="home">
+<div class="hero" id="heroBg">
+<h2>CURSO DE <b>PACKET<br>TRACER</b><br>DO BÁSICO AO<br>AVANÇADO</h2>
+<p>Redes, Roteamento, Switching, IP, ICMP, TCP/UDP, VLANs, Simulação e Testes. Aprenda na prática com laboratório real.</p>
+<button class="btn" onclick="openModal('inscreverModal')">QUERO APRENDER AGORA 🚀</button>
+</div>
+<div class="info-box"><h3>👽 Bem-vindo à NAULANGUE TECH</h3><p>Clica nas <b>3 barrinhas ☰</b> no canto esquerdo para ver as 10 opções. Cada uma abre a sua página.</p></div>
+<h3 style="margin:10px 0">🖼️ Últimas Publicações do Admin</h3>
+<div id="postsHome"></div>
 </div>
 
-<section>
-  <h2 class="title">📚 Cursos Disponíveis <span id="countCursos"></span></h2>
-  <div class="grid" id="cursosGrid"></div>
-</section>
+<div class="page" id="p1"><button class="btn back" onclick="showPage('home')">← Voltar</button><div class="info-box"><h3>❓ O que é Packet Tracer?</h3><p>Packet Tracer é o programa da Cisco para criar, simular e testar redes de computadores sem precisar de equipamentos caros.</p></div></div>
+<div class="page" id="p2"><button class="btn back" onclick="showPage('home')">← Voltar</button><div class="info-box"><h3>📚 O que vais aprender</h3><p>✅ IPv4<br>✅ IP, ICMP, TCP/UDP<br>✅ Roteamento & Switching<br>✅ VLANs<br>✅ Configuração de Redes<br>✅ Simulação e Testes</p></div></div>
+<div class="page" id="p3"><button class="btn back" onclick="showPage('home')">← Voltar</button><div class="info-box"><h3>👨‍💻 O que vais ser depois</h3><p>🔹 Técnico de Redes<br>🔹 Suporte Informático<br>🔹 Montador de Redes<br>🔹 Freelancer</p></div></div>
+<div class="page" id="p4"><button class="btn back" onclick="showPage('home')">← Voltar</button><div class="info-box"><h3>⚙️ Como funciona</h3><p>📚 Aulas práticas<br>🖥️ Laboratório no Packet Tracer<br>📜 Certificado<br>📍 Montepuez / Online<br>💬 Suporte no WhatsApp</p></div></div>
+<div class="page" id="p5"><button class="btn back" onclick="showPage('home')">← Voltar</button><div class="info-box"><h3>🛜 Redes e Protocolos</h3><p><b>IP:</b> Endereço de cada aparelho.<br><b>TCP/UDP:</b> Como os dados viajam.<br><b>ICMP:</b> Teste de ligação (ping).<br><b>VLAN:</b> Separar redes.<br><b>Roteamento:</b> Redes falarem entre si.</p></div></div>
+<div class="page" id="p6"><button class="btn back" onclick="showPage('home')">← Voltar</button><h3>💰 Preços e Pacotes</h3><div class="grid" id="cursosGrid"></div></div>
+<div class="page" id="p7"><button class="btn back" onclick="showPage('home')">← Voltar</button><h3>🖼️ Fotos e Novidades</h3><div id="postsPage"></div></div>
+<div class="page" id="p8"><button class="btn back" onclick="showPage('home')">← Voltar</button><div class="info-box"><h3>⭐ Depoimentos</h3><p>“Aprendi do zero e hoje já monto redes sozinho.” - Aluno<br>“O melhor curso de redes de Montepuez.” - Aluna</p></div></div>
+<div class="page" id="p9"><button class="btn back" onclick="showPage('home')">← Voltar</button><div class="info-box"><h3>📞 Contacto e Inscrição</h3><p>📍 Montepuez - Cabo Delgado<br>👽 NAULANGUE TECH - Packet Tracer</p><button class="btn" onclick="openModal('inscreverModal')">Inscrever-se Agora 🚀</button></div></div>
 
-<section>
-  <h2 class="title">👽 Porquê estudar connosco?</h2>
-  <div class="grid">
-    <div class="card"><h3>🛜 100% Prático</h3><p>Você configura redes reais no Packet Tracer desde a primeira aula.</p></div>
-    <div class="card"><h3>📜 Certificado</h3><p>Certificado de conclusão no fim do curso.</p></div>
-    <div class="card"><h3>💬 Suporte</h3><p>Acompanhamento direto no WhatsApp e grupo de alunos.</p></div>
-  </div>
-</section>
+<footer>© 2026 NAULANGUE TECH 👽 | Montepuez</footer>
 
-<footer>© 2026 PONGOLO TECH - Curso de Packet Tracer 👽 | Montepuez - Cabo Delgado</footer>
+<div class="modal" id="loginModal"><div class="box"><span class="close" onclick="closeModal('loginModal')">×</span><h2>Admin 👽 Login</h2><input type="password" id="senhaAdmin" placeholder="Senha de Admin"><button class="btn" style="width:100%" onclick="fazerLogin()">Entrar 👽</button><p class="small" id="erroLogin" style="color:#f87171;margin-top:8px"></p></div></div>
 
-<!-- LOGIN ADMIN -->
-<div class="modal" id="loginModal">
-  <div class="box">
-    <span class="close" onclick="closeModal('loginModal')">×</span>
-    <h2>Admin 👽 Login</h2>
-    <p class="small">Área restrita. Só o Admin tem acesso.</p>
-    <input type="password" id="senhaAdmin" placeholder="Digite a senha de Admin">
-    <button class="btn" style="width:100%" onclick="fazerLogin()">Entrar como Admin 👽</button>
-    <p class="small" id="erroLogin" style="color:#f87171;margin-top:8px"></p>
-    <p class="small">Dica para teste: a senha é a que você definiu.</p>
-  </div>
+<div class="modal" id="adminModal"><div class="box" style="max-width:640px">
+<span class="close" onclick="closeModal('adminModal')">×</span>
+<h2>👽 Painel Admin - NAULANGUE TECH</h2>
+<div class="admin-section">
+<h3>🖼️ Mudar Foto do Topo</h3>
+<p class="small">Só muda a foto lá em cima, onde está NAULANGUE TECH. O fundo do curso fica limpo sem foto.</p>
+<label class="small">📷 Escolher foto:</label>
+<input type="file" id="bgFile" accept="image/*" onchange="previewBg(event)">
+<img id="previewBgImg" class="preview">
+<label class="small">Ou colar link:</label>
+<input type="text" id="bgLink" placeholder="https://...jpg">
+<button class="btn btn-orange" style="width:100%" onclick="mudarFundo()">✅ Aplicar no Topo</button>
+<button class="btn" style="width:100%;margin-top:8px;background:#334155" onclick="restaurarFundo()">↩️ Voltar para foto original</button>
+<p class="small" id="msgBg" style="color:#4ade80"></p>
 </div>
-
-<!-- PAINEL ADMIN -->
-<div class="modal" id="adminModal">
-  <div class="box" style="max-width:650px;max-height:90vh;overflow:auto">
-    <span class="close" onclick="closeModal('adminModal')">×</span>
-    <h2>👽 Painel do Admin <span class="admin-badge">ADMIN ATIVO</span></h2>
-    <p class="small">Bem-vindo, Admin. Aqui você controla tudo.</p>
-    <hr style="margin:12px 0;border-color:#334155">
-    <h3>➕ Adicionar Novo Curso</h3>
-    <input type="text" id="novoTitulo" placeholder="Ex: Curso de Packet Tracer Avançado">
-    <textarea id="novoDesc" placeholder="Descrição do curso..."></textarea>
-    <input type="number" id="novoPreco" placeholder="Preço em MZN ex: 1500">
-    <button class="btn" style="width:100%" onclick="adicionarCurso()">Adicionar Curso</button>
-
-    <h3 style="margin-top:20px">📋 Meus Cursos</h3>
-    <div id="listaAdmin"></div>
-
-    <h3 style="margin-top:20px">🧑‍🎓 Alunos Inscritos (<span id="totalAlunos">0</span>)</h3>
-    <div id="listaAlunos"></div>
-    <button class="btn" style="width:100%;background:#ef4444;margin-top:15px" onclick="sairAdmin()">Sair do Admin</button>
-  </div>
+<div class="admin-section">
+<h3>🖼️ + ✍️ Publicar Foto e Escrever</h3>
+<input type="text" id="postTitulo" placeholder="Título ex: Aula de hoje - VLANs">
+<textarea id="postTexto" placeholder="Escreve aqui..."></textarea>
+<label class="small">📷 Escolher foto:</label>
+<input type="file" id="postFotoFile" accept="image/*" onchange="previewFoto(event)">
+<img id="previewImg" class="preview">
+<label class="small">Ou colar link:</label>
+<input type="text" id="postFotoLink" placeholder="https://...jpg">
+<button class="btn btn-green" style="width:100%" onclick="publicarPost()">📤 Publicar Foto + Texto</button>
+<div id="listaPostsAdmin"></div>
 </div>
+<hr style="margin:18px 0;border-color:#334155">
+<h3>➕ Adicionar Curso</h3>
+<input type="text" id="novoTitulo" placeholder="Nome do curso">
+<textarea id="novoDesc" placeholder="Descrição..."></textarea>
+<input type="number" id="novoPreco" placeholder="Preço MZN">
+<button class="btn" style="width:100%" onclick="adicionarCurso()">Adicionar Curso</button>
+<h3 style="margin-top:18px">📋 Meus Cursos</h3><div id="listaAdmin"></div>
+<h3 style="margin-top:18px">🧑‍🎓 Alunos (<span id="totalAlunos">0</span>)</h3><div id="listaAlunos"></div>
+<button class="btn btn-red" style="width:100%;margin-top:15px" onclick="sairAdmin()">Sair do Admin</button>
+</div></div>
 
-<!-- INSCREVER -->
-<div class="modal" id="inscreverModal">
-  <div class="box">
-    <span class="close" onclick="closeModal('inscreverModal')">×</span>
-    <h2>Inscrever-se no Curso 🚀</h2>
-    <input type="text" id="nomeAluno" placeholder="Seu nome completo">
-    <input type="text" id="telAluno" placeholder="Seu WhatsApp / Telefone">
-    <select id="cursoEscolhido"></select>
-    <button class="btn" style="width:100%" onclick="inscrever()">Confirmar Inscrição</button>
-    <p class="small" id="msgInscricao" style="color:#4ade80;margin-top:8px"></p>
-  </div>
-</div>
+<div class="modal" id="inscreverModal"><div class="box"><span class="close" onclick="closeModal('inscreverModal')">×</span><h2>Inscrever-se 🚀</h2><input type="text" id="nomeAluno" placeholder="Seu nome"><input type="text" id="telAluno" placeholder="Seu WhatsApp"><select id="cursoEscolhido"></select><button class="btn" style="width:100%" onclick="inscrever()">Confirmar Inscrição</button><p class="small" id="msgInscricao" style="color:#4ade80;margin-top:8px"></p></div></div>
 
 <script>
-// ===== CONFIGURAÇÃO =====
-const SENHA_ADMIN = "naulangue";
-
-// Cursos padrão
-let cursos = JSON.parse(localStorage.getItem("cursos_pt")) || [
-  {titulo:"Curso de Packet Tracer - Básico", desc:"IP, ICMP, TCP/UDP, Criação de redes simples, Simulação.", preco:1000},
-  {titulo:"Curso de Packet Tracer - Avançado", desc:"Roteamento, Switching, VLANs, Configuração de Redes, Testes.", preco:1800},
-  {titulo:"Curso Completo + Certificado", desc:"Do básico ao avançado + laboratório prático + certificado.", preco:2500}
-];
-let alunos = JSON.parse(localStorage.getItem("alunos_pt")) || [];
-
-function salvar(){
-  localStorage.setItem("cursos_pt", JSON.stringify(cursos));
-  localStorage.setItem("alunos_pt", JSON.stringify(alunos));
+const SENHA_ADMIN="naulangue";
+const FUNDO_PADRAO="https://i.postimg.cc/hGTwL7Kv/IMG-20261111-WA0351.jpg";
+let fotoTemp=""; let bgTemp="";
+let cursos=JSON.parse(localStorage.getItem("cursos_pt"))||[
+{titulo:"Curso de Packet Tracer - Básico",desc:"IP, ICMP, TCP/UDP, Redes simples.",preco:1000},
+{titulo:"Curso de Packet Tracer - Avançado",desc:"Roteamento, Switching, VLANs.",preco:1800},
+{titulo:"Curso Completo + Certificado",desc:"Do básico ao avançado + certificado.",preco:2500}];
+let alunos=JSON.parse(localStorage.getItem("alunos_pt"))||[];
+let posts=JSON.parse(localStorage.getItem("posts_pt"))||[
+{titulo:"Bem-vindo à NAULANGUE TECH 👽",texto:"Aqui vais aprender Packet Tracer do básico ao avançado. Clica no menu ☰ e explora as 10 opções!",foto:FUNDO_PADRAO}];
+let fundoAtual=localStorage.getItem("fundo_pt")||FUNDO_PADRAO;
+function salvar(){localStorage.setItem("cursos_pt",JSON.stringify(cursos));localStorage.setItem("alunos_pt",JSON.stringify(alunos));localStorage.setItem("posts_pt",JSON.stringify(posts));localStorage.setItem("fundo_pt",fundoAtual);}
+function aplicarFundo(){
+  const header=document.getElementById("headerBg");
+  if(header) header.style.background=`linear-gradient(rgba(2,6,23,.72),rgba(2,6,23,.82)),url('${fundoAtual}') center/cover no-repeat`;
+  // HERO FICA SEM IMAGEM - NÃO MUDA
 }
-
+function previewBg(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=function(ev){bgTemp=ev.target.result;const im=document.getElementById("previewBgImg");im.src=bgTemp;im.style.display="block";};r.readAsDataURL(f);}
+function mudarFundo(){const link=document.getElementById("bgLink").value.trim();const novo=bgTemp||link;if(!novo) return alert("Escolhe uma foto ou cola um link primeiro!");fundoAtual=novo;salvar();aplicarFundo();document.getElementById("msgBg").textContent="✅ Foto do topo mudada!";document.getElementById("bgLink").value="";bgTemp="";document.getElementById("previewBgImg").style.display="none";}
+function restaurarFundo(){fundoAtual=FUNDO_PADRAO;salvar();aplicarFundo();document.getElementById("msgBg").textContent="↩️ Voltou para a foto original.";}
+function abrirMenu(){document.getElementById("sidebar").classList.add("open");document.getElementById("overlay").classList.add("show");}
+function fecharMenu(){document.getElementById("sidebar").classList.remove("open");document.getElementById("overlay").classList.remove("show");}
+function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');fecharMenu();window.scrollTo({top:0,behavior:'smooth'});renderAll();}
+function previewFoto(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=function(ev){fotoTemp=ev.target.result;const im=document.getElementById("previewImg");im.src=fotoTemp;im.style.display="block";};r.readAsDataURL(f);}
+function publicarPost(){const t=document.getElementById("postTitulo").value;const txt=document.getElementById("postTexto").value;const link=document.getElementById("postFotoLink").value;const foto=fotoTemp||link||fundoAtual;if(!t&&!txt)return alert("Escreve título ou texto!");posts.unshift({titulo:t||"Novidade 👽",texto:txt,foto});salvar();renderAll();document.getElementById("postTitulo").value="";document.getElementById("postTexto").value="";document.getElementById("postFotoLink").value="";fotoTemp="";document.getElementById("previewImg").style.display="none";alert("Publicado 👽");}
+function removerPost(i){if(confirm("Apagar publicação?")){posts.splice(i,1);salvar();renderAll();}}
+function renderPosts(){
+  const html=posts.map((p,i)=>`<div class="post-card">${p.foto?`<img src="${p.foto}">`:""}<div><h3>${p.titulo}</h3><p>${p.texto}</p><p class="small">NAULANGUE TECH 👽</p></div></div>`).join("")||"<p class='small'>Nenhuma publicação.</p>";
+  document.getElementById("postsHome").innerHTML=html;
+  document.getElementById("postsPage").innerHTML=html;
+  document.getElementById("listaPostsAdmin").innerHTML=posts.map((p,i)=>`<div class="list-item"><div><b>${p.titulo}</b><br><span class="small">${p.texto.substring(0,50)}</span></div><button onclick="removerPost(${i})" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Apagar</button></div>`).join("");
+}
 function renderCursos(){
-  const grid = document.getElementById("cursosGrid");
-  const sel = document.getElementById("cursoEscolhido");
-  grid.innerHTML=""; sel.innerHTML="";
-  document.getElementById("countCursos").textContent = `(${cursos.length})`;
-  cursos.forEach((c,i)=>{
-    grid.innerHTML += `
-    <div class="card">
-      <h3>${c.titulo}</h3>
-      <p>${c.desc}</p>
-      <div class="price">${c.preco} MZN</div>
-      <button class="btn" style="width:100%" onclick="abrirInscricao(${i})">Inscrever-se</button>
-    </div>`;
-    sel.innerHTML += `<option value="${i}">${c.titulo} - ${c.preco} MZN</option>`;
-  });
-  // Admin list
-  const la = document.getElementById("listaAdmin");
-  if(la){
-    la.innerHTML = cursos.map((c,i)=>`
-      <div class="list-item"><div><b>${c.titulo}</b><br><span class="small">${c.preco} MZN</span></div>
-      <button onclick="removerCurso(${i})" style="background:#ef4444;border:none;color:#fff;padding:8px 12px;border-radius:10px;cursor:pointer">Apagar</button></div>
-    `).join("") || "<p class='small'>Nenhum curso.</p>";
-  }
-  const lal = document.getElementById("listaAlunos");
-  if(lal){
-    document.getElementById("totalAlunos").textContent = alunos.length;
-    lal.innerHTML = alunos.map((a,i)=>`
-      <div class="list-item"><div><b>${a.nome}</b><br><span class="small">${a.tel} • ${cursos[a.curso]?.titulo || 'Curso'}</span></div>
-      <button onclick="removerAluno(${i})" style="background:#ef4444;border:none;color:#fff;padding:8px 12px;border-radius:10px;cursor:pointer">X</button></div>
-    `).join("") || "<p class='small'>Nenhum aluno ainda.</p>";
-  }
+  const grid=document.getElementById("cursosGrid");const sel=document.getElementById("cursoEscolhido");
+  if(!grid)return;grid.innerHTML="";sel.innerHTML="";
+  cursos.forEach((c,i)=>{grid.innerHTML+=`<div class="card"><h3>${c.titulo}</h3><p>${c.desc}</p><div class="price">${c.preco} MZN</div><button class="btn" style="width:100%" onclick="abrirInscricao(${i})">Inscrever-se</button></div>`;sel.innerHTML+=`<option value="${i}">${c.titulo} - ${c.preco} MZN</option>`;});
+  document.getElementById("listaAdmin").innerHTML=cursos.map((c,i)=>`<div class="list-item"><div><b>${c.titulo}</b><br><span class="small">${c.preco} MZN</span></div><button onclick="removerCurso(${i})" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Apagar</button></div>`).join("");
+  document.getElementById("totalAlunos").textContent=alunos.length;
+  document.getElementById("listaAlunos").innerHTML=alunos.map((a,i)=>`<div class="list-item"><div><b>${a.nome}</b><br><span class="small">${a.tel} • ${cursos[a.curso]?.titulo||'Curso'}</span></div><button onclick="removerAluno(${i})" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">X</button></div>`).join("")||"<p class='small'>Nenhum aluno.</p>";
 }
-
-function openModal(id){ document.getElementById(id).classList.add("active"); }
-function closeModal(id){ document.getElementById(id).classList.remove("active"); }
-
-function fazerLogin(){
-  const s = document.getElementById("senhaAdmin").value.trim();
-  if(s === SENHA_ADMIN){
-    closeModal('loginModal');
-    openModal('adminModal');
-    document.getElementById("erroLogin").textContent="";
-    document.getElementById("senhaAdmin").value="";
-    renderCursos();
-  } else {
-    document.getElementById("erroLogin").textContent="❌ Senha errada, Admin 👽. Tenta de novo.";
-  }
-}
-
-function sairAdmin(){ closeModal('adminModal'); alert("Saiu do Admin 👽"); }
-
-function adicionarCurso(){
-  const t=document.getElementById("novoTitulo").value;
-  const d=document.getElementById("novoDesc").value;
-  const p=document.getElementById("novoPreco").value;
-  if(!t || !p) return alert("Preencha título e preço!");
-  cursos.push({titulo:t, desc:d||"Curso de Redes - Packet Tracer", preco:Number(p)});
-  salvar(); renderCursos();
-  document.getElementById("novoTitulo").value=""; document.getElementById("novoDesc").value=""; document.getElementById("novoPreco").value="";
-  alert("Curso adicionado com sucesso 👽");
-}
-function removerCurso(i){ if(confirm("Apagar este curso?")){ cursos.splice(i,1); salvar(); renderCursos(); } }
-function removerAluno(i){ alunos.splice(i,1); salvar(); renderCursos(); }
-
-function abrirInscricao(i){ document.getElementById("cursoEscolhido").value=i; openModal('inscreverModal'); }
-function inscrever(){
-  const nome=document.getElementById("nomeAluno").value;
-  const tel=document.getElementById("telAluno").value;
-  const curso=document.getElementById("cursoEscolhido").value;
-  if(!nome || !tel) return alert("Preencha nome e telefone!");
-  alunos.push({nome, tel, curso:Number(curso)});
-  salvar(); renderCursos();
-  document.getElementById("msgInscricao").textContent="✅ Inscrição feita! Entraremos em contacto, "+nome+" 👽";
-  document.getElementById("nomeAluno").value=""; document.getElementById("telAluno").value="";
-}
-renderCursos();
-</script>
+function renderAll(){renderCursos();renderPosts();aplicarFundo();}
+function openModal(id){document.getElementById(id).classList.add("active");}
+function closeModal(id){document.getElementById(id).classList.remove("active");}
+function fazerLogin(){const s=document.getElementById("senhaAdmin").value.trim();if(s===SENHA_ADMIN){closeModal('loginModal');openModal('adminModal');document.getElementById("erroLogin").textContent="";document.getElementById("senhaAdmin").value="";renderAll();}else{document.getElementById("erroLogin").textContent="❌ Senha errada";}}
+function sairAdmin(){closeModal('adminModal');alert("Saiu do Admin 👽");}
+function adicionarCurso(){const t=document.getElementById("novoTitulo").value;const d=document.getElementById("novoDesc").value;const p=document.getElementById("novoPreco").value;if(!t||!p)return alert("Preencha título e preço!");cursos.push({titulo:t,desc:d||"Curso",preco:Number(p)});salvar();renderAll();document.getElementById("novoTitulo").value="";document.getElementById("novoDesc").value="";document.getElementById("novoPreco").value="";alert("Curso adicionado 👽");}
+function removerCurso(i){if(confirm("Apagar?")){cursos.splice(i,1);salvar();renderAll();}}
+function removerAluno(i){alunos.splice(i,1);salvar();renderAll();}
+function abrirInscricao(i){document.getElementById("cursoEscolhido").value=i;openModal('inscreverModal');}
+function inscrever(){const nome=document.getElementById("nomeAluno").value;const tel=document.getElementById("telAluno").value;const curso=document.getElementById("cursoEscolhido").value;if(!nome||!tel)return alert("Preencha nome e telefone!");alunos.push({nome,tel,curso:Number(curso)});salvar();renderAll();document.getElementById("msgInscricao").textContent="✅ Inscrição feita, "+nome+" 👽";document.getElementById("nomeAluno").value="";document.getElementById("telAluno").value="";}
+renderAll();
+</scrpt>
 </body>
 </html>
