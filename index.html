@@ -3,119 +3,219 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Adriano Naulangue - Aprenda Packet Tracer</title>
+<title>CURSO DE PACKET TRACER 👽 | PONGOLO TECH</title>
 <style>
-  *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-  body{background:#f1f1f1;color:#111}
-  header{background:#000;color:#fff;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0}
-  header h1{font-size:22px;line-height:1}
-  header h1 span{color:#e11d2e}
-  nav a{color:#fff;text-decoration:none;margin-left:15px;font-size:14px}
-  nav a.active{color:#e11d2e;border-bottom:2px solid #e11d2e;padding-bottom:3px}
-  .wrap{max-width:1100px;margin:20px auto;padding:0 15px}
-  .top{display:flex;gap:20px;flex-wrap:wrap}
-  .card{background:#fff;border-radius:14px;padding:20px;flex:1;min-width:280px;box-shadow:0 4px 14px rgba(0,0,0,.08)}
-  .avatar{width:70px;height:70px;background:#e11d2e;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:bold}
-  .badge{background:#e11d2e;color:#fff;padding:4px 10px;border-radius:20px;font-size:12px;display:inline-block;margin:10px 0}
-  .bar{height:10px;background:#ddd;border-radius:20px;overflow:hidden;margin:10px 0}
-  .bar i{display:block;height:100%;background:#e11d2e;width:22%}
-  .bar2 i{width:20%}
-  .btn{background:#e11d2e;color:#fff;border:none;width:100%;padding:14px;border-radius:10px;font-size:16px;font-weight:bold;cursor:pointer}
-  .btn:hover{background:#000}
-  h2{font-size:26px;margin-bottom:15px}
-  h3{font-size:20px;margin:8px 0}
-  .modulo{border:1px solid #ddd;border-radius:10px;padding:12px;margin:10px 0;display:flex;justify-content:space-between;align-items:center}
-  .modulo b{color:#e11d2e}
-  footer{text-align:center;padding:20px;color:#777;font-size:13px}
-  input{width:100%;padding:12px;border:1px solid #ccc;border-radius:8px;margin:8px 0}
-  @media(max-width:600px){header h1{font-size:18px} nav{display:none}}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial, sans-serif}
+body{background:#020617;color:#fff;overflow-x:hidden}
+header{background:linear-gradient(90deg,#0ea5e9,#1e3a8a);padding:18px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
+header h1{font-size:22px}
+header h1 span{color:#7dd3fc}
+.btn{background:#0ea5e9;border:none;color:#fff;padding:10px 18px;border-radius:20px;cursor:pointer;font-weight:bold}
+.btn-outline{background:transparent;border:2px solid #fff}
+.hero{padding:50px 20px;text-align:center;background:radial-gradient(circle at top,#1e3a8a,#020617)}
+.hero h2{font-size:42px;line-height:1.1}
+.hero h2 b{color:#38bdf8}
+.hero p{margin:15px auto;max-width:600px;color:#cbd5e1}
+.hero img{width:100%;max-width:850px;border-radius:16px;margin-top:20px;border:3px solid #0ea5e9}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;padding:30px 20px}
+.card{background:#0f172a;border:1px solid #1e293b;padding:20px;border-radius:16px}
+.card h3{color:#38bdf8;margin-bottom:8px}
+.card p{color:#cbd5e1;font-size:14px;line-height:1.5}
+.card .price{font-size:24px;font-weight:bold;margin:12px 0;color:#22c55e}
+.card input,.card select{width:100%;padding:10px;border-radius:10px;border:none;margin-top:8px}
+.admin-badge{background:#a855f7;padding:4px 10px;border-radius:20px;font-size:12px}
+section{padding:0 20px 30px}
+h2.title{margin:20px 0 10px}
+/* MODAL */
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);justify-content:center;align-items:center;z-index:999;padding:15px}
+.modal.active{display:flex}
+.box{background:#0f172a;width:100%;max-width:480px;padding:25px;border-radius:18px;border:2px solid #0ea5e9}
+.box h2{margin-bottom:12px}
+.box input,.box textarea,.box select{width:100%;padding:12px;border-radius:10px;border:none;margin:8px 0;background:#1e293b;color:#fff}
+.box textarea{height:80px}
+.close{float:right;cursor:pointer;font-size:22px}
+.list-item{background:#1e293b;padding:12px;border-radius:12px;margin:8px 0;display:flex;justify-content:space-between;align-items:center}
+.small{font-size:13px;color:#94a3b8}
+footer{text-align:center;padding:20px;color:#64748b}
+.alien{font-size:40px}
 </style>
 </head>
 <body>
 
 <header>
-  <h1>Adriano<br><span>Naulangue</span></h1>
-  <nav>
-    <a href="#" class="active" onclick="mostrar('painel')">Painel</a>
-    <a href="#" onclick="mostrar('cursos')">Meus Cursos</a>
-    <a href="#" onclick="mostrar('notas')">Minhas Notas</a>
-    <a href="#" onclick="mostrar('calendario')">Calendário</a>
-  </nav>
-  <div>🔔 👤</div>
+  <h1>👽 PONGOLO <span>TECH</span></h1>
+  <div>
+    <button class="btn btn-outline" onclick="openModal('loginModal')">Admin 👽</button>
+    <button class="btn" onclick="openModal('inscreverModal')">Inscrever-se</button>
+  </div>
 </header>
 
-<div class="wrap" id="painel">
-  <h2>Painel do Estudante</h2>
-  <div class="top">
-    <div class="card">
-      <div class="avatar">AN</div>
-      <h3>Adriano Naulangue</h3>
-      <p>Estudante • Nível 2</p>
-      <p style="margin-top:10px">Email: adriano@naulangue.com</p>
-      <p>Membro desde: Nov 2026</p>
-      <p>Cursos inscritos: 1</p>
-      <div style="background:#f1f1f1;padding:15px;border-radius:10px;margin-top:15px">
-        <b>Progresso Geral</b>
-        <h3 style="color:#e11d2e;font-size:36px">22%</h3>
-        <p>21 de 95 aulas concluídas</p>
-        <div class="bar"><i></i></div>
-      </div>
-    </div>
+<div class="hero">
+  <div class="alien">👽</div>
+  <h2>CURSO DE <b>PACKET TRACER</b><br>DO BÁSICO AO AVANÇADO</h2>
+  <p>Redes, Roteamento, Switching, IP, ICMP, TCP/UDP, VLANs, Simulação e Testes. Aprenda na prática com laboratório real.</p>
+  <button class="btn" onclick="openModal('inscreverModal')">QUERO APRENDER AGORA 🚀</button>
+  <br>
+  <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=900" alt="Redes">
+</div>
 
-    <div class="card">
-      <h3>Continuar Aprendendo</h3>
-      <span class="badge">EM ANDAMENTO</span>
-      <h3>Curso de Packet Tracer para Iniciantes: Módulo 1</h3>
-      <p>Fundamentos de redes e simulação • Módulo 1 de 5</p>
-      <p style="margin-top:15px">Progresso do curso: 20%</p>
-      <div class="bar bar2"><i></i></div>
-      <p>21/95 aulas concluídas</p>
-      <button class="btn" onclick="mostrar('cursos')">▶ Continuar Aprendendo</button>
-      <p style="text-align:center;margin-top:10px;font-size:13px;color:#777">Último acesso: hoje às 14:32</p>
-    </div>
+<section>
+  <h2 class="title">📚 Cursos Disponíveis <span id="countCursos"></span></h2>
+  <div class="grid" id="cursosGrid"></div>
+</section>
+
+<section>
+  <h2 class="title">👽 Porquê estudar connosco?</h2>
+  <div class="grid">
+    <div class="card"><h3>🛜 100% Prático</h3><p>Você configura redes reais no Packet Tracer desde a primeira aula.</p></div>
+    <div class="card"><h3>📜 Certificado</h3><p>Certificado de conclusão no fim do curso.</p></div>
+    <div class="card"><h3>💬 Suporte</h3><p>Acompanhamento direto no WhatsApp e grupo de alunos.</p></div>
   </div>
+</section>
 
-  <div class="card" style="margin-top:20px">
-    <h3>📚 Meus Módulos - Packet Tracer</h3>
-    <div class="modulo"><span><b>Módulo 1:</b> O que é Packet Tracer + Primeira Rede</span><span>20% ✅</span></div>
-    <div class="modulo"><span><b>Módulo 2:</b> Switches, Cabos e Endereços IP</span><span>0%</span></div>
-    <div class="modulo"><span><b>Módulo 3:</b> VLANs e Spanning Tree</span><span>0%</span></div>
-    <div class="modulo"><span><b>Módulo 4:</b> Routers e Configuração</span><span>0%</span></div>
-    <div class="modulo"><span><b>Módulo 5:</b> Projeto Final - Rede de Empresa</span><span>0%</span></div>
+<footer>© 2026 PONGOLO TECH - Curso de Packet Tracer 👽 | Montepuez - Cabo Delgado</footer>
+
+<!-- LOGIN ADMIN -->
+<div class="modal" id="loginModal">
+  <div class="box">
+    <span class="close" onclick="closeModal('loginModal')">×</span>
+    <h2>Admin 👽 Login</h2>
+    <p class="small">Área restrita. Só o Admin tem acesso.</p>
+    <input type="password" id="senhaAdmin" placeholder="Digite a senha de Admin">
+    <button class="btn" style="width:100%" onclick="fazerLogin()">Entrar como Admin 👽</button>
+    <p class="small" id="erroLogin" style="color:#f87171;margin-top:8px"></p>
+    <p class="small">Dica para teste: a senha é a que você definiu.</p>
   </div>
 </div>
 
-<div class="wrap" id="cursos" style="display:none">
-  <h2>Meus Cursos</h2>
-  <div class="card">
-    <span class="badge">PACKET TRACER</span>
-    <h3>Curso de Packet Tracer para Iniciantes</h3>
-    <p>Aprende do zero a criar redes, configurar switches, routers, VLANs e Spanning Tree, mesmo sem experiência.</p>
-    <br>
-    <p><b>Aula atual:</b> 1.2 - Como instalar o Packet Tracer</p>
-    <div class="bar bar2"><i></i></div>
-    <button class="btn" onclick="alert('Próxima aula: Como instalar o Packet Tracer - Vamos fazer no passo B!')">Continuar Aula</button>
+<!-- PAINEL ADMIN -->
+<div class="modal" id="adminModal">
+  <div class="box" style="max-width:650px;max-height:90vh;overflow:auto">
+    <span class="close" onclick="closeModal('adminModal')">×</span>
+    <h2>👽 Painel do Admin <span class="admin-badge">ADMIN ATIVO</span></h2>
+    <p class="small">Bem-vindo, Admin. Aqui você controla tudo.</p>
+    <hr style="margin:12px 0;border-color:#334155">
+    <h3>➕ Adicionar Novo Curso</h3>
+    <input type="text" id="novoTitulo" placeholder="Ex: Curso de Packet Tracer Avançado">
+    <textarea id="novoDesc" placeholder="Descrição do curso..."></textarea>
+    <input type="number" id="novoPreco" placeholder="Preço em MZN ex: 1500">
+    <button class="btn" style="width:100%" onclick="adicionarCurso()">Adicionar Curso</button>
+
+    <h3 style="margin-top:20px">📋 Meus Cursos</h3>
+    <div id="listaAdmin"></div>
+
+    <h3 style="margin-top:20px">🧑‍🎓 Alunos Inscritos (<span id="totalAlunos">0</span>)</h3>
+    <div id="listaAlunos"></div>
+    <button class="btn" style="width:100%;background:#ef4444;margin-top:15px" onclick="sairAdmin()">Sair do Admin</button>
   </div>
 </div>
 
-<div class="wrap" id="notas" style="display:none">
-  <h2>Minhas Notas</h2>
-  <div class="card"><p>📝 Ainda não tens notas. Quando completares um teste, a tua nota aparece aqui.</p></div>
+<!-- INSCREVER -->
+<div class="modal" id="inscreverModal">
+  <div class="box">
+    <span class="close" onclick="closeModal('inscreverModal')">×</span>
+    <h2>Inscrever-se no Curso 🚀</h2>
+    <input type="text" id="nomeAluno" placeholder="Seu nome completo">
+    <input type="text" id="telAluno" placeholder="Seu WhatsApp / Telefone">
+    <select id="cursoEscolhido"></select>
+    <button class="btn" style="width:100%" onclick="inscrever()">Confirmar Inscrição</button>
+    <p class="small" id="msgInscricao" style="color:#4ade80;margin-top:8px"></p>
+  </div>
 </div>
-
-<div class="wrap" id="calendario" style="display:none">
-  <h2>Calendário</h2>
-  <div class="card"><p>📅 Sexta-feira: Aula de Packet Tracer - VLANs<br>📅 Sábado: Revisão + Prática<br>📅 Domingo: Projeto Final</p></div>
-</div>
-
-<footer>© 2026 Adriano Naulangue • Feito em Gurué, Moçambique • Todos os direitos reservados</footer>
 
 <script>
-function mostrar(id){
-  ['painel','cursos','notas','calendario'].forEach(x=>document.getElementById(x).style.display='none');
-  document.getElementById(id).style.display='block';
-  window.scrollTo(0,0);
+// ===== CONFIGURAÇÃO =====
+const SENHA_ADMIN = "naulangue";
+
+// Cursos padrão
+let cursos = JSON.parse(localStorage.getItem("cursos_pt")) || [
+  {titulo:"Curso de Packet Tracer - Básico", desc:"IP, ICMP, TCP/UDP, Criação de redes simples, Simulação.", preco:1000},
+  {titulo:"Curso de Packet Tracer - Avançado", desc:"Roteamento, Switching, VLANs, Configuração de Redes, Testes.", preco:1800},
+  {titulo:"Curso Completo + Certificado", desc:"Do básico ao avançado + laboratório prático + certificado.", preco:2500}
+];
+let alunos = JSON.parse(localStorage.getItem("alunos_pt")) || [];
+
+function salvar(){
+  localStorage.setItem("cursos_pt", JSON.stringify(cursos));
+  localStorage.setItem("alunos_pt", JSON.stringify(alunos));
 }
+
+function renderCursos(){
+  const grid = document.getElementById("cursosGrid");
+  const sel = document.getElementById("cursoEscolhido");
+  grid.innerHTML=""; sel.innerHTML="";
+  document.getElementById("countCursos").textContent = `(${cursos.length})`;
+  cursos.forEach((c,i)=>{
+    grid.innerHTML += `
+    <div class="card">
+      <h3>${c.titulo}</h3>
+      <p>${c.desc}</p>
+      <div class="price">${c.preco} MZN</div>
+      <button class="btn" style="width:100%" onclick="abrirInscricao(${i})">Inscrever-se</button>
+    </div>`;
+    sel.innerHTML += `<option value="${i}">${c.titulo} - ${c.preco} MZN</option>`;
+  });
+  // Admin list
+  const la = document.getElementById("listaAdmin");
+  if(la){
+    la.innerHTML = cursos.map((c,i)=>`
+      <div class="list-item"><div><b>${c.titulo}</b><br><span class="small">${c.preco} MZN</span></div>
+      <button onclick="removerCurso(${i})" style="background:#ef4444;border:none;color:#fff;padding:8px 12px;border-radius:10px;cursor:pointer">Apagar</button></div>
+    `).join("") || "<p class='small'>Nenhum curso.</p>";
+  }
+  const lal = document.getElementById("listaAlunos");
+  if(lal){
+    document.getElementById("totalAlunos").textContent = alunos.length;
+    lal.innerHTML = alunos.map((a,i)=>`
+      <div class="list-item"><div><b>${a.nome}</b><br><span class="small">${a.tel} • ${cursos[a.curso]?.titulo || 'Curso'}</span></div>
+      <button onclick="removerAluno(${i})" style="background:#ef4444;border:none;color:#fff;padding:8px 12px;border-radius:10px;cursor:pointer">X</button></div>
+    `).join("") || "<p class='small'>Nenhum aluno ainda.</p>";
+  }
+}
+
+function openModal(id){ document.getElementById(id).classList.add("active"); }
+function closeModal(id){ document.getElementById(id).classList.remove("active"); }
+
+function fazerLogin(){
+  const s = document.getElementById("senhaAdmin").value.trim();
+  if(s === SENHA_ADMIN){
+    closeModal('loginModal');
+    openModal('adminModal');
+    document.getElementById("erroLogin").textContent="";
+    document.getElementById("senhaAdmin").value="";
+    renderCursos();
+  } else {
+    document.getElementById("erroLogin").textContent="❌ Senha errada, Admin 👽. Tenta de novo.";
+  }
+}
+
+function sairAdmin(){ closeModal('adminModal'); alert("Saiu do Admin 👽"); }
+
+function adicionarCurso(){
+  const t=document.getElementById("novoTitulo").value;
+  const d=document.getElementById("novoDesc").value;
+  const p=document.getElementById("novoPreco").value;
+  if(!t || !p) return alert("Preencha título e preço!");
+  cursos.push({titulo:t, desc:d||"Curso de Redes - Packet Tracer", preco:Number(p)});
+  salvar(); renderCursos();
+  document.getElementById("novoTitulo").value=""; document.getElementById("novoDesc").value=""; document.getElementById("novoPreco").value="";
+  alert("Curso adicionado com sucesso 👽");
+}
+function removerCurso(i){ if(confirm("Apagar este curso?")){ cursos.splice(i,1); salvar(); renderCursos(); } }
+function removerAluno(i){ alunos.splice(i,1); salvar(); renderCursos(); }
+
+function abrirInscricao(i){ document.getElementById("cursoEscolhido").value=i; openModal('inscreverModal'); }
+function inscrever(){
+  const nome=document.getElementById("nomeAluno").value;
+  const tel=document.getElementById("telAluno").value;
+  const curso=document.getElementById("cursoEscolhido").value;
+  if(!nome || !tel) return alert("Preencha nome e telefone!");
+  alunos.push({nome, tel, curso:Number(curso)});
+  salvar(); renderCursos();
+  document.getElementById("msgInscricao").textContent="✅ Inscrição feita! Entraremos em contacto, "+nome+" 👽";
+  document.getElementById("nomeAluno").value=""; document.getElementById("telAluno").value="";
+}
+renderCursos();
 </script>
 </body>
 </html>
