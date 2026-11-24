@@ -1,207 +1,92 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NAULANGUE TECH 👽 | Packet Tracer</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#102a56">
+<title>Naulangue Tech | Learn English. Build Your Future.</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#020617;color:#fff;overflow-x:hidden}
-/* TOPO - AQUI SIM TEM IMAGEM */
-header{
-  background:linear-gradient(rgba(2,6,23,.72),rgba(2,6,23,.82)),url('https://i.postimg.cc/hGTwL7Kv/IMG-20261111-WA0351.jpg') center/cover no-repeat;
-  padding:14px 12px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;
-  min-height:78px;border-bottom:3px solid #0ea5e9;
-}
-.left-top{display:flex;align-items:center;gap:12px}
-.hamburger{font-size:26px;cursor:pointer;background:rgba(0,0,0,.45);padding:6px 11px;border-radius:10px;border:1px solid #fff}
-.logo{font-size:22px;font-weight:900;line-height:1;text-shadow:0 2px 8px #000}
-.logo span{color:#38bdf8}
-.top-right{display:flex;flex-direction:column;gap:6px;align-items:flex-end}
-.btn-admin{background:rgba(0,0,0,.45);border:1.2px solid #fff;color:#fff;padding:3px 9px;border-radius:20px;cursor:pointer;font-size:10px}
-.btn-inscrever{background:#0ea5e9;border:none;color:#fff;padding:9px 15px;border-radius:20px;cursor:pointer;font-weight:bold;font-size:13px}
-.btn{border:none;color:#fff;padding:12px 20px;border-radius:20px;cursor:pointer;font-weight:bold;background:#0ea5e9}
-.btn-red{background:#ef4444}.btn-green{background:#22c55e}.btn-orange{background:#f59e0b}
-#sidebar{position:fixed;top:0;left:-320px;width:300px;height:100%;background:#0f172a;z-index:999;transition:.3s;padding:20px;border-right:3px solid #0ea5e9;overflow-y:auto}
-#sidebar.open{left:0}
-#sidebar h3{color:#38bdf8;margin-bottom:12px}
-.fechar{float:right;cursor:pointer;font-size:26px}
-.menu-item{display:block;background:#1e293b;padding:13px;border-radius:12px;margin-bottom:9px;color:#fff;text-decoration:none;font-weight:bold;cursor:pointer;border-left:4px solid #0ea5e9}
-.menu-item small{display:block;color:#94a3b8;font-weight:normal;font-size:12px;margin-top:3px}
-.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:998}
-.overlay.show{display:block}
-.page{display:none;padding:18px}.page.active{display:block}
-/* HERO SEM IMAGEM - SÓ COR LIMPA */
-.hero{min-height:460px;background:linear-gradient(180deg,#0b2a4a,#020617);padding:50px 18px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:0 0 20px 20px;border-bottom:2px solid #0ea5e9}
-.hero h2{font-size:38px;line-height:1.05;text-transform:uppercase}.hero h2 b{color:#38bdf8}
-.hero p{margin:15px auto;max-width:600px;color:#e2e8f0;line-height:1.5}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;padding:15px 0}
-.card{background:#0f172a;border:1px solid #1e293b;padding:20px;border-radius:16px}
-.card h3{color:#38bdf8;margin-bottom:8px}.card p{color:#cbd5e1;font-size:14px;line-height:1.5}
-.price{font-size:24px;font-weight:bold;margin:12px 0;color:#22c55e}
-.info-box{background:#0f172a;border:1px solid #1e293b;padding:22px;border-radius:16px;margin:12px 0;line-height:1.7}
-.info-box h3{color:#38bdf8;margin-bottom:8px}
-.post-card{background:#0f172a;border:1px solid #334155;border-radius:16px;overflow:hidden;margin:12px 0}
-.post-card img{width:100%;max-height:320px;object-fit:cover;display:block}
-.post-card div{padding:16px}.post-card h3{color:#38bdf8}.post-card p{color:#cbd5e1;margin-top:6px;line-height:1.5}
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);justify-content:center;align-items:center;z-index:1000;padding:15px}
-.modal.active{display:flex}
-.box{background:#0f172a;width:100%;max-width:520px;padding:25px;border-radius:18px;border:2px solid #0ea5e9;max-height:92vh;overflow:auto}
-.box input,.box textarea,.box select{width:100%;padding:12px;border-radius:10px;border:none;margin:8px 0;background:#1e293b;color:#fff}
-.box textarea{height:90px}.close{float:right;cursor:pointer;font-size:22px}
-.list-item{background:#1e293b;padding:12px;border-radius:12px;margin:8px 0;display:flex;justify-content:space-between;align-items:center;gap:8px}
-.small{font-size:13px;color:#94a3b8}
-footer{text-align:center;padding:20px;color:#64748b}
-.back{margin-bottom:12px;background:#1e293b}
-input[type=file]{background:#1e293b;padding:10px}
-.preview{width:100%;border-radius:12px;margin-top:8px;display:none}
-.admin-section{background:#1e293b;padding:15px;border-radius:14px;margin:12px 0;border:1px dashed #0ea5e9}
+:root{--navy:#102a56;--blue:#2563eb;--gold:#d6a83d;--ink:#17243b;--muted:#64748b;--bg:#f4f7fb;--card:#fff;--line:#e5eaf2;--green:#16834a;--shadow:0 14px 40px rgba(16,42,86,.09)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}button,input,textarea,select{font:inherit}button{cursor:pointer}.hidden{display:none!important}.topbar{height:70px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:14px;padding:0 22px;position:sticky;top:0;z-index:20}.hamb{border:0;background:#eef3fb;border-radius:12px;width:42px;height:42px;font-size:23px;color:var(--navy)}.brand{display:flex;align-items:center;gap:10px;min-width:0}.logo{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--navy),var(--blue));color:white;display:grid;place-items:center;font-weight:900;letter-spacing:-1px;user-select:none}.brandname{font-weight:900;color:var(--navy);letter-spacing:.3px;font-size:17px}.tagline{font-size:11px;color:var(--muted);margin-top:-3px}.top-spacer{flex:1}.top-actions{display:flex;gap:8px;align-items:center}.btn{border:0;border-radius:11px;padding:10px 15px;font-weight:750}.btn-primary{background:var(--blue);color:#fff}.btn-dark{background:var(--navy);color:#fff}.btn-light{background:#eef3fb;color:var(--navy)}.btn-outline{background:#fff;border:1px solid var(--line);color:var(--navy)}.btn-gold{background:var(--gold);color:#17243b}.layout{display:flex;min-height:calc(100vh - 70px)}.sidebar{width:270px;background:#fff;border-right:1px solid var(--line);padding:18px 13px;flex-shrink:0;transition:.2s;overflow:auto}.sidebar.closed{width:0;padding-left:0;padding-right:0;overflow:hidden;border:0}.side-label{font-size:10px;color:#94a3b8;font-weight:900;letter-spacing:1.3px;padding:12px 12px 6px}.navbtn,.navgroup{width:100%;display:flex;align-items:center;gap:10px;text-align:left;border:0;background:transparent;color:#334155;padding:11px 12px;border-radius:10px;font-weight:700}.navbtn:hover,.navgroup:hover,.navbtn.active{background:#eef4ff;color:var(--blue)}.navgroup{justify-content:space-between;color:var(--navy)}.navgroup span:first-child{display:flex;gap:9px;align-items:center}.subnav{padding-left:13px;display:grid;gap:3px}.subnav .navbtn{font-size:13px;padding:9px 12px}.main{flex:1;min-width:0;padding:26px;max-width:1500px;margin:0 auto}.hero{background:linear-gradient(120deg,#102a56,#1e55a5 70%,#3677d8);color:#fff;border-radius:24px;padding:36px;display:grid;grid-template-columns:1.3fr .7fr;gap:25px;align-items:center;box-shadow:var(--shadow);overflow:hidden;position:relative}.eyebrow{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#f4d98d;font-weight:900}.hero h1{font-size:clamp(30px,4vw,48px);line-height:1.08;margin:10px 0}.hero p{color:#dbeafe;max-width:600px}.hero-art{min-height:190px;border:1px solid #ffffff35;border-radius:20px;background:linear-gradient(145deg,#ffffff20,#ffffff08);display:grid;place-items:center;font-size:76px}.section-head{display:flex;align-items:end;justify-content:space-between;gap:15px;margin:28px 0 14px}.section-head h2{margin:0;color:var(--navy);font-size:22px}.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.card{background:var(--card);border:1px solid var(--line);border-radius:17px;padding:18px;box-shadow:0 5px 20px rgba(16,42,86,.035)}.post-card{padding:0;overflow:hidden;cursor:pointer;transition:.18s}.post-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}.post-img{height:150px;background:linear-gradient(135deg,#dbeafe,#eff6ff);display:grid;place-items:center;font-size:50px;color:var(--navy)}.post-body{padding:16px}.post-body h3{margin:0 0 6px}.pill{display:inline-flex;padding:4px 9px;border-radius:999px;background:#eaf1ff;color:#1d4ed8;font-size:11px;font-weight:800}.course-card{display:flex;flex-direction:column;gap:9px}.course-icon{width:48px;height:48px;border-radius:14px;background:#edf3ff;display:grid;place-items:center;font-size:25px}.price{font-size:24px;font-weight:900;color:var(--green)}.course-card p{margin:0;color:var(--muted);font-size:13px;flex:1}.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.stat{padding:17px;border-radius:16px;background:#fff;border:1px solid var(--line)}.stat strong{display:block;font-size:27px;color:var(--navy)}.progress{height:10px;background:#e8edf5;border-radius:99px;overflow:hidden}.progress span{display:block;height:100%;background:#16a34a;border-radius:99px}.page-title{margin:0 0 6px;color:var(--navy);font-size:27px}.page-desc{color:var(--muted);margin:0 0 20px}.form-card{max-width:620px;margin:10px auto;background:#fff;border:1px solid var(--line);border-radius:20px;padding:25px;box-shadow:var(--shadow)}.field{display:grid;gap:6px;margin:12px 0}.field label{font-weight:750;font-size:13px}.field input,.field textarea,.field select,.input{width:100%;padding:12px 13px;border:1px solid #dbe2ed;border-radius:10px;background:#fff;color:var(--ink);outline:none}.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--blue);box-shadow:0 0 0 3px #2563eb18}.field textarea{min-height:100px;resize:vertical}.social{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-top:12px}.social button{border:1px solid var(--line);background:#fff;border-radius:10px;padding:11px;font-weight:750;color:var(--navy)}.notice{padding:12px 14px;border-radius:11px;background:#fff8e6;color:#805b08;font-size:13px;margin:12px 0}.success{background:#eaf8ef;color:#166534}.danger{background:#fff0f0;color:#a11}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}.table{width:100%;border-collapse:collapse}.table td,.table th{text-align:left;padding:11px;border-bottom:1px solid var(--line);font-size:13px}.table th{color:var(--muted)}.admin-layout{display:grid;grid-template-columns:220px 1fr;gap:16px}.admin-menu{background:var(--navy);color:white;border-radius:16px;padding:14px}.admin-menu button{display:block;width:100%;text-align:left;border:0;background:transparent;color:#dbeafe;padding:10px;border-radius:9px}.admin-menu button:hover{background:#ffffff18}.admin-content{min-width:0}.question{padding:16px;border:1px solid var(--line);border-radius:13px;margin:12px 0;background:#fff}.question input{margin-top:9px}.post-detail-img{height:260px;border-radius:17px;background:linear-gradient(135deg,#dbeafe,#eff6ff);display:grid;place-items:center;font-size:90px}.footer{text-align:center;padding:30px;color:#8190a5;font-size:12px}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#142d53;color:white;padding:12px 18px;border-radius:12px;z-index:60;box-shadow:var(--shadow)}.mobile-backdrop{display:none}
+@media(max-width:900px){.sidebar{position:fixed;z-index:30;top:70px;bottom:0;left:0;box-shadow:var(--shadow)}.sidebar.closed{width:0}.mobile-backdrop.show{display:block;position:fixed;inset:70px 0 0;background:#0b1e3880;z-index:25}.main{padding:18px}.hero{grid-template-columns:1fr;padding:26px}.hero-art{display:none}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.stat-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.topbar{padding:0 12px}.brandname{font-size:14px}.tagline{display:none}.top-actions .btn{padding:8px 10px;font-size:12px}.main{padding:14px}.hero{padding:23px;border-radius:18px}.grid,.two-col{grid-template-columns:1fr}.stat-grid{grid-template-columns:repeat(2,1fr)}.admin-layout{grid-template-columns:1fr}.admin-menu{display:grid;grid-template-columns:repeat(2,1fr)}.section-head{align-items:start;flex-direction:column}}
 </style>
 </head>
 <body>
-
-<div class="overlay" id="overlay" onclick="fecharMenu()"></div>
-<div id="sidebar">
-<span class="fechar" onclick="fecharMenu()">×</span>
-<h3>👽 MENU - 10 OPÇÕES</h3>
-<a class="menu-item" onclick="showPage('home')">🏠 1. Início<small>Voltar para capa</small></a>
-<a class="menu-item" onclick="showPage('p1')">❓ 2. O que é Packet Tracer?<small>O que é, para que serve</small></a>
-<a class="menu-item" onclick="showPage('p2')">📚 3. O que vais aprender<small>Matérias do curso</small></a>
-<a class="menu-item" onclick="showPage('p3')">👨‍💻 4. O que vais ser depois<small>Profissão e futuro</small></a>
-<a class="menu-item" onclick="showPage('p4')">⚙️ 5. Como funciona<small>Aulas, duração, certificado</small></a>
-<a class="menu-item" onclick="showPage('p5')">🛜 6. Redes e Protocolos<small>IP, TCP, VLANs, Roteamento</small></a>
-<a class="menu-item" onclick="showPage('p6')">💰 7. Preços e Pacotes<small>Ver cursos e preços</small></a>
-<a class="menu-item" onclick="showPage('p7')">🖼️ 8. Fotos e Novidades<small>Publicações do Admin</small></a>
-<a class="menu-item" onclick="showPage('p8')">⭐ 9. Depoimentos<small>O que dizem os alunos</small></a>
-<a class="menu-item" onclick="showPage('p9')">📞 10. Contacto e Inscrição<small>Fala connosco, inscreve-te</small></a>
-<button class="btn" style="width:100%;margin-top:8px" onclick="fecharMenu();openModal('inscreverModal')">Inscrever-se 🚀</button>
-</div>
-
-<header id="headerBg">
-<div class="left-top"><div class="hamburger" onclick="abrirMenu()">☰</div><div class="logo">NAULANGUE<br><span>TECH</span></div></div>
-<div class="top-right">
-<button class="btn-admin" onclick="openModal('loginModal')">Admin 👽</button>
-<button class="btn-inscrever" onclick="openModal('inscreverModal')">Inscrever-se</button>
-</div>
+<header class="topbar">
+<button class="hamb" id="hamb" aria-label="Abrir menu">☰</button>
+<div class="brand"><div class="logo" id="logo" title="Naulangue Tech">NT</div><div><div class="brandname">NAULANGUE TECH</div><div class="tagline">Learn English. Build Your Future.</div></div></div>
+<div class="top-spacer"></div>
+<div class="top-actions"><button class="btn btn-outline" onclick="showPage('login')">Entrar</button><button class="btn btn-primary" onclick="showPage('register')">Criar conta</button></div>
 </header>
-
-<div class="page active" id="home">
-<div class="hero" id="heroBg">
-<h2>CURSO DE <b>PACKET<br>TRACER</b><br>DO BÁSICO AO<br>AVANÇADO</h2>
-<p>Redes, Roteamento, Switching, IP, ICMP, TCP/UDP, VLANs, Simulação e Testes. Aprenda na prática com laboratório real.</p>
-<button class="btn" onclick="openModal('inscreverModal')">QUERO APRENDER AGORA 🚀</button>
+<div class="mobile-backdrop" id="backdrop" onclick="toggleMenu()"></div>
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+<div class="side-label">NAVEGAÇÃO</div>
+<button class="navbtn active" data-page="home" onclick="showPage('home')">🏠 Painel geral</button>
+<div class="side-label">APRENDER INGLÊS</div>
+<button class="navgroup" onclick="toggleGroup('beginner')"><span>⭐ INICIANTE</span><span id="arr-beginner">▼</span></button>
+<div class="subnav" id="beginner"><button class="navbtn" onclick="showPage('lesson','Alfabeto')">🔤 Alfabeto</button><button class="navbtn" onclick="showPage('lesson','Números')">🔢 Números</button><button class="navbtn" onclick="showPage('lesson','Diálogo')">💬 Diálogo</button><button class="navbtn" onclick="showPage('lesson','Verbos')">📖 Verbos</button></div>
+<button class="navgroup" onclick="toggleGroup('courses')"><span>📚 CURSOS</span><span id="arr-courses">▼</span></button>
+<div class="subnav" id="courses"><button class="navbtn" onclick="showPage('course','Básico')">📗 Básico – 10 MT</button><button class="navbtn" onclick="showPage('course','Intermediário')">📘 Intermediário – 20 MT</button><button class="navbtn" onclick="showPage('course','Médio')">📙 Médio – 30 MT</button><button class="navbtn" onclick="showPage('course','Avançado')">📕 Avançado – 40 MT</button><button class="navbtn" onclick="showPage('allcourses')">📚 Todos os Cursos</button></div>
+<button class="navgroup" onclick="toggleGroup('tasks')"><span>📝 ÁREA DE TAREFAS</span><span>▼</span></button>
+<div class="subnav" id="tasks"><button class="navbtn" onclick="showPage('practice')">Aula prática</button><button class="navbtn" onclick="showPage('tests')">Testes</button><button class="navbtn" onclick="showPage('results')">Resultados</button></div>
+<button class="navgroup" onclick="toggleGroup('publicity')"><span>📢 PUBLICIDADE</span><span>▼</span></button>
+<div class="subnav" id="publicity"><button class="navbtn" onclick="showPage('category','Novidades')">Novidades / Fotos</button><button class="navbtn" onclick="showPage('category','Frases do dia a dia')">Frases do dia a dia</button></div>
+<button class="navgroup" onclick="toggleGroup('learn')"><span>📖 APRENDER</span><span>▼</span></button>
+<div class="subnav" id="learn"><button class="navbtn" onclick="showPage('lesson','O que é inglês?')">O que é inglês?</button><button class="navbtn" onclick="showPage('lesson','O que vais aprender?')">O que vais aprender?</button><button class="navbtn" onclick="showPage('lesson','Sala de aula')">Sala de aula</button></div>
+<button class="navgroup" onclick="toggleGroup('help')"><span>💬 AJUDA</span><span>▼</span></button>
+<div class="subnav" id="help"><button class="navbtn" onclick="showPage('comments')">Comentários</button><button class="navbtn" onclick="showPage('messages')">Conversas</button><button class="navbtn" onclick="showPage('profile')">Meu perfil</button></div>
+<button class="navbtn" onclick="showPage('progress')">📊 Meu progresso</button>
+</aside>
+<main class="main" id="main"></main>
 </div>
-<div class="info-box"><h3>👽 Bem-vindo à NAULANGUE TECH</h3><p>Clica nas <b>3 barrinhas ☰</b> no canto esquerdo para ver as 10 opções. Cada uma abre a sua página.</p></div>
-<h3 style="margin:10px 0">🖼️ Últimas Publicações do Admin</h3>
-<div id="postsHome"></div>
-</div>
-
-<div class="page" id="p1"><button class="btn back" onclick="showPage('home')">← Voltar</button><div class="info-box"><h3>❓ O que é Packet Tracer?</h3><p>Packet Tracer é o programa da Cisco para criar, simular e testar redes de computadores sem precisar de equipamentos caros.</p></div></div>
-<div class="page" id="p2"><button class="btn back" onclick="showPage('home')">← Voltar</button><div class="info-box"><h3>📚 O que vais aprender</h3><p>✅ IPv4<br>✅ IP, ICMP, TCP/UDP<br>✅ Roteamento & Switching<br>✅ VLANs<br>✅ Configuração de Redes<br>✅ Simulação e Testes</p></div></div>
-<div class="page" id="p3"><button class="btn back" onclick="showPage('home')">← Voltar</button><div class="info-box"><h3>👨‍💻 O que vais ser depois</h3><p>🔹 Técnico de Redes<br>🔹 Suporte Informático<br>🔹 Montador de Redes<br>🔹 Freelancer</p></div></div>
-<div class="page" id="p4"><button class="btn back" onclick="showPage('home')">← Voltar</button><div class="info-box"><h3>⚙️ Como funciona</h3><p>📚 Aulas práticas<br>🖥️ Laboratório no Packet Tracer<br>📜 Certificado<br>📍 Montepuez / Online<br>💬 Suporte no WhatsApp</p></div></div>
-<div class="page" id="p5"><button class="btn back" onclick="showPage('home')">← Voltar</button><div class="info-box"><h3>🛜 Redes e Protocolos</h3><p><b>IP:</b> Endereço de cada aparelho.<br><b>TCP/UDP:</b> Como os dados viajam.<br><b>ICMP:</b> Teste de ligação (ping).<br><b>VLAN:</b> Separar redes.<br><b>Roteamento:</b> Redes falarem entre si.</p></div></div>
-<div class="page" id="p6"><button class="btn back" onclick="showPage('home')">← Voltar</button><h3>💰 Preços e Pacotes</h3><div class="grid" id="cursosGrid"></div></div>
-<div class="page" id="p7"><button class="btn back" onclick="showPage('home')">← Voltar</button><h3>🖼️ Fotos e Novidades</h3><div id="postsPage"></div></div>
-<div class="page" id="p8"><button class="btn back" onclick="showPage('home')">← Voltar</button><div class="info-box"><h3>⭐ Depoimentos</h3><p>“Aprendi do zero e hoje já monto redes sozinho.” - Aluno<br>“O melhor curso de redes de Montepuez.” - Aluna</p></div></div>
-<div class="page" id="p9"><button class="btn back" onclick="showPage('home')">← Voltar</button><div class="info-box"><h3>📞 Contacto e Inscrição</h3><p>📍 Montepuez - Cabo Delgado<br>👽 NAULANGUE TECH - Packet Tracer</p><button class="btn" onclick="openModal('inscreverModal')">Inscrever-se Agora 🚀</button></div></div>
-
-<footer>© 2026 NAULANGUE TECH 👽 | Montepuez</footer>
-
-<div class="modal" id="loginModal"><div class="box"><span class="close" onclick="closeModal('loginModal')">×</span><h2>Admin 👽 Login</h2><input type="password" id="senhaAdmin" placeholder="Senha de Admin"><button class="btn" style="width:100%" onclick="fazerLogin()">Entrar 👽</button><p class="small" id="erroLogin" style="color:#f87171;margin-top:8px"></p></div></div>
-
-<div class="modal" id="adminModal"><div class="box" style="max-width:640px">
-<span class="close" onclick="closeModal('adminModal')">×</span>
-<h2>👽 Painel Admin - NAULANGUE TECH</h2>
-<div class="admin-section">
-<h3>🖼️ Mudar Foto do Topo</h3>
-<p class="small">Só muda a foto lá em cima, onde está NAULANGUE TECH. O fundo do curso fica limpo sem foto.</p>
-<label class="small">📷 Escolher foto:</label>
-<input type="file" id="bgFile" accept="image/*" onchange="previewBg(event)">
-<img id="previewBgImg" class="preview">
-<label class="small">Ou colar link:</label>
-<input type="text" id="bgLink" placeholder="https://...jpg">
-<button class="btn btn-orange" style="width:100%" onclick="mudarFundo()">✅ Aplicar no Topo</button>
-<button class="btn" style="width:100%;margin-top:8px;background:#334155" onclick="restaurarFundo()">↩️ Voltar para foto original</button>
-<p class="small" id="msgBg" style="color:#4ade80"></p>
-</div>
-<div class="admin-section">
-<h3>🖼️ + ✍️ Publicar Foto e Escrever</h3>
-<input type="text" id="postTitulo" placeholder="Título ex: Aula de hoje - VLANs">
-<textarea id="postTexto" placeholder="Escreve aqui..."></textarea>
-<label class="small">📷 Escolher foto:</label>
-<input type="file" id="postFotoFile" accept="image/*" onchange="previewFoto(event)">
-<img id="previewImg" class="preview">
-<label class="small">Ou colar link:</label>
-<input type="text" id="postFotoLink" placeholder="https://...jpg">
-<button class="btn btn-green" style="width:100%" onclick="publicarPost()">📤 Publicar Foto + Texto</button>
-<div id="listaPostsAdmin"></div>
-</div>
-<hr style="margin:18px 0;border-color:#334155">
-<h3>➕ Adicionar Curso</h3>
-<input type="text" id="novoTitulo" placeholder="Nome do curso">
-<textarea id="novoDesc" placeholder="Descrição..."></textarea>
-<input type="number" id="novoPreco" placeholder="Preço MZN">
-<button class="btn" style="width:100%" onclick="adicionarCurso()">Adicionar Curso</button>
-<h3 style="margin-top:18px">📋 Meus Cursos</h3><div id="listaAdmin"></div>
-<h3 style="margin-top:18px">🧑‍🎓 Alunos (<span id="totalAlunos">0</span>)</h3><div id="listaAlunos"></div>
-<button class="btn btn-red" style="width:100%;margin-top:15px" onclick="sairAdmin()">Sair do Admin</button>
-</div></div>
-
-<div class="modal" id="inscreverModal"><div class="box"><span class="close" onclick="closeModal('inscreverModal')">×</span><h2>Inscrever-se 🚀</h2><input type="text" id="nomeAluno" placeholder="Seu nome"><input type="text" id="telAluno" placeholder="Seu WhatsApp"><select id="cursoEscolhido"></select><button class="btn" style="width:100%" onclick="inscrever()">Confirmar Inscrição</button><p class="small" id="msgInscricao" style="color:#4ade80;margin-top:8px"></p></div></div>
-
-<script>
-const SENHA_ADMIN="naulangue";
-const FUNDO_PADRAO="https://i.postimg.cc/hGTwL7Kv/IMG-20261111-WA0351.jpg";
-let fotoTemp=""; let bgTemp="";
-let cursos=JSON.parse(localStorage.getItem("cursos_pt"))||[
-{titulo:"Curso de Packet Tracer - Básico",desc:"IP, ICMP, TCP/UDP, Redes simples.",preco:1000},
-{titulo:"Curso de Packet Tracer - Avançado",desc:"Roteamento, Switching, VLANs.",preco:1800},
-{titulo:"Curso Completo + Certificado",desc:"Do básico ao avançado + certificado.",preco:2500}];
-let alunos=JSON.parse(localStorage.getItem("alunos_pt"))||[];
-let posts=JSON.parse(localStorage.getItem("posts_pt"))||[
-{titulo:"Bem-vindo à NAULANGUE TECH 👽",texto:"Aqui vais aprender Packet Tracer do básico ao avançado. Clica no menu ☰ e explora as 10 opções!",foto:FUNDO_PADRAO}];
-let fundoAtual=localStorage.getItem("fundo_pt")||FUNDO_PADRAO;
-function salvar(){localStorage.setItem("cursos_pt",JSON.stringify(cursos));localStorage.setItem("alunos_pt",JSON.stringify(alunos));localStorage.setItem("posts_pt",JSON.stringify(posts));localStorage.setItem("fundo_pt",fundoAtual);}
-function aplicarFundo(){
-  const header=document.getElementById("headerBg");
-  if(header) header.style.background=`linear-gradient(rgba(2,6,23,.72),rgba(2,6,23,.82)),url('${fundoAtual}') center/cover no-repeat`;
-  // HERO FICA SEM IMAGEM - NÃO MUDA
+const courses=[{name:'Básico',price:10,icon:'📗',desc:'Vocabulário essencial, cumprimentos, frases simples e gramática inicial.'},{name:'Intermediário',price:20,icon:'📘',desc:'Conversação, tempos verbais, leitura e construção de frases.'},{name:'Médio',price:30,icon:'📙',desc:'Compreensão, escrita, gramática e comunicação em situações variadas.'},{name:'Avançado',price:40,icon:'📕',desc:'Fluência, expressão avançada, interpretação e comunicação profissional.'}];
+const seedPosts=[{id:1,title:'Bem-vindo à Naulangue Tech!',category:'Novidades',body:'Aprende inglês ao teu ritmo. Acompanha as novidades e prepara o teu futuro connosco.',emoji:'🌍',date:'Hoje'},{id:2,title:'Frases úteis para o dia a dia',category:'Frases do dia a dia',body:'Good morning — Bom dia. How are you? — Como estás? Thank you — Obrigado/a.',emoji:'💬',date:'Hoje'},{id:3,title:'Aprender inglês abre oportunidades',category:'Novidades',body:'A prática diária ajuda a desenvolver vocabulário, compreensão e confiança na comunicação.',emoji:'📚',date:'Hoje'}];
+let posts=JSON.parse(localStorage.getItem('nt_posts')||'null')||seedPosts;
+let user=JSON.parse(localStorage.getItem('nt_user')||'null');
+let unlocked=JSON.parse(localStorage.getItem('nt_unlocked')||'[]');
+let progress=JSON.parse(localStorage.getItem('nt_progress')||'{"lessons":[],"tests":[],"scores":[]}');
+let adminMode=false, currentPost=null, adminTab='overview', practiceAnswers={};
+const $=s=>document.querySelector(s);
+function save(){localStorage.setItem('nt_posts',JSON.stringify(posts));localStorage.setItem('nt_user',JSON.stringify(user));localStorage.setItem('nt_unlocked',JSON.stringify(unlocked));localStorage.setItem('nt_progress',JSON.stringify(progress))}
+function toast(s){let t=$('#toast');t.textContent=s;t.classList.remove('hidden');setTimeout(()=>t.classList.add('hidden'),2800)}
+function toggleMenu(){let side=$('#sidebar');side.classList.toggle('closed');$('#backdrop').classList.toggle('show',!side.classList.contains('closed'))}
+$('#hamb').onclick=toggleMenu;
+function toggleGroup(id){let el=document.getElementById(id);el.classList.toggle('hidden')}
+let taps=[],tapTimer;$('#logo').addEventListener('click',()=>{let now=Date.now();taps=taps.filter(t=>now-t<1500);taps.push(now);if(taps.length>=5){taps=[];showPage('adminLogin');}});
+function showPage(page,arg){if(innerWidth<900&&!$('#sidebar').classList.contains('closed'))toggleMenu();let main=$('#main');let pub=posts.slice().reverse();
+if(page==='home'){main.innerHTML=`<section class="hero"><div><div class="eyebrow">English learning platform</div><h1>Learn English.<br>Build Your Future.</h1><p>Aprende inglês com aulas, exercícios e conteúdos preparados para acompanhar o teu desenvolvimento.</p><button class="btn btn-gold" onclick="showPage('register')">Começar agora</button></div><div class="hero-art">🌍📚</div></section><div class="section-head"><div><h2>Novidades e publicações</h2><div class="muted">Conteúdos públicos para todos os visitantes</div></div><button class="btn btn-light" onclick="showPage('category','Novidades')">Ver todas</button></div><div class="grid">${pub.map(postCard).join('')}</div><div class="section-head"><div><h2>Frases do dia</h2><div class="muted">Aprende uma expressão nova</div></div></div><div class="grid">${pub.filter(p=>p.category==='Frases do dia a dia').map(postCard).join('')||'<div class="card">Em breve: novas frases.</div>'}</div><div class="section-head"><div><h2>Conhece os nossos cursos</h2><div class="muted">Cria uma conta para escolher e desbloquear um curso.</div></div></div><div class="grid">${courses.map(courseCard).join('')}</div>`}
+else if(page==='category'){let list=pub.filter(p=>p.category===arg||arg==='Novidades'&&p.category==='Novidades');main.innerHTML=`<h1 class="page-title">${esc(arg)}</h1><p class="page-desc">Publicações disponíveis para qualquer visitante.</p><div class="grid">${list.map(postCard).join('')||'<div class="card">Ainda não existem publicações nesta secção.</div>'}</div>`}
+else if(page==='post'){let p=posts.find(x=>x.id===arg);if(!p)return;currentPost=p.id;let related=posts.filter(x=>x.id!==p.id).slice(0,3);main.innerHTML=`<button class="btn btn-light" onclick="showPage('home')">← Voltar</button><div class="card" style="margin-top:14px"><div class="post-detail-img">${p.emoji||'📘'}</div><p class="pill">${esc(p.category)}</p><h1 class="page-title">${esc(p.title)}</h1><p class="muted">${esc(p.date||'')}</p><p>${esc(p.body)}</p>${(p.images||[]).map(x=>`<img src="${x}" alt="Imagem da publicação" style="max-width:100%;border-radius:12px;margin:8px">`).join('')}</div><div class="section-head"><h2>Outras matérias</h2></div><div class="grid">${related.map(postCard).join('')}</div>`}
+else if(page==='register'){main.innerHTML=`<div class="form-card"><h1 class="page-title">Criar conta</h1><p class="page-desc">Regista-te para aceder às aulas e acompanhar o teu progresso. Não precisas escolher um curso agora.</p><form onsubmit="register(event)"><div class="field"><label>Nome completo</label><input name="name" required autocomplete="name" placeholder="O teu nome completo"></div><div class="field"><label>Número de telefone</label><input name="phone" required type="tel" placeholder="+258 8XXXXXXXX"></div><div class="field"><label>E-mail</label><input name="email" required type="email" placeholder="nome@email.com"></div><div class="field"><label>Palavra-passe</label><input name="password" required type="password" minlength="8" placeholder="Mínimo de 8 caracteres"></div><div class="field"><label>Confirmar palavra-passe</label><input name="confirm" required type="password" minlength="8" placeholder="Repete a palavra-passe"></div><button class="btn btn-primary" style="width:100%">Criar conta</button></form><div class="notice">Demonstração local: o registo fica guardado apenas neste navegador. Para contas reais, ligaremos o Supabase.</div><div class="social"><button onclick="toast('Google será ligado através do Supabase Auth.')">G · Google</button><button onclick="toast('Facebook será ligado através do Supabase Auth.')">f · Facebook</button><button onclick="toast('Instagram requer integração OAuth personalizada.')">◎ Instagram</button></div><p class="muted">Já tens conta? <a href="#" onclick="showPage('login')">Entrar</a></p></div>`}
+else if(page==='login'){main.innerHTML=`<div class="form-card"><h1 class="page-title">Iniciar sessão</h1><p class="page-desc">Entra na tua conta Naulangue Tech.</p><form onsubmit="login(event)"><div class="field"><label>E-mail</label><input name="email" type="email" required></div><div class="field"><label>Palavra-passe</label><input name="password" type="password" required></div><button class="btn btn-primary" style="width:100%">Entrar</button></form><div class="social"><button onclick="toast('Google será ligado através do Supabase Auth.')">G · Google</button><button onclick="toast('Facebook será ligado através do Supabase Auth.')">f · Facebook</button><button onclick="toast('Instagram requer integração OAuth personalizada.')">◎ Instagram</button></div><p class="muted">Ainda não tens conta? <a href="#" onclick="showPage('register')">Criar conta</a></p></div>`}
+else if(page==='course'){let c=courses.find(x=>x.name===arg);main.innerHTML=`<h1 class="page-title">${c.icon} Curso ${c.name}</h1><p class="page-desc">${c.desc}</p><div class="card"><div class="price">${c.price} MT</div><p>O curso fica disponível depois da confirmação do pagamento e autorização de desbloqueio.</p><button class="btn btn-primary" onclick="startPayment('${c.name}')">Desbloquear curso</button></div>`}
+else if(page==='allcourses'){main.innerHTML=`<h1 class="page-title">Todos os cursos</h1><p class="page-desc">Escolhe um curso depois de criares a tua conta.</p><div class="grid">${courses.map(courseCard).join('')}</div>`}
+else if(page==='payment'){let c=courses.find(x=>x.name===arg);main.innerHTML=`<h1 class="page-title">Pagamento – ${c.name}</h1><p class="page-desc">Valor: <b>${c.price} MT</b></p><div class="two-col"><div class="card"><h3>M-Pesa</h3><h2>856 661 893</h2><p>Beneficiário: Adriano Naulange</p></div><div class="card"><h3>e-Mola</h3><h2>862 428 830</h2><p>Beneficiário: Adriano Naulange</p></div></div><div class="form-card" style="margin:16px 0"><div class="notice">A integração automática com carteiras móveis ainda precisa de credenciais oficiais de comerciante. Esta demonstração não efetua cobranças.</div><form onsubmit="paymentRequest(event,'${c.name}')"><div class="field"><label>Carteira utilizada</label><select name="wallet"><option>M-Pesa</option><option>e-Mola</option></select></div><div class="field"><label>Número usado no pagamento</label><input name="phone" required type="tel" placeholder="+258..."></div><div class="field"><label>Referência da transação (se disponível)</label><input name="ref" placeholder="Referência"></div><button class="btn btn-primary">Enviar pedido ao administrador</button></form></div>`}
+else if(page==='practice'||page==='tests'){let qs=page==='practice'?['Good morning.','How are you?','My name is John.','I am a student.','Thank you very much.','Good night.','I love English.','Where are you from?','See you tomorrow.','Welcome to school.']:['What is the English word for “casa”?','Translate: “I am happy.”','Choose the correct greeting: “Bom dia”.','What is the plural of “book”?','Translate: “Thank you”.','What does “teacher” mean?','Complete: I ___ a student.','Translate: “Good night”.','What is the opposite of “big”?','Translate: “See you soon”.'];main.innerHTML=`<h1 class="page-title">${page==='practice'?'Aula prática':'Testes'}</h1><p class="page-desc">Responde às 10 questões e submete para ver a correção.</p><form onsubmit="grade(event,'${page}')">${qs.map((q,i)=>`<div class="question"><b>${i+1}. ${q}</b><input class="input" name="a${i}" placeholder="${page==='practice'?'Escreve a tradução em português':'A tua resposta'}" required></div>`).join('')}<button class="btn btn-primary">Corrigir respostas</button></form>`}
+else if(page==='results'){main.innerHTML=`<h1 class="page-title">Resultados</h1><div class="card"><p>Testes realizados: <b>${progress.tests.length}</b></p>${progress.scores.map(s=>`<p>${esc(s.label)} — <b>${s.score}/10</b></p>`).join('')||'Ainda não existem resultados.'}</div>`}
+else if(page==='progress'){let pct=Math.min(100,Math.round((progress.lessons.length/12)*100));main.innerHTML=`<h1 class="page-title">Meu progresso</h1><p class="page-desc">Acompanha a tua evolução na aprendizagem.</p><div class="stat-grid"><div class="stat">📖<strong>${progress.lessons.length}</strong><span class="muted">Aulas concluídas</span></div><div class="stat">📝<strong>${progress.tests.length}</strong><span class="muted">Testes realizados</span></div><div class="stat">⭐<strong>${progress.scores.length?progress.scores[progress.scores.length-1].score+'/10':'—'}</strong><span class="muted">Última nota</span></div><div class="stat">📚<strong>${unlocked.length}</strong><span class="muted">Cursos desbloqueados</span></div></div><div class="card" style="margin-top:16px"><b>Progresso de aprendizagem</b><h2>${pct}%</h2><div class="progress"><span style="width:${pct}%"></span></div><p class="muted">O progresso será atualizado conforme concluis aulas e atividades.</p></div><div class="card" style="margin-top:16px"><b>Cursos em andamento</b><p>${unlocked.join(', ')||'Ainda não tens cursos desbloqueados.'}</p></div>`}
+else if(page==='lesson'){main.innerHTML=`<h1 class="page-title">${esc(arg)}</h1><div class="card"><p>Conteúdo de aprendizagem: ${esc(arg)}.</p><p>As aulas e materiais completos serão publicados pelo administrador.</p>${user?'<button class="btn btn-primary" onclick="completeLesson(\\''+esc(arg)+'\\')">Marcar aula como concluída</button>':'<button class="btn btn-primary" onclick="showPage(\\'register\\')">Criar conta para continuar</button>'}</div>`}
+else if(page==='comments'||page==='messages'||page==='profile'){if(!user){main.innerHTML=`<div class="card"><h2>Área reservada</h2><p>Cria uma conta ou inicia sessão para aceder a esta área.</p><button class="btn btn-primary" onclick="showPage('login')">Entrar</button></div>`}else if(page==='profile'){main.innerHTML=`<h1 class="page-title">Meu perfil</h1><div class="card"><p><b>Nome:</b> ${esc(user.name)}</p><p><b>Telefone:</b> ${esc(user.phone)}</p><p><b>E-mail:</b> ${esc(user.email)}</p><button class="btn btn-outline" onclick="logout()">Terminar sessão</button></div>`}else{main.innerHTML=`<h1 class="page-title">${page==='comments'?'Comentários':'Conversas'}</h1><div class="card"><p>Esta área estará disponível para estudantes autenticados.</p><textarea class="input" placeholder="Escreve aqui..." id="comment"></textarea><button class="btn btn-primary" onclick="toast('Mensagem registada nesta demonstração.')">Enviar</button></div>`}}
+else if(page==='adminLogin'){main.innerHTML=`<div class="form-card"><h1 class="page-title">Acesso administrativo</h1><p class="page-desc">Área reservada à equipa Naulangue Tech.</p><form onsubmit="adminLogin(event)"><div class="field"><label>E-mail administrativo</label><input name="email" type="email" required></div><div class="field"><label>Palavra-passe</label><input name="password" type="password" required></div><button class="btn btn-dark" style="width:100%">Entrar no painel</button></form><div class="notice">A autenticação real do administrador será configurada no Supabase. Não coloque credenciais privadas no HTML.</div></div>`}
+else if(page==='admin'){renderAdmin()}
+else{main.innerHTML='<div class="card">Página em preparação.</div>'}
 }
-function previewBg(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=function(ev){bgTemp=ev.target.result;const im=document.getElementById("previewBgImg");im.src=bgTemp;im.style.display="block";};r.readAsDataURL(f);}
-function mudarFundo(){const link=document.getElementById("bgLink").value.trim();const novo=bgTemp||link;if(!novo) return alert("Escolhe uma foto ou cola um link primeiro!");fundoAtual=novo;salvar();aplicarFundo();document.getElementById("msgBg").textContent="✅ Foto do topo mudada!";document.getElementById("bgLink").value="";bgTemp="";document.getElementById("previewBgImg").style.display="none";}
-function restaurarFundo(){fundoAtual=FUNDO_PADRAO;salvar();aplicarFundo();document.getElementById("msgBg").textContent="↩️ Voltou para a foto original.";}
-function abrirMenu(){document.getElementById("sidebar").classList.add("open");document.getElementById("overlay").classList.add("show");}
-function fecharMenu(){document.getElementById("sidebar").classList.remove("open");document.getElementById("overlay").classList.remove("show");}
-function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');fecharMenu();window.scrollTo({top:0,behavior:'smooth'});renderAll();}
-function previewFoto(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=function(ev){fotoTemp=ev.target.result;const im=document.getElementById("previewImg");im.src=fotoTemp;im.style.display="block";};r.readAsDataURL(f);}
-function publicarPost(){const t=document.getElementById("postTitulo").value;const txt=document.getElementById("postTexto").value;const link=document.getElementById("postFotoLink").value;const foto=fotoTemp||link||fundoAtual;if(!t&&!txt)return alert("Escreve título ou texto!");posts.unshift({titulo:t||"Novidade 👽",texto:txt,foto});salvar();renderAll();document.getElementById("postTitulo").value="";document.getElementById("postTexto").value="";document.getElementById("postFotoLink").value="";fotoTemp="";document.getElementById("previewImg").style.display="none";alert("Publicado 👽");}
-function removerPost(i){if(confirm("Apagar publicação?")){posts.splice(i,1);salvar();renderAll();}}
-function renderPosts(){
-  const html=posts.map((p,i)=>`<div class="post-card">${p.foto?`<img src="${p.foto}">`:""}<div><h3>${p.titulo}</h3><p>${p.texto}</p><p class="small">NAULANGUE TECH 👽</p></div></div>`).join("")||"<p class='small'>Nenhuma publicação.</p>";
-  document.getElementById("postsHome").innerHTML=html;
-  document.getElementById("postsPage").innerHTML=html;
-  document.getElementById("listaPostsAdmin").innerHTML=posts.map((p,i)=>`<div class="list-item"><div><b>${p.titulo}</b><br><span class="small">${p.texto.substring(0,50)}</span></div><button onclick="removerPost(${i})" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Apagar</button></div>`).join("");
-}
-function renderCursos(){
-  const grid=document.getElementById("cursosGrid");const sel=document.getElementById("cursoEscolhido");
-  if(!grid)return;grid.innerHTML="";sel.innerHTML="";
-  cursos.forEach((c,i)=>{grid.innerHTML+=`<div class="card"><h3>${c.titulo}</h3><p>${c.desc}</p><div class="price">${c.preco} MZN</div><button class="btn" style="width:100%" onclick="abrirInscricao(${i})">Inscrever-se</button></div>`;sel.innerHTML+=`<option value="${i}">${c.titulo} - ${c.preco} MZN</option>`;});
-  document.getElementById("listaAdmin").innerHTML=cursos.map((c,i)=>`<div class="list-item"><div><b>${c.titulo}</b><br><span class="small">${c.preco} MZN</span></div><button onclick="removerCurso(${i})" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Apagar</button></div>`).join("");
-  document.getElementById("totalAlunos").textContent=alunos.length;
-  document.getElementById("listaAlunos").innerHTML=alunos.map((a,i)=>`<div class="list-item"><div><b>${a.nome}</b><br><span class="small">${a.tel} • ${cursos[a.curso]?.titulo||'Curso'}</span></div><button onclick="removerAluno(${i})" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">X</button></div>`).join("")||"<p class='small'>Nenhum aluno.</p>";
-}
-function renderAll(){renderCursos();renderPosts();aplicarFundo();}
-function openModal(id){document.getElementById(id).classList.add("active");}
-function closeModal(id){document.getElementById(id).classList.remove("active");}
-function fazerLogin(){const s=document.getElementById("senhaAdmin").value.trim();if(s===SENHA_ADMIN){closeModal('loginModal');openModal('adminModal');document.getElementById("erroLogin").textContent="";document.getElementById("senhaAdmin").value="";renderAll();}else{document.getElementById("erroLogin").textContent="❌ Senha errada";}}
-function sairAdmin(){closeModal('adminModal');alert("Saiu do Admin 👽");}
-function adicionarCurso(){const t=document.getElementById("novoTitulo").value;const d=document.getElementById("novoDesc").value;const p=document.getElementById("novoPreco").value;if(!t||!p)return alert("Preencha título e preço!");cursos.push({titulo:t,desc:d||"Curso",preco:Number(p)});salvar();renderAll();document.getElementById("novoTitulo").value="";document.getElementById("novoDesc").value="";document.getElementById("novoPreco").value="";alert("Curso adicionado 👽");}
-function removerCurso(i){if(confirm("Apagar?")){cursos.splice(i,1);salvar();renderAll();}}
-function removerAluno(i){alunos.splice(i,1);salvar();renderAll();}
-function abrirInscricao(i){document.getElementById("cursoEscolhido").value=i;openModal('inscreverModal');}
-function inscrever(){const nome=document.getElementById("nomeAluno").value;const tel=document.getElementById("telAluno").value;const curso=document.getElementById("cursoEscolhido").value;if(!nome||!tel)return alert("Preencha nome e telefone!");alunos.push({nome,tel,curso:Number(curso)});salvar();renderAll();document.getElementById("msgInscricao").textContent="✅ Inscrição feita, "+nome+" 👽";document.getElementById("nomeAluno").value="";document.getElementById("telAluno").value="";}
-renderAll();
-</scrpt>
+function postCard(p){return `<article class="card post-card" onclick="showPage('post',${p.id})"><div class="post-img">${p.emoji||'📘'}</div><div class="post-body"><span class="pill">${esc(p.category)}</span><h3>${esc(p.title)}</h3><p class="muted">${esc(p.body.slice(0,100))}${p.body.length>100?'…':''}</p><small class="muted">${esc(p.date||'')}</small></div></article>`}
+function courseCard(c){return `<article class="card course-card"><div class="course-icon">${c.icon}</div><h3>Curso ${c.name}</h3><div class="price">${c.price} MT</div><p>${c.desc}</p><button class="btn btn-primary" onclick="showPage('course','${c.name}')">${unlocked.includes(c.name)?'Aceder ao curso':'Ver curso'}</button></article>`}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function register(e){e.preventDefault();let f=new FormData(e.target);if(f.get('password')!==f.get('confirm'))return toast('As palavras-passe não coincidem.');user={name:f.get('name'),phone:f.get('phone'),email:f.get('email')};save();toast('Conta de demonstração criada!');showPage('progress')}
+function login(e){e.preventDefault();let f=new FormData(e.target);if(user&&user.email===f.get('email')){toast('Sessão iniciada nesta demonstração.');showPage('progress')}else toast('Conta não encontrada neste navegador. Cria uma conta ou configura o Supabase.')}
+function logout(){user=null;save();showPage('home');toast('Sessão terminada.')}
+function startPayment(name){if(!user){toast('Cria uma conta ou inicia sessão primeiro.');return showPage('register')}showPage('payment',name)}
+function paymentRequest(e,name){e.preventDefault();toast('Pedido registado apenas nesta demonstração. O administrador deve confirmar a transação.');}
+function grade(e,type){e.preventDefault();let f=new FormData(e.target);let answers=Array.from({length:10},(_,i)=>String(f.get('a'+i)||'').trim().toLowerCase());let expected=type==='practice'?['bom dia','como estás?','como você está?','o meu nome é john.','meu nome é john.','sou estudante.','eu sou estudante.','muito obrigado.','obrigado.','boa noite.','eu amo inglês.','eu adoro inglês.','de onde és?','de onde você é?','até amanhã.','vemo-nos amanhã.','bem-vindo à escola.','bem-vinda à escola.']:[];let score=0;if(type==='practice'){let groups=[['good morning.','bom dia'],['how are you?','como estás'],['my name is john.','meu nome é john'],['i am a student.','sou estudante'],['thank you very much.','muito obrigado'],['good night.','boa noite'],['i love english.','eu amo inglês'],['where are you from?','de onde és'],['see you tomorrow.','até amanhã'],['welcome to school.','bem-vindo à escola']];score=groups.reduce((n,g,i)=>n+(answers[i].includes(g[1])?1:0),0)}else{let keys=['casa','eu estou feliz','good morning','books','obrigado','professor','am','boa noite','small','até breve'];score=answers.reduce((n,a,i)=>n+(a.includes(keys[i])?1:0),0)}progress.tests.push({type,date:new Date().toLocaleDateString()});progress.scores.push({label:type==='practice'?'Aula prática':'Teste',score});save();$('#main').innerHTML=`<div class="card"><h1 class="page-title">Resultado: ${score}/10</h1><p>Terminaste a atividade. ${score>=7?'Muito bem! Continua a praticar.':'Continua a estudar e tenta novamente.'}</p><button class="btn btn-primary" onclick="showPage('progress')">Ver meu progresso</button></div>`}
+function completeLesson(name){if(!progress.lessons.includes(name))progress.lessons.push(name);save();toast('Aula marcada como concluída.');showPage('progress')}
+function adminLogin(e){e.preventDefault();toast('A autenticação administrativa precisa ser ligada ao Supabase. Não há senha de administrador embutida no site.');}
+function renderAdmin(){let tabs=[['overview','Visão geral'],['posts','Publicações'],['courses','Cursos'],['students','Alunos'],['lessons','Aulas'],['questions','Perguntas e testes'],['comments','Comentários'],['payments','Pagamentos'],['progress','Progresso']];$('#main').innerHTML=`<div class="section-head"><div><span class="pill">PAINEL ADMINISTRATIVO</span><h1 class="page-title">Gestão Naulangue Tech</h1></div><button class="btn btn-outline" onclick="adminMode=false;showPage('home')">Sair</button></div><div class="admin-layout"><nav class="admin-menu">${tabs.map(t=>`<button onclick="adminTab='${t[0]}';renderAdmin()">${t[1]}</button>`).join('')}</nav><section class="admin-content" id="adminContent"></section></div>`;let a=$('#adminContent');if(adminTab==='overview')a.innerHTML=`<div class="stat-grid"><div class="stat"><strong>${posts.length}</strong>Publicações</div><div class="stat"><strong>${courses.length}</strong>Cursos</div><div class="stat"><strong>${user?1:0}</strong>Contas neste navegador</div><div class="stat"><strong>${progress.tests.length}</strong>Testes registados</div></div><div class="card" style="margin-top:16px"><h3>Bem-vindo ao painel</h3><p>Escolhe uma secção para gerir os conteúdos. A gestão real multiutilizador será ligada ao Supabase.</p></div>`;else if(adminTab==='posts')a.innerHTML=`<div class="card"><h3>Criar publicação</h3><form onsubmit="createPost(event)"><div class="field"><label>Título</label><input name="title" required></div><div class="field"><label>Categoria / local de publicação</label><select name="category"><option>Painel geral</option><option>Novidades</option><option>Frases do dia a dia</option><option>Iniciante</option><option>Cursos</option><option>Sala de aula</option><option>Área de tarefas</option></select></div><div class="field"><label>Conteúdo</label><textarea name="body" required></textarea></div><div class="field"><label>Emoji ou ícone ilustrativo</label><input name="emoji" value="📘" maxlength="4"></div><div class="field"><label>Escolher várias fotografias</label><input name="images" type="file" accept="image/*" multiple></div><button class="btn btn-primary">Publicar</button></form></div><div class="card" style="margin-top:14px"><h3>Publicações existentes</h3>${posts.map(p=>`<p>${esc(p.title)} · ${esc(p.category)} <button class="btn btn-light" onclick="deletePost(${p.id})">Eliminar</button></p>`).join('')}</div>`;else if(adminTab==='courses')a.innerHTML=`<div class="card"><h3>Gestão de cursos</h3>${courses.map(c=>`<p>${c.icon} ${c.name} — ${c.price} MT</p>`).join('')}<div class="notice">As senhas privadas de desbloqueio não são guardadas neste HTML. Serão armazenadas e verificadas no servidor.</div></div>`;else if(adminTab==='students')a.innerHTML=`<div class="card"><h3>Alunos</h3><p>Contas de demonstração neste navegador: ${user?esc(user.name)+' · '+esc(user.email):'Nenhuma conta registada.'}</p></div>`;else a.innerHTML=`<div class="card"><h3>${tabs.find(t=>t[0]===adminTab)[1]}</h3><p>Esta secção será ligada à base de dados para gerir dados reais.</p></div>`}
+function createPost(e){e.preventDefault();let f=new FormData(e.target);let files=Array.from(f.get('images')||[]);let p={id:Date.now(),title:f.get('title'),category:f.get('category'),body:f.get('body'),emoji:f.get('emoji')||'📘',date:new Date().toLocaleDateString(),images:[]};let readers=files.filter(x=>x&&x.size);if(readers.length){let count=0;readers.slice(0,5).forEach(file=>{let r=new FileReader();r.onload=()=>{p.images.push(r.result);count++;if(count===Math.min(readers.length,5)){posts.unshift(p);save();renderAdmin();toast('Publicação criada com fotografias.')}};r.readAsDataURL(file)})}else{posts.unshift(p);save();renderAdmin();toast('Publicação criada.')}}function deletePost(id){posts=posts.filter(p=>p.id!==id);save();renderAdmin();toast('Publicação eliminada.')}
+showPage('home');
+</script>
 </body>
 </html>
